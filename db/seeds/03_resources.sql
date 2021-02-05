@@ -1,4 +1,4 @@
-// math = 1, comp sci = 2, french = 3, english = 4, science = 5, biology = 6, chemistry = 7, visual arts = 8, history = 9, physics = 10
+-- // math = 1, comp sci = 2, french = 3, english = 4, science = 5, biology = 6, chemistry = 7, visual arts = 8, history = 9, physics = 10
 
 INSERT INTO resources (title, description, user_id, topic_id, image_src, url)
 VALUES ('Algebra Foundations', 'Khan Academy tutorial on algebra foundations', 2, 1, 'https://images.pexels.com/photos/53621/calculator-calculation-insurance-finance-53621.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260', 'https://www.khanacademy.org/math/algebra/x2f8bb11595b61c86:foundation-algebra');

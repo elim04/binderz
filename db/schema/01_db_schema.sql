@@ -13,6 +13,11 @@ CREATE TABLE users (
   password VARCHAR(255) NOT NULL
 );
 
+CREATE TABLE topics (
+  id SERIAL PRIMARY KEY NOT NULL,
+  topic VARCHAR(255) NOT NULL
+);
+
 CREATE TABLE resources (
   id SERIAL PRIMARY KEY NOT NULL,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
@@ -21,13 +26,6 @@ CREATE TABLE resources (
   description TEXT,
   image_src VARCHAR(255) NOT NULL,
   url VARCHAR(255) NOT NULL
-);
-
-CREATE TABLE likes (
-  id SERIAL PRIMARY KEY NOT NULL,
-  resource_id INTEGER REFERENCES resources(id) ON DELETE CASCADE,
-  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-  active BOOLEAN NOT NULL DEFAULT TRUE
 );
 
 CREATE TABLE ratings (
@@ -44,7 +42,13 @@ CREATE TABLE comments (
   comment TEXT
 );
 
-CREATE TABLE topics (
+CREATE TABLE likes (
   id SERIAL PRIMARY KEY NOT NULL,
-  topic VARCHAR(255) NOT NULL
+  resource_id INTEGER REFERENCES resources(id) ON DELETE CASCADE,
+  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  active BOOLEAN NOT NULL DEFAULT TRUE
 );
+
+
+
+

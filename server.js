@@ -33,9 +33,11 @@ app.use(express.static(path.join(__dirname, './public')));
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
 const userRoutes = require("./routes/users");
+const resourceRoutes = require('./routes/resources');
 
 // Databases
 const db_user = require('./db_helpers/db_user_helpers');
+const db_resource = require('./db_helpers/db_resource_helpers');
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -46,6 +48,11 @@ const db_user = require('./db_helpers/db_user_helpers');
 const userRouter = express.Router();
 userRoutes(userRouter, db_user);
 app.use('/api/users', userRouter);
+
+//Resource endpoints
+const resourceRouter = express.Router();
+resourceRoutes(resourceRouter, db_resource);
+app.use('/api/resources');
 
 // Home page
 // Warning: avoid creating more routes in this file!

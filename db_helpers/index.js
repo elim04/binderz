@@ -7,5 +7,5 @@ module.exports = {
   query: (text, params) => {
     return db.query(text,params);
   }
-}
+};
 

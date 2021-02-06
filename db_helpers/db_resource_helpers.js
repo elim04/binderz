@@ -1,3 +1,4 @@
+const { query } = require('../../w5/LightBnB/LightBnB_WebApp-master/server/db');
 const db = require('/index');
 
 
@@ -29,7 +30,7 @@ const getAllResources = function(options, limit = 10) {
   let queryParams = [];
 
   let queryString = `
-  SELECT resources.*
+  SELECT *
   FROM resources
   WHERE true `;
 
@@ -37,6 +38,21 @@ const getAllResources = function(options, limit = 10) {
   if (options.user_id) {
     queryParams.push(`${options.user_id}`);
     queryString += `AND user_id = $${queryParms.length} `;
+  }
+
+
+  //show selected topic from drop down search bar
+
+  if (options.topic_id) {
+    queryParams.push(`${options.topic_id}`);
+    queryString += `AND topic_id = $${queryParams.length} `;
+  }
+
+  //show based on title input in serach bar
+
+  if (options.title) {
+    queryParams.push(`%${options.title}%`)
+    queryString += `AND title LIKE $${queryParams.length} `;
   }
 
   //show all resources otherwise
@@ -57,6 +73,11 @@ exports.getAllResources = getAllResources;
 
 const getAllLikedResources = function(options, limit = 10) {
 
+  let queryParams = [];
 
+  let queryString = `
+  SELECT resources.*
+  FROM resources
+  JOIN likes on resource_id`
 
 };

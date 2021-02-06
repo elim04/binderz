@@ -31,7 +31,6 @@ const getAllResources = function(options, limit = 10) {
   let queryString = `
   SELECT resources.*
   FROM resources
-  LEFT JOIN likes ON resource_id = resources.id
   WHERE true `;
 
   //show resources belonging to logged in user
@@ -39,12 +38,6 @@ const getAllResources = function(options, limit = 10) {
     queryParams.push(`${options.user_id}`);
     queryString += `AND user_id = $${queryParms.length} `;
   }
-
-  //show resources that are liked by logged in user
-
-  queryString += `GROUP BY `
-
-  if (options.)
 
   //show all resources otherwise
 
@@ -61,3 +54,9 @@ const getAllResources = function(options, limit = 10) {
 
 exports.getAllResources = getAllResources;
 
+
+const getAllLikedResources = function(options, limit = 10) {
+
+
+
+};

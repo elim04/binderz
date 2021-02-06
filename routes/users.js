@@ -9,7 +9,7 @@ const express = require('express');
 const router  = express.Router();
 
 module.exports = (db) => {
-  router.get("/", (req, res) => {
+  router.get('/', (req, res) => {
     db.query(`SELECT * FROM users;`)
       .then(data => {
         const users = data.rows;
@@ -22,6 +22,16 @@ module.exports = (db) => {
       });
   });
 
+  const register = function(user) {
+    return db.addUser(user);
+  };
+
+  router.post('/register', (req, res) => {
+    // const {name, email, password} = req.body;
+    const newUserInfo = req.body;
+    register(newUserInfo);
+
+  });
 
 
   return router;

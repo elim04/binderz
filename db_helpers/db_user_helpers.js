@@ -1,7 +1,6 @@
 const db = require('/index');
 
 const addUser = function(user) {
-  console.log(user)
   return db.query(`
   INSERT INTO users
   (name, email, password)

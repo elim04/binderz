@@ -6,15 +6,16 @@ const db = require('./index');
 
 const addResource = function(resource) {
 
+  let queryParams = [resource.user_id, resource.topic_id, resource.title, resource.image_src, resource.url];
+
   const queryString = `
   INSERT INTO resources
   (user_id, topic_id, title, image_src, url)
   VALUES ($1, $2, $3, $4, $5)
   RETURNING *;`;
 
-  let values = [resource.user_id, resource.topic_id, resource.title, resource.image_src, resource.url];
 
-  return db.query(queryString, values)
+  return db.query(queryString, queryParams)
     .then(res => res.rows[0])
     .catch(err => console.log('query error', err.stack));
 };
@@ -97,7 +98,7 @@ exports.getAllLikedResources = getAllLikedResources;
 
 const getSpecificResource = function(id, resource) {
 
-  let queryParams = [id, resource];
+  let queryParams = [id, resource.id];
   let queryString = `
   SELECT resources.*,
     (SELECT likes.active
@@ -118,9 +119,21 @@ const getSpecificResource = function(id, resource) {
 
 exports.getSpecificResource = getSpecificResource;
 
-const getComments = function() {
+const getComments = function(resource) {
+
+  let queryParams = [resource.id];
+
+  let queryString = `
+  SELECT comment
+  FROM comments
+  WHERE resource_id = $1
+  `
+  return db.query(queryString, queryParams)
+    .then(res => res.rows)
+    .catch(err => console.error('query error', err.stack));
 
 };
 
+exports.getComments = getComments;
 
 

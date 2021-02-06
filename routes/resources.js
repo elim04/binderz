@@ -3,11 +3,10 @@ const router  = express.Router();
 const db_resource = require('../db_helpers/db_resource_helpers');
 
 module.exports = (db) => {
-  router.get("/", (req, res) => {
-    db.query(`SELECT * FROM users;`)
-      .then(data => {
-        const users = data.rows;
-        res.json({ users });
+  router.get('/resources', (req, res) => {
+    db.getAllResources(req.query, 10)
+      .then(resources => {
+        res.json({ resources });
       })
       .catch(err => {
         res
@@ -16,7 +15,43 @@ module.exports = (db) => {
       });
   });
 
+  router.get('/likedresources', (req, res) => {
+    const userId = req.session.userId;
 
+    //user needs to be logged in to see their liked resources
+    if (!userId) {
+      res.error('error');
+      return;
+    }
+
+    db.getAllLikedResources(req.query)
+      .then(resources => {
+        res.json({ resources })
+      })
+      .catch(error => {
+        console.error(err);
+        res.json({ error: err.message });
+      });
+  })
+
+  router.post('/resources', (req, res) => {
+    const userId = req.session.userId;
+
+    //user needs to be logged in to create a new resource
+    if (!userId) {
+      res.error('error');
+      return;
+    }
+
+    db.addResource({...req.body, user_id: userId})
+      .then(resource => {
+      res.json({ resource });
+    })
+      .catch(err => {
+      console.error(err);
+      res.json({ error: err.message });
+    });
+  });
 
   return router;
 };

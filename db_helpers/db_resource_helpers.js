@@ -1,5 +1,5 @@
 const { query } = require('../../w5/LightBnB/LightBnB_WebApp-master/server/db');
-const db = require('/index');
+const db = require('./index');
 
 
 // Add resource to the database
@@ -25,7 +25,7 @@ exports.addResource = addResource;
 
 //set limit of resources for now since we have a limited amount in db
 
-const getAllResources = function(options, limit = 10) {
+const getAllResources = function(options, limit) {
 
   let queryParams = [];
 
@@ -74,7 +74,7 @@ exports.getAllResources = getAllResources;
 
 const getAllLikedResources = function(options) {
 
-  let queryParams = [options.user_id, options.resource_id];
+  let queryParams = [options[users.id], options[likes.user_id]];
 
   let queryString = `
   SELECT resources.*
@@ -88,7 +88,7 @@ const getAllLikedResources = function(options) {
 
   return db.query(queryString, queryParams)
     .then(res => res.rows)
-    .catch(err => console.error('query error', err.stack))
+    .catch(err => console.error('query error', err.stack));
 
 };
 

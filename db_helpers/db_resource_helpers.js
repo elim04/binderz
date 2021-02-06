@@ -81,8 +81,8 @@ const getAllLikedResources = function(options) {
   FROM users
   JOIN likes ON likes.user_id = users.id
   JOIN resources ON likes.resource_id = resources.id
-  WHERE users.id = 1
-  AND likes.user_id = 1
+  WHERE users.id = $1
+  AND likes.user_id = $2
   GROUP BY resources.id;
   `
 
@@ -93,3 +93,34 @@ const getAllLikedResources = function(options) {
 };
 
 exports.getAllLikedResources = getAllLikedResources;
+
+
+const getSpecificResource = function(id, resource) {
+
+  let queryParams = [id, resource];
+  let queryString = `
+  SELECT resources.*,
+    (SELECT likes.active
+    FROM likes WHERE user_id = $1
+    AND resource_id = $2) as likes,
+    (SELECT ratings.rating
+    FROM ratings WHERE user_id = $1
+    AND resource_id = $2) as rating
+  FROM resources
+  WHERE resources.id = $2;
+  `
+  return db.query(queryString, queryParams)
+    .then(res => res.rows[0])
+    .catch(err => console.error('query error', err.stack));
+
+};
+
+
+exports.getSpecificResource = getSpecificResource;
+
+const getComments = function() {
+
+};
+
+
+

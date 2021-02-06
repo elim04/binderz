@@ -52,7 +52,7 @@ app.use('/api/users', userRouter);
 //Resource endpoints
 const resourceRouter = express.Router();
 resourceRoutes(db_resource);
-app.use('/api/resources');
+app.use('/api/resources', resourceRouter);
 
 // Home page
 // Warning: avoid creating more routes in this file!

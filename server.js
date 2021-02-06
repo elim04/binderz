@@ -9,7 +9,8 @@ const bodyParser = require("body-parser");
 const sass       = require("node-sass-middleware");
 const app        = express();
 const morgan     = require('morgan');
-const db_user    = require('/db_helpers/db_user_helpers');
+const path       = require('path')
+// const db_user    = require('./db_helpers/db_user_helpers');
 
 // PG database client/connection setup
 
@@ -18,25 +19,33 @@ const db_user    = require('/db_helpers/db_user_helpers');
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
 app.use(morgan('dev'));
 
-app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
+
 app.use("/styles", sass({
   src: __dirname + "/styles",
   dest: __dirname + "/public/styles",
   debug: true,
   outputStyle: 'expanded'
 }));
-app.use(express.static("public"));
+
+app.use(express.static(path.join(__dirname, './public')));
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
-const usersRoutes = require("./routes/users");
+const userRoutes = require("./routes/users");
+
+// Databases
+const db_user = require('./db_helpers/db_user_helpers');
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
-app.use("/api/users", usersRoutes(db));
 // Note: mount other resources here, using the same pattern above
 
+
+// User endpoints
+const userRouter = express.Router();
+userRoutes(userRouter, db_user);
+app.use('/api/users', userRouter);
 
 // Home page
 // Warning: avoid creating more routes in this file!

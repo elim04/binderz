@@ -1,4 +1,5 @@
 const express = require('express');
+const db_helpers = require('../db_helpers');
 const router  = express.Router();
 const db_resource = require('../db_helpers/db_resource_helpers');
 
@@ -28,11 +29,28 @@ module.exports = (db) => {
       .then(resources => {
         res.json({ resources })
       })
-      .catch(error => {
+      .catch((err) => {
         console.error(err);
         res.json({ error: err.message });
       });
-  })
+  });
+
+  router.get('/resources/:resources_id', (req, res) => {
+    const userId = req.session.userID;
+    const specificResource = req.params.resources_id;
+
+    //check by mentor on promise.all to make sure doing right
+    Promise.all([db.getSpecificResource(userId, specificResource), db.getComments(specificResource)])
+      .then((data) => {
+        res.json({ data })
+      })
+      .catch((err) =>  {
+        console.error(err);
+        res.json({ error: err.message });
+      });
+
+
+  });
 
   router.post('/resources', (req, res) => {
     const userId = req.session.userId;

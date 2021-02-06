@@ -48,7 +48,7 @@ const getAllResources = function(options, limit = 10) {
     queryString += `AND topic_id = $${queryParams.length} `;
   }
 
-  //show based on title input in serach bar
+  //show based on title input in search bar
 
   if (options.title) {
     queryParams.push(`%${options.title}%`)
@@ -70,14 +70,26 @@ const getAllResources = function(options, limit = 10) {
 
 exports.getAllResources = getAllResources;
 
+//get all liked resources from specific user
 
-const getAllLikedResources = function(options, limit = 10) {
+const getAllLikedResources = function(options) {
 
-  let queryParams = [];
+  let queryParams = [options.user_id, options.resource_id];
 
   let queryString = `
   SELECT resources.*
-  FROM resources
-  JOIN likes on resource_id`
+  FROM users
+  JOIN likes ON likes.user_id = users.id
+  JOIN resources ON likes.resource_id = resources.id
+  WHERE users.id = 1
+  AND likes.user_id = 1
+  GROUP BY resources.id;
+  `
+
+  return db.query(queryString, queryParams)
+    .then(res => res.rows)
+    .catch(err => console.error('query error', err.stack))
 
 };
+
+exports.getAllLikedResources = getAllLikedResources;

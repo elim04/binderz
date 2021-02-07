@@ -33,10 +33,45 @@
         <button type="button" class="btn btn-primary">Login/Register</button>
       </div>
     </nav>
-
     <main>
       <div class="modal-bg">
         <div class="modal-create-resource">
+        <div class="modal-view-resource">
+
+            <div class="view-resource-info">
+              <div class="view-title">
+              </div>
+              <div class="view-description">
+              </div>
+              <div class="view-comments">
+              </div>
+            </div>
+        </div>
+        <div class="modal-create-resource">
+            <div class="modal-img">
+              <a>Image</a>
+            </div>
+            <form class="create-resource-info" action="/register" method="POST">
+              <div class="form-group">
+                <label for="title">Title</label>
+                <input type="title" class="form-control" id="title" placeholder="Enter title">
+              </div>
+                <div class="form-group">
+                  <label for="description">Description</label>
+                  <textarea class="form-control" id="description"></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="resource-url">Resource</label>
+                  <input type="resource-url" class="form-control" id="resource-url" placeholder="Enter resource">
+                </div>
+                <div class="form-group">
+                  <label for="image-url">Image-Url</label>
+                  <input type="image-url" class="form-control" id="image-url" placeholder="Enter image URL">
+                </div>
+                <button type="button" class="btn btn-primary">Create Resource</button>
+                <span class="modal-close">X</span>
+            </form>
+          </div>
         </div>
         <div class="modal-login">
           <div class="modal-login-content">

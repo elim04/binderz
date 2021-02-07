@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(function() {
 
   $('.modal-login-btn').on('click', () => {
     $('.modal-bg3').addClass('bg-active');

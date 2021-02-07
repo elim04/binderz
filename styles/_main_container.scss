@@ -30,6 +30,15 @@ main {
         padding: 5px 15px 15px 15px;
       }
     }
+    .create-resource {
+      position:fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      font-size: x-large;
+    }
   }
 
   @media screen and (min-width: 800px){

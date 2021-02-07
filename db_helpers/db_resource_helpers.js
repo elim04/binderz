@@ -1,4 +1,3 @@
-const { query } = require('../../w5/LightBnB/LightBnB_WebApp-master/server/db');
 const db = require('./index');
 
 

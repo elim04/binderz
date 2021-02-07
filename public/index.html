@@ -12,6 +12,18 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="./styles/main.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lemonada:wght@700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <script src="https://kit.fontawesome.com/58b7eecc97.js" crossorigin="anonymous"></script>
+
+    <!-- External JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- App JS -->
+    <script type="text/javascript" src="/scripts/login_register_modal.js"></script>
+
     <title>Binderz</title>
   </head>
   <body>
@@ -30,7 +42,7 @@
         </div>
       </div>
       <div class="login">
-        <button type="button" class="btn btn-primary">Login/Register</button>
+        <button type="button" class="btn btn-primary modal-login-btn">Login/Register</button>
       </div>
     </nav>
     <main>
@@ -89,14 +101,14 @@
                 <input class="form-control" type="password" name="password" placeholder="******">
               </div>
               <div class="login-buttons-form">
-                <button type="submit" class="btn btn-primary login-button">Login</button>
+                <button type="submit" class="btn btn-outline-dark login-button">Login</button>
                 <a href="#">Forgot my password</a>
               </div>
             </form>
             <p>Don't have an account? Click below to sign up!</p>
-            <button type="submit" class="btn btn-dark reg-button">Register Here</button>
+            <button type="submit" class="btn btn-dark reg-btn">Register Here</button>
           </div>
-          <span class="modal-login-close">X</span>
+          <span class="modal-login-close"><i class="far fa-times-circle fa-2x"></i></span>
         </div>
       </div>
       <div class="modal-bg4">
@@ -116,10 +128,10 @@
                 <label for="password">Password</label>
                 <input class="form-control" type="password" name="password" placeholder="*******">
               </div>
-              <button type="submit" class="btn btn-primary register-button">Sign Up</button>
+              <button type="submit" class="btn btn-outline-dark register-button">Sign Up</button>
             </form>
           </div>
-          <span class="modal-register-close">X</span>
+          <span class="modal-register-close"><i class="far fa-times-circle fa-2x"></i></span>
         </div>
       </div>
       <div class="wrapper">

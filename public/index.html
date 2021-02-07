@@ -13,6 +13,11 @@
     />
     <link rel="stylesheet" href="./styles/main.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!--app js-->
+    <script src="./vendor/jquery-3.0.0.js"></script>
+    <script src="./scripts/resource.js"></script>
+
     <title>Binderz</title>
   </head>
   <body>
@@ -53,6 +58,7 @@
               <span class="fa fa-star"></span>
               <span class="fa fa-star"></span>
             </div>
+
           </div>
         </div>
             <div class="view-resource-info">
@@ -69,6 +75,7 @@
                 </div>
               </div>
             </div>
+            <span class="modal-resource-close">X</span>
         </div>
       </div>
       <div class="modal-bg2">
@@ -94,7 +101,7 @@
                   <input type="image-url" class="form-control" id="image-url" placeholder="Enter image URL">
                 </div>
                 <button type="button" class="btn btn-primary">Create Resource</button>
-                <span class="modal-close">X</span>
+                <span class="modal-resource-close">X</span>
             </form>
           </div>
         </div>
@@ -146,7 +153,7 @@
         </div>
       </div>
       <div class="wrapper">
-        <button class="create-resource">+</button>
+        <button id="create-resource">+</button>
         <div class="block">
           <img src="http://placehold.it/350x150" />
           <div class="content">

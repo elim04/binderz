@@ -1,7 +1,7 @@
 
-.modal-login{
+.modal-register{
   position: relative;
-  background-color:white;
+  background-color: white;
   width: 50%;
   height: 50%;
   display: flex;
@@ -9,55 +9,48 @@
   justify-content: center;
   border-radius: 25px;
 
-
-  .modal-login-content{
+  .modal-register-content{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 
-    .modal-login-form{
+    .modal-register-form{
       display: flex;
       flex-direction: column;
       justify-content: space-around;
       align-items: center;
 
-      .login-button{
-        margin: 4%;
+      .register-button{
+        margin: 10%;
       }
 
-      .login-email-form{
+      .reg-name-form{
         display: flex;
         flex-direction: column;
         margin: 4%;
         width: 100%;
       }
 
-      .login-password-form{
+      .reg-email-form{
         display: flex;
         flex-direction: column;
         margin: 4%;
         width: 100%;
       }
 
-      .login-buttons-form{
+      .reg-password-form{
         display: flex;
-        flex-direction: row-reverse;
-        justify-content: space-between;
-        margin-top: 4%;
-        margin-bottom: 4%;
+        flex-direction: column;
+        margin: 4%;
         width: 100%;
       }
 
-    }
-
-    .reg-button{
-      height: 15%;
     }
 
   }
 
-  .modal-login-close{
+  .modal-register-close{
     position: absolute;
     top: 10px;
     right: 10px;

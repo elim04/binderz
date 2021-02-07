@@ -18,6 +18,10 @@
     flex-direction:column;
     // position:relative;
     border-radius: 25px;
+
+    .form-group {
+      width: 80%;
+    }
   }
   .modal-img {
     background-color: white;
@@ -87,7 +91,6 @@
       align-items: center;
       border-radius: 25px;
       border:solid black;
-      // margin: 25px;
       margin-left: 25px;
       margin-top: 25px;
       margin-right: 25px;
@@ -119,6 +122,33 @@
         justify-content: flex-end;
         flex-direction: row;
       }
+    }
+  }
+  .modal-resource-close{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+}
+
+@media screen and (max-width: 800px) {
+  .modal-resource {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .create-resource-info {
+      width: 100%;
+      margin-bottom: 10px;
+
+    }
+
+    .modal-img {
+      width: 80%;
     }
   }
 }

@@ -47,8 +47,6 @@ module.exports = (db) => {
         console.error(err);
         res.json({ error: err.message });
       });
-
-
   });
 
   router.post('/', (req, res) => {

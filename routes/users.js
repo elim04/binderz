@@ -11,6 +11,7 @@ const router  = express.Router();
 module.exports = (db) => {
   router.get('/me', (req, res) => {
     const userId = req.session.userId;
+
     if (!userId) {
       res.send({message: "not logged in"});
       return;
@@ -31,7 +32,6 @@ module.exports = (db) => {
   // ------------------ REGISTER ROUTES ---------------------
 
   router.post('/register', (req, res) => {
-    // const {name, email, password} = req.body;
     const newUserInfo = req.body;
     db.addUser(newUserInfo)
     .then(user => {
@@ -51,8 +51,8 @@ module.exports = (db) => {
   const login =  function(email, password) {
     return db.getUserWithEmail(email)
     .then(user => {
-      if (bcrypt.compareSync(password, user.password)) {
-      // if (password === user.password) {
+      // if (bcrypt.compareSync(password, user.password)) {
+      if (password === user.password) {
         return user;
       }
       return null;
@@ -67,8 +67,9 @@ module.exports = (db) => {
           res.send({error: "error"});
           return;
         }
+
         req.session.userId = user.id;
-        res.send({user: {name: user.name, email: user.email, id: user.id}});
+        res.json({user: {name: user.name, email: user.email, id: user.id}});
       })
       .catch(e => res.send(e));
   });

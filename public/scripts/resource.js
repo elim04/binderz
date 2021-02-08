@@ -10,4 +10,5 @@ $(function() {
     $(this).closest(".modal-resource").parent().removeClass('bg-active');
     $('.img-container').removeClass('change-order')
   })
+
 })

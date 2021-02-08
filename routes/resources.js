@@ -53,10 +53,10 @@ module.exports = (db) => {
     const userId = req.session.userId;
 
     //user needs to be logged in to create a new resource
-    if (!userId) {
-      res.error('error');
-      return;
-    }
+    // if (!userId) {
+    //   res.error('error');
+    //   return;
+    // }
 
     db.addResource({...req.body, user_id: userId})
       .then(resource => {
@@ -67,6 +67,15 @@ module.exports = (db) => {
       res.json({ error: err.message });
     });
   });
+
+
+  router.post('/:resources_id', (req, res) => {
+    const userId = req.session.userId;
+    const specificResource = req.params.resources_id;
+
+
+
+  })
 
   return router;
 };

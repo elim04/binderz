@@ -4,7 +4,7 @@
  *   these routes are mounted onto /users
  * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
  */
-// const bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt');
 const express = require('express');
 const router  = express.Router();
 
@@ -51,8 +51,8 @@ module.exports = (db) => {
   const login =  function(email, password) {
     return db.getUserWithEmail(email)
     .then(user => {
-      // if (bcrypt.compareSync(password, user.password)) {
-      if (password === user.password) {
+      if (bcrypt.compareSync(password, user.password)) {
+      // if (password === user.password) {
         return user;
       }
       return null;

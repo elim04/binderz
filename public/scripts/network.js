@@ -28,3 +28,10 @@ function addResource() {
     data: formContent,
   });
 }
+
+function getMyDetails() {
+  console.log("getMyDetails");
+  return $.ajax({
+    url: "/api/users/me",
+  });
+}

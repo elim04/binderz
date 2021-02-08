@@ -20,6 +20,9 @@
     <script src="./vendor/jquery-3.0.0.js"></script>
     <script src="./vendor/jquery-ui.js"></script>
     <script src="./scripts/search_bar.js"></script>
+    <script src="./scripts/register_form.js"></script>
+    <script src="./scripts/network.js"></script>
+    <script src="./scripts/login_form.js"></script>
 
     <link rel="stylesheet" href="./styles/main.css" />
 
@@ -189,6 +192,7 @@
               action="/api/users/login"
             >
               <h3>Login</h3>
+              <div class="login_error"></div>
               <div class="login-email-form">
                 <label for="email">Email Address</label>
                 <input
@@ -229,6 +233,7 @@
           <div class="modal-register-content">
             <form class="modal-register-form" method="POST" action="/register">
               <h3>Register</h3>
+              <div class="register_error"></div>
               <div class="reg-name-form">
                 <label for="name">Name</label>
                 <input
@@ -257,6 +262,7 @@
                 />
               </div>
               <button
+                id="sign-up"
                 type="submit"
                 class="btn btn-outline-dark register-button"
               >

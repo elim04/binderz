@@ -51,6 +51,13 @@
         width: 100%;
       }
 
+      .register_error {
+        display: none;
+        border:solid red;
+        color: red;
+        // margin-top: 1em;
+      }
+
     }
 
   }

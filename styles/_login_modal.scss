@@ -16,6 +16,7 @@
     justify-content: center;
     align-items: center;
 
+
     h3{
       font-family: 'Lemonada', cursive;
     }
@@ -26,6 +27,13 @@
       justify-content: space-around;
       align-items: center;
       width: 60%;
+
+      .login_error {
+        display: none;
+        border:solid red;
+        color: red;
+        // margin-top: 1em;
+      }
 
       .login-button{
         margin: 4%;

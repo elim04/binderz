@@ -20,4 +20,7 @@ $(function() {
     $('.img-container').removeClass('change-order')
   });
 
+
+
+
 });

@@ -6,6 +6,7 @@
  */
 const bcrypt = require('bcrypt');
 const express = require('express');
+const { getUserWithEmail } = require('../db_helpers/db_user_helpers');
 const router  = express.Router();
 
 module.exports = (db) => {
@@ -31,20 +32,33 @@ module.exports = (db) => {
 
   // ------------------ REGISTER ROUTES ---------------------
 
-  router.post('/register', (req, res) => {
+  router.post('/register', async (req, res) => {
     const newUserInfo = req.body;
+    const beforeHash = newUserInfo.password;
     newUserInfo.password = bcrypt.hashSync(newUserInfo.password, 10);
+    console.log(newUserInfo.email)
 
-    db.addUser(newUserInfo)
-    .then(user => {
-      if (!user) {
-        res.send({error: 'user not created'});
-        return;
-      }
-      req.session.userId = user.id;
-      res.send("🤗");
-    })
-    .catch(e => res.send(e));
+    const email = await getUserWithEmail(newUserInfo.email);
+    if(email) {
+      // showError("email alrdy exist");
+      res.status(409).send("Email already exists");
+      return;
+    } else {
+
+      db.addUser(newUserInfo)
+      .then(user => {
+        if (!user) {
+          res.send({error: 'user not created'});
+          return;
+        }
+        req.session.userId = user.id;
+        user.password = beforeHash;
+        // const userInfo = [user, beforeHash]
+        res.send(user);
+      })
+      .catch(e => res.send(e));
+    }
+
   });
 
 
@@ -62,10 +76,12 @@ module.exports = (db) => {
 
   router.post('/login', (req, res) => {
     const {email, password} = req.body;
+
     login(email, password)
       .then(user => {
         if (!user) {
-          res.send({error: "error"});
+          res.status(401).send("Invalid Email/Password");
+          // res.send({error: "error"});
           return;
         }
 
@@ -82,3 +98,4 @@ module.exports = (db) => {
 
   return router;
 };
+

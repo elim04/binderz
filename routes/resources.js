@@ -53,11 +53,11 @@ module.exports = (db) => {
     const userId = req.session.userId;
 
     //user needs to be logged in to create a new resource
-    if (!userId) {
-      res.error('error');
-      return;
-    }
-    console.log('req.body:', req.body);
+    // if (!userId) {
+    //   res.error('error');
+    //   return;
+    // }
+
     db.addResource({...req.body, user_id: userId})
       .then(resource => {
       res.json({ resource });

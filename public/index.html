@@ -145,30 +145,32 @@
             <a>Image</a>
           </div>
           <form
-            class="create-resource-info"
-            action="/api/resources"
-            method="POST"
+          class="create-resource-info"
+          action="/api/resources"
+          method="POST"
           >
-            <div class="form-group">
+          <div class="form-group">
               <label for="title">Title</label>
               <input
-                type="title"
-                class="form-control"
+                type="text"
+                class="form-control input-title"
                 name="title"
                 placeholder="Enter title"
+                required
               />
             </div>
             <div class="form-group">
               <label for="description">Description</label>
-              <textarea class="form-control" name="description"></textarea>
+              <textarea class="form-control input-description" name="description" required></textarea>
             </div>
             <div class="form-group">
               <label for="resource-url">Resource</label>
               <input
-                type="resource-url"
-                class="form-control"
+                type="text"
+                class="form-control input-url"
                 name="url"
                 placeholder="Enter resource"
+                required
               />
             </div>
             <div class="form-group">
@@ -183,10 +185,11 @@
             <div class="form-group">
               <label for="image-url">Image-Url</label>
               <input
-                type="image-url"
-                class="form-control"
+                type="text"
+                class="form-control input-image-url"
                 name="image_src"
                 placeholder="Enter image URL"
+                required
               />
             </div>
             <button id="create-submit-btn" type="submit" class="btn btn-primary">

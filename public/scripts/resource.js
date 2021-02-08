@@ -11,9 +11,4 @@ $(function() {
     $('.img-container').removeClass('change-order')
   })
 
-  // $('#create-submit-btn').on('submit', function() {
-  //   $('.modal-bg2').removeClass('bg-active');
-  //   $('.img-container').removeClass('change-order');
-  // })
-
 })

@@ -5,3 +5,8 @@ const register = function (data) {
     data
   });
 }
+
+
+function getAllResources() {
+  console.log()
+}

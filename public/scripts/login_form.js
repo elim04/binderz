@@ -33,33 +33,28 @@ $(function () {
     event.preventDefault();
     clearLoginError();
 
-    let data = $(this).serialize();
-    //removes all empty fields in data
-    data = data.replace(/&?[^=&]+=(&|$)/g,'');
-    if (!data) {
-      showLoginError('Please fill out the fields');
-    } else {
-      logIn(data)
+    const data = $(this).serialize();
+
+    logIn(data)
       .done((user) => {
-        console.log("HERE4")
         $('.modal-bg3').removeClass('bg-active');
         clearLoginInput();
         changeNavOnLogin(user)
       })
       .fail(err => showLoginError(err.responseText))
-      }
-    });
+  })
 
   //clears login error when any input is selected
-  $('.modal-bg3').on('focus','input', function() {
+  $('.modal-bg3').on('focus', 'input', function () {
     clearLoginError();
   })
 
 
   //clears all login input/error when X is clicked
-  $('.modal-login-close').on('click', function() {
+  $('.modal-login-close').on('click', function () {
     console.log($(this))
     clearLoginInput();
     clearLoginError();
   })
+
 })

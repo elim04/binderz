@@ -40,7 +40,6 @@ module.exports = (db) => {
 
     const email = await getUserWithEmail(newUserInfo.email);
     if(email) {
-      // showError("email alrdy exist");
       res.status(409).send("Email already exists");
       return;
     } else {
@@ -53,7 +52,6 @@ module.exports = (db) => {
         }
         req.session.userId = user.id;
         user.password = beforeHash;
-        // const userInfo = [user, beforeHash]
         res.send(user);
       })
       .catch(e => res.send(e));
@@ -70,6 +68,7 @@ module.exports = (db) => {
       if (bcrypt.compareSync(password, user.password)) {
         return user;
       }
+      console.log("HERE")
       return null;
     });
   }
@@ -79,12 +78,12 @@ module.exports = (db) => {
 
     login(email, password)
       .then(user => {
+        console.log(!user);
         if (!user) {
           res.status(401).send("Invalid Email/Password");
           // res.send({error: "error"});
           return;
         }
-
         req.session.userId = user.id;
         res.json({user: {name: user.name, email: user.email, id: user.id}});
       })

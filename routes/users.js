@@ -78,7 +78,6 @@ module.exports = (db) => {
 
     login(email, password)
       .then(user => {
-        console.log(!user);
         if (!user) {
           res.status(401).send("Invalid Email/Password");
           // res.send({error: "error"});

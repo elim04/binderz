@@ -27,7 +27,6 @@ $(function () {
     } else {
       logIn(data)
       .done(() => {
-        console.log("HERE4")
         $('.modal-bg3').removeClass('bg-active');
         clearLoginInput();
       })

@@ -11,133 +11,138 @@
       integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
       crossorigin="anonymous"
     />
+
+    <script
+      src="https://kit.fontawesome.com/6fc3c812b3.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="./vendor/jquery-3.0.0.js"></script>
+    <script src="./vendor/jquery-ui.js"></script>
+    <script src="./scripts/search_bar.js"></script>
+
     <link rel="stylesheet" href="./styles/main.css" />
     <title>Binderz</title>
   </head>
   <body>
     <nav>
-      <span>Binderz</span>
-      <div class="search_box">
-        <div class="input-group">
-          <input
-            type="search"
-            class="form-control rounded"
-            placeholder="Search"
-            aria-label="Search"
-            aria-describedby="search-addon"
-          />
-          <button type="button" class="btn btn-outline-primary">search</button>
+      <span><img src="assets/logo_size.jpg" /></span>
+      <div class="search_container">
+        <div class="search_box">
+          <input type="text" placeholder="Search By Title" class="search" />
+          <span class="vertical"></span>
+          <select name="topic" id="topic">
+            <option value="volvo">Topic</option>
+            <option value="saab">Math</option>
+            <option value="opel">Physics</option>
+            <option value="audi">Comp Science</option>
+          </select>
+        </div>
+        <div>
+          <button class="search-btn"><i class="fas fa-search"></i></button>
         </div>
       </div>
       <div class="login">
-        <button type="button" class="btn btn-primary">Login/Register</button>
+        <button type="button" class="btn btn-outline-dark">Login</button>
+      </div>
+      <div class="user">
+        <button><i class="fas fa-user"></i></button>
       </div>
     </nav>
 
     <main>
       <div class="wrapper">
+
         <div class="block">
-          <img src="http://placehold.it/350x150" />
-          <div class="content">
-            <h3>Some title</h3>
-            <!-- <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-              ante lorem, interdum a pulvinar in, ultrices mattis augue. Nam
-              maximus enim tortor.
-            </p> -->
-            <a href="#" class="read-more">Read More</a>
+          <div class="img-container">
+            <img src="http://placehold.it/350x250" />
+            <a href="www.google.com"><i class="fas fa-external-link-alt"></i> </a>
           </div>
-        </div>
-        <div class="block">
-          <img src="http://placehold.it/350x220" />
           <div class="content">
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-              ante lorem, interdum a pulvinar in, ultrices mattis augue. Nam
-              maximus enim tortor. Lorem ipsum dolor sit amet, consectetur
-              adipiscing.
-            </p>
-            <a href="#" class="read-more">Read More</a>
-          </div>
-        </div>
-        <div class="block">
-          <img src="http://placehold.it/350x300" />
-          <div class="content">
-            <h3>Small title</h3>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-              ante lorem.
-            </p>
-            <a href="#" class="read-more">Read More</a>
-          </div>
-        </div>
-        <div class="block">
-          <img src="http://placehold.it/350x120" />
-          <div class="content">
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-              ante lorem, interdum a pulvinar in, ultrices mattis augue. Nam
-              maximus enim tortor...
-            </p>
-            <a href="#" class="read-more">Read More</a>
-          </div>
-        </div>
-        <div class="block">
-          <img src="http://placehold.it/350x100" />
-          <div class="content">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <h3>title</h3>
           </div>
         </div>
 
         <div class="block">
-          <img src="http://placehold.it/350x230" />
+          <div class="img-container">
+            <img src="http://placehold.it/350x220" />
+            <a href="www.google.com"><i class="fas fa-external-link-alt"></i> </a>
+          </div>
           <div class="content">
-            <h3>A little longer Title</h3>
-            <a href="#" class="read-more">Read More</a>
+            <h3>title</h3>
           </div>
         </div>
+
         <div class="block">
-          <img src="http://placehold.it/350x150" />
+          <div class="img-container">
+            <img src="http://placehold.it/350x120" />
+            <a href="www.google.com"><i class="fas    fa-external-link-alt"></i> </a>
+          </div>
           <div class="content">
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-              ante lorem, interdum a pulvinar in, ultrices mattis augue. Nam
-              maximus enim tortor.
-            </p>
+            <h3>title</h3>
           </div>
         </div>
+
         <div class="block">
-          <img src="http://placehold.it/350x300" />
+          <div class="img-container">
+            <img src="http://placehold.it/350x300" />
+            <a href="www.google.com"><i class="fas    fa-external-link-alt"></i> </a>
+          </div>
           <div class="content">
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-              ante lorem, interdum a pulvinar in, ultrices mattis augue.
-            </p>
-            <a href="#" class="read-more">Read More</a>
+            <h3>title</h3>
           </div>
         </div>
+
         <div class="block">
-          <img src="http://placehold.it/350x100" />
+          <div class="img-container">
+            <img src="http://placehold.it/350x300" />
+            <a href="www.google.com"><i class="fas    fa-external-link-alt"></i> </a>
+          </div>
           <div class="content">
-            <h3>A Title</h3>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-              ante lorem, interdum a pulvinar in, ultrices mattis augue. Nam
-              maximus enim tortor. Lorem ipsum dolor sit amet, consectetur
-              adipiscing.
-            </p>
-            <a href="#" class="read-more">Read More</a>
+            <h3>title</h3>
           </div>
         </div>
+
         <div class="block">
-          <img src="http://placehold.it/350x350" />
+          <div class="img-container">
+            <img src="http://placehold.it/350x300" />
+            <a href="www.google.com"><i class="fas    fa-external-link-alt"></i> </a>
+          </div>
           <div class="content">
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-              ante lorem, interdum a pulvinar in, ultrices mattis augue.
-            </p>
+            <h3>title</h3>
           </div>
         </div>
+
+        <div class="block">
+          <div class="img-container">
+            <img src="http://placehold.it/350x300" />
+            <a href="www.google.com"><i class="fas    fa-external-link-alt"></i> </a>
+          </div>
+          <div class="content">
+            <h3>title</h3>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="img-container">
+            <img src="http://placehold.it/350x300" />
+            <a href="www.google.com"><i class="fas    fa-external-link-alt"></i> </a>
+          </div>
+          <div class="content">
+            <h3>title</h3>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="img-container">
+            <img src="http://placehold.it/350x300" />
+            <a href="www.google.com"><i class="fas    fa-external-link-alt"></i> </a>
+          </div>
+          <div class="content">
+            <h3>title</h3>
+          </div>
+        </div>
+
       </div>
     </main>
 

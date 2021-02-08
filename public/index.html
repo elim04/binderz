@@ -20,6 +20,8 @@
     <script src="./vendor/jquery-3.0.0.js"></script>
     <script src="./vendor/jquery-ui.js"></script>
     <script src="./scripts/search_bar.js"></script>
+    <script src="./scripts/register_form.js"></script>
+    <script src="./scripts/network.js"></script>
 
     <link rel="stylesheet" href="./styles/main.css" />
 
@@ -136,7 +138,7 @@
           <div class="modal-img">
             <a>Image</a>
           </div>
-          <form class="create-resource-info" action="/register" method="POST">
+          <form class="create-resource-info"  method="POST">
             <div class="form-group">
               <label for="title">Title</label>
               <input
@@ -168,7 +170,7 @@
                 placeholder="Enter image URL"
               />
             </div>
-            <button id="create-button" type="button" class="btn btn-primary">
+            <button type="button" class="btn btn-primary">
               Create Resource
             </button>
             <span class="modal-resource-close">X</span>
@@ -248,6 +250,7 @@
                 />
               </div>
               <button
+                id="sign-up"
                 type="submit"
                 class="btn btn-outline-dark register-button"
               >

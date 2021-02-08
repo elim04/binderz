@@ -68,5 +68,14 @@ module.exports = (db) => {
     });
   });
 
+
+  router.post('/:resources_id', (req, res) => {
+    const userId = req.session.userId;
+    const specificResource = req.params.resources_id;
+
+
+
+  })
+
   return router;
 };

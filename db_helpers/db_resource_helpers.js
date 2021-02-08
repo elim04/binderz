@@ -5,12 +5,12 @@ const db = require('./index');
 
 const addResource = function(resource) {
 
-  let queryParams = [resource.user_id, resource.topic_id, resource.title, resource.image_src, resource.url];
+  let queryParams = [resource.user_id, resource.topic_id, resource.title, resource.description, resource.image_src, resource.url];
 
   const queryString = `
   INSERT INTO resources
-  (user_id, topic_id, title, image_src, url)
-  VALUES ($1, $2, $3, $4, $5)
+  (user_id, topic_id, title, description, image_src, url)
+  VALUES ($1, $2, $3, $4, $5, $6)
   RETURNING *;`;
 
 

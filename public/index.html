@@ -35,6 +35,10 @@
       type="text/javascript"
       src="/scripts/login_register_modal.js"
     ></script>
+    <script
+      type="text/javascript"
+      src="/scripts/create_resource.js"
+    ></script>
 
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
@@ -142,20 +146,20 @@
               <input
                 type="title"
                 class="form-control"
-                id="title"
+                name="title"
                 placeholder="Enter title"
               />
             </div>
             <div class="form-group">
               <label for="description">Description</label>
-              <textarea class="form-control" id="description"></textarea>
+              <textarea class="form-control" name="description"></textarea>
             </div>
             <div class="form-group">
               <label for="resource-url">Resource</label>
               <input
                 type="resource-url"
                 class="form-control"
-                id="resource-url"
+                name="resource-url"
                 placeholder="Enter resource"
               />
             </div>
@@ -164,7 +168,7 @@
               <input
                 type="image-url"
                 class="form-control"
-                id="image-url"
+                name="image-url"
                 placeholder="Enter image URL"
               />
             </div>

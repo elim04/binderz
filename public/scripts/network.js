@@ -20,11 +20,12 @@ function getAllResources() {
 }
 
 
-function addResource() {
-  console.log('Add resource');
-  return $.ajax({
-    method: "POST",
-    url: "/api/resources",
-    data: formContent,
-  });
-}
+// function addResource(data) {
+//   console.log('Add resource');
+//   return $.ajax({
+//     method: "POST",
+//     url: "http://localhost:8080/api/resources",
+//     data: formContent,
+//   });
+// }
+

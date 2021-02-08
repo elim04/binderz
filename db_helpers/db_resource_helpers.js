@@ -5,12 +5,12 @@ const db = require('./index');
 
 const addResource = function(resource) {
 
-  let queryParams = [resource.user_id, resource.topic_id, resource.title, resource.image_src, resource.url];
+  let queryParams = [resource.user_id, resource.title, resource.description, resource.url, resource.topic_id,resource.image_src];
 
   const queryString = `
   INSERT INTO resources
-  (user_id, topic_id, title, image_src, url)
-  VALUES ($1, $2, $3, $4, $5)
+  (user_id, topic_id, title, description, image_src, url)
+  VALUES ($1, $5, $2, $3, $6, $4)
   RETURNING *;`;
 
 
@@ -133,5 +133,60 @@ const getComments = function(resource) {
 };
 
 exports.getComments = getComments;
+
+
+const addLike = function(id, resource) {
+
+  let queryParams = [resource, id];
+
+  let queryString = `
+  INSERT INTO likes
+  (resource_id, user_id)
+  VALUES ($1, $2)
+  RETURNING *;`;
+
+  return db.query(queryString, queryParams)
+    .then(res => res.rows[0])
+    .catch(err => console.log('query error', err.stack));
+}
+
+exports.addLike = addLike;
+
+const addRating = function(id, resource, rating) {
+
+  let queryParams = [resource, id, rating];
+
+  let queryString = `
+  INSERT INTO ratings
+  (resource_id, user_id, rating)
+  VALUES ($1, $2, $3)
+  RETURNING *;
+  `;
+
+  return db.query(queryString, queryParams)
+    .then(res => res.rows[0])
+    .catch(err => console.log('query error', err.stack));
+
+}
+
+exports.addRating = addRating;
+
+const addComment = function(id, resource_id, comment) {
+
+  let queryParams = [resource, id, comment];
+
+  let queryString = `
+  INSERT INTO comments
+  (resource_id, user_id, comment)
+  VALUES ($1, $2, $3)
+  RETURNING *;
+  `;
+
+  return db.query(queryString, queryParams)
+    .then(res => res.rows[0])
+    .catch(err => console.log('query error', err.stack));
+}
+
+exports.addComment = addComment;
 
 

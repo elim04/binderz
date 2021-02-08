@@ -19,8 +19,4 @@ $(function() {
     $('.modal-bg4').removeClass('bg-active');
     $('.img-container').removeClass('change-order')
   });
-
-
-
-
 });

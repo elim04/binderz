@@ -65,17 +65,17 @@ module.exports = (db) => {
   const login =  function(email, password) {
     return db.getUserWithEmail(email)
     .then(user => {
-      if (bcrypt.compareSync(password, user.password)) {
-        return user;
+      if(user) {
+        if (bcrypt.compareSync(password, user.password)) {
+          return user;
+        }
       }
-      console.log("HERE")
       return null;
-    });
+    })
   }
 
   router.post('/login', (req, res) => {
     const {email, password} = req.body;
-
     login(email, password)
       .then(user => {
         if (!user) {

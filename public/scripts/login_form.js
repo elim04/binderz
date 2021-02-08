@@ -20,18 +20,12 @@ $(function () {
     event.preventDefault();
     clearLoginError();
     let data = $(this).serialize();
-    //removes all empty fields in data
-    data = data.replace(/&?[^=&]+=(&|$)/g,'');
-    if (!data) {
-      showLoginError('Please fill out the fields');
-    } else {
-      logIn(data)
-      .done(() => {
-        $('.modal-bg3').removeClass('bg-active');
-        clearLoginInput();
-      })
-      .fail(err => showLoginError(err.responseText))
-      }
+    logIn(data)
+    .done(() => {
+      $('.modal-bg3').removeClass('bg-active');
+      clearLoginInput();
+    })
+    .fail(err => showLoginError(err.responseText))
     });
 
   //clears login error when any input is selected

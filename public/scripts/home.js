@@ -55,6 +55,8 @@ $(function () {
       .always(() => console.log('Succesful request'));
   }
 
+  window.loadResources = loadResources;
+
   const renderResources = function(resources){
     $('#main-container').empty();
 

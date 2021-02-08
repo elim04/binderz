@@ -11,18 +11,9 @@ $(function() {
     $('.img-container').removeClass('change-order')
   })
 
-
-  $('.block').on('click', function() {
-    $('.modal-bg1').addClass('bg-active');
+  $('.create-resource-info').on('submit', function() {
+    $(this).closest('.model-resource').parent().removeClass('bg-active');
+    $('.img-container').removeClass('change-order');
   })
-
-  $('#heart-btn').on('click', function() {
-    $('#heart-btn').replaceWith(`<i  id="heart-btn" class="fas fa-heart fa-2x"></i>`);
-  })
-
-  $('#heart-btn').on('click', function() {
-    $('#heart-btn').replaceWith(`<i  id="heart-btn" class="fas fa-heart fa-2x"></i>`);
-  })
-
 
 })

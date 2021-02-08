@@ -3,7 +3,7 @@ const router  = express.Router();
 
 module.exports = (db) => {
   router.get('/', (req, res) => {
-    db.getAllResources(req.query, 10)
+    db.getAllResources(req.query, 100)
       .then(resources => {
         res.json({ resources });
       })
@@ -57,7 +57,7 @@ module.exports = (db) => {
       res.error('error');
       return;
     }
-
+    console.log('req.body:', req.body);
     db.addResource({...req.body, user_id: userId})
       .then(resource => {
       res.json({ resource });

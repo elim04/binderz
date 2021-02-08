@@ -7,19 +7,13 @@ $(function() {
 
       $.ajax({
         method: "POST",
-        url: "http://localhost:8080/api/resources",
+        url: "/api/resources",
         data: data
       })
-      .done(() => {
-        console.log("data", data);
-      })
-      .fail((() => console.log('Error!')))
-      .always(() => console.log('Request completed'));
+      .done(() => loadResources())
+      .fail(() => console.log('Error'))
+      .always(() => console.log('Successful request'));
 
   });
-
-
-
-
 
 });

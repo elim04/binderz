@@ -3,20 +3,21 @@ $(function () {
     masonaryResize();
   })
 
-
   const masonaryResize = function(){
     const $masonary = $('#main-container');
     const $masonaryBrick = $('.block');
+    const $viewportWidth = $(window).width();
+
     let masonaryHeight = 0;
 
     for(let i = 0; i < $masonaryBrick.length; i++){
       masonaryHeight += $masonaryBrick[i].offsetHeight + 15;
     }
 
-    if(window.screen.width >= 1024){
+    if($viewportWidth >= 1024){
       console.log(1024)
       $masonary.height(masonaryHeight/4 + masonaryHeight/($masonaryBrick.length +1))
-    }else if(window.screen.width < 1024 && window.screen.width >= 800){
+    }else if($viewportWidth < 1024 && $viewportWidth >= 800){
       console.log(800)
       $masonary.height(masonaryHeight/3 + masonaryHeight/($masonaryBrick.length +1))
     }else{
@@ -43,19 +44,24 @@ $(function () {
     return resourceHTML;
   }
 
-  const loadResources = function () {
+  function loadResources () {
     $.ajax({
       url: '/api/resources',
       method: 'GET'
     })
       .done((data) => {
         renderResources(data.resources)
+        masonaryResize();
       })
       .fail(() => console.log('An error has occurred'))
       .always(() => console.log('Succesful request'));
   }
 
+<<<<<<< HEAD
   window.loadResources = loadResources;
+=======
+  window.loadResources = loadResources
+>>>>>>> develop
 
   const renderResources = function(resources){
     $('#main-container').empty();
@@ -64,11 +70,21 @@ $(function () {
       const newResource = createResource(resource);
 
       $('#main-container').prepend(newResource);
+      $('#main-container .block').first().data(resource)
     }
 
-    masonaryResize()
+    $('.block').on('click', function(){
+      const data = $(this).data()
+
+      $.ajax({
+        url: `/api/resources/${data.id}`,
+        method: 'GET'
+      })
+      .done(data => console.log(data))
+    })
+
+    masonaryResize();
   }
 
   loadResources();
-
 })

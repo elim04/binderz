@@ -11,9 +11,9 @@ $(function() {
     $('.img-container').removeClass('change-order')
   })
 
-  $('.create-resource-info').on('submit', function() {
-    $(this).closest('.model-resource').parent().removeClass('bg-active');
-    $('.img-container').removeClass('change-order');
-  })
+  // $('#create-submit-btn').on('submit', function() {
+  //   $('.modal-bg2').removeClass('bg-active');
+  //   $('.img-container').removeClass('change-order');
+  // })
 
 })

@@ -161,7 +161,7 @@ const addRating = function(id, resource, rating) {
   (resource_id, user_id, rating)
   VALUES ($1, $2, $3)
   RETURNING *;
-  `
+  `;
 
   return db.query(queryString, queryParams)
     .then(res => res.rows[0])
@@ -171,6 +171,22 @@ const addRating = function(id, resource, rating) {
 
 exports.addRating = addRating;
 
+const addComment = function(id, resource_id, comment) {
 
+  let queryParams = [resource, id, comment];
+
+  let queryString = `
+  INSERT INTO comments
+  (resource_id, user_id, comment)
+  VALUES ($1, $2, $3)
+  RETURNING *;
+  `;
+
+  return db.query(queryString, queryParams)
+    .then(res => res.rows[0])
+    .catch(err => console.log('query error', err.stack));
+}
+
+exports.addComment = addComment;
 
 

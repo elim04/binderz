@@ -4,7 +4,7 @@ const router  = express.Router();
 const db_resource = require('../db_helpers/db_resource_helpers');
 
 module.exports = (db) => {
-  router.get('/resources', (req, res) => {
+  router.get('/', (req, res) => {
     db.getAllResources(req.query, 10)
       .then(resources => {
         res.json({ resources });
@@ -35,7 +35,7 @@ module.exports = (db) => {
       });
   });
 
-  router.get('/resources/:resources_id', (req, res) => {
+  router.get('/:resources_id', (req, res) => {
     const userId = req.session.userID;
     const specificResource = req.params.resources_id;
 
@@ -53,7 +53,7 @@ module.exports = (db) => {
 
   });
 
-  router.post('/resources', (req, res) => {
+  router.post('/', (req, res) => {
     const userId = req.session.userId;
 
     //user needs to be logged in to create a new resource

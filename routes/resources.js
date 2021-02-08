@@ -23,7 +23,7 @@ module.exports = (db) => {
       return;
     }
 
-    db.getAllLikedResources(req.query)
+    db.getAllLikedResources(userId)
       .then(resources => {
         res.json({ resources })
       })

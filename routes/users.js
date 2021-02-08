@@ -14,7 +14,7 @@ module.exports = (db) => {
     const userId = req.session.userId;
 
     if (!userId) {
-      res.send({message: "not logged in"});
+      res.status(404).send({error: "not logged in"});
       return;
     }
 

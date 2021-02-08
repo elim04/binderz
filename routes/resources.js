@@ -34,14 +34,14 @@ module.exports = (db) => {
   });
 
   router.get('/:resources_id', (req, res) => {
-    const userId = req.session.userID;
+    const userId = req.session.userId;
     const specificResource = req.params.resources_id;
 
     //check by mentor on promise.all to make sure doing right
     //note that promise.all returns an array
     Promise.all([db.getSpecificResource(userId, specificResource), db.getComments(specificResource)])
       .then((data) => {
-        res.json({ data })
+        res.json({ resource: data[0], comments: data[1]})
       })
       .catch((err) =>  {
         console.error(err);

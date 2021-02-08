@@ -7,7 +7,7 @@ function addResource() {
   console.log('Add resource');
   return $.ajax({
     method: "POST",
-    url: "/api/resources",
+    url: "http://localhost:8080/api/resources",
     data: formContent,
   });
 }

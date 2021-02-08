@@ -22,6 +22,32 @@
     <script src="./scripts/search_bar.js"></script>
 
     <link rel="stylesheet" href="./styles/main.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <!--app js-->
+    <script src="./vendor/jquery-3.0.0.js"></script>
+    <script src="./scripts/resource.js"></script>
+    <script
+      type="text/javascript"
+      src="/scripts/login_register_modal.js"
+    ></script>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lemonada:wght@700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome Icons -->
+    <script
+      src="https://kit.fontawesome.com/58b7eecc97.js"
+      crossorigin="anonymous"
+    ></script>
+
     <title>Binderz</title>
   </head>
   <body>
@@ -43,20 +69,206 @@
         </div>
       </div>
       <div class="login">
-        <button type="button" class="btn btn-outline-dark">Login</button>
+        <button type="button" class="btn btn-outline-dark modal-login-btn">
+          Login
+        </button>
       </div>
       <div class="user">
         <button><i class="fas fa-user"></i></button>
       </div>
     </nav>
-
     <main>
+      <div class="modal-bg1">
+        <div class="modal-resource">
+          <div class="left-container">
+            <div class="modal-img-show">
+              <img src="" alt="" />
+            </div>
+            <div class="below-img">
+              <div class="likes">
+                <button type="button" class="btn btn-primary">Like</button>
+                <a>COUNTER</a>
+              </div>
+              <div class="rating">
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+              </div>
+            </div>
+          </div>
+          <div class="view-resource-info">
+            <div class="view-title">
+              <a>Title</a>
+            </div>
+            <div class="view-description">
+              <a
+                ><p>
+                  Pellentesque habitant morbi tristique senectus et netus et
+                  malesuada fames ac turpis egestas. Vestibulum tortor quam,
+                  feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu
+                  libero sit amet quam egestas semper. Aenean ultricies mi vitae
+                  est. Mauris placerat eleifend leo. Quisque sit amet est et
+                  sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum
+                  sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum,
+                  elit eget tincidunt condimentum, eros ipsum rutrum orci,
+                  sagittis tempus lacus enim ac dui. Donec non enim in turpis
+                  pulvinar facilisis. Ut felis. Praesent dapibus, neque id
+                  cursus faucibus, tortor neque egestas augue, eu vulputate
+                  magna eros eu erat. Aliquam erat volutpat. Nam dui mi,
+                  tincidunt quis, accumsan porttitor, facilisis luctus, metus
+                </p></a
+              >
+            </div>
+            <div class="view-comments">
+              <h3>Comments</h3>
+              <div class="comment">
+                <a>TEST TESTING</a>
+              </div>
+            </div>
+          </div>
+          <span class="modal-resource-close">X</span>
+        </div>
+      </div>
+      <div class="modal-bg2">
+        <div class="modal-resource">
+          <div class="modal-img">
+            <a>Image</a>
+          </div>
+          <form class="create-resource-info" action="/register" method="POST">
+            <div class="form-group">
+              <label for="title">Title</label>
+              <input
+                type="title"
+                class="form-control"
+                id="title"
+                placeholder="Enter title"
+              />
+            </div>
+            <div class="form-group">
+              <label for="description">Description</label>
+              <textarea class="form-control" id="description"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="resource-url">Resource</label>
+              <input
+                type="resource-url"
+                class="form-control"
+                id="resource-url"
+                placeholder="Enter resource"
+              />
+            </div>
+            <div class="form-group">
+              <label for="image-url">Image-Url</label>
+              <input
+                type="image-url"
+                class="form-control"
+                id="image-url"
+                placeholder="Enter image URL"
+              />
+            </div>
+            <button type="button" class="btn btn-primary">
+              Create Resource
+            </button>
+            <span class="modal-resource-close">X</span>
+          </form>
+        </div>
+      </div>
+      <div class="modal-bg3">
+        <div class="modal-login">
+          <div class="modal-login-content">
+            <form class="modal-login-form" method="POST" action="/login">
+              <h3>Login</h3>
+              <div class="login-email-form">
+                <label for="email">Email Address</label>
+                <input
+                  class="form-control"
+                  type="email"
+                  name="email"
+                  placeholder="Enter email here"
+                />
+              </div>
+              <div class="login-password-form">
+                <label for="password">Password</label>
+                <input
+                  class="form-control"
+                  type="password"
+                  name="password"
+                  placeholder="******"
+                />
+              </div>
+              <div class="login-buttons-form">
+                <button type="submit" class="btn btn-outline-dark login-button">
+                  Login
+                </button>
+                <a href="#">Forgot my password</a>
+              </div>
+            </form>
+            <p>Don't have an account? Click below to sign up!</p>
+            <button type="submit" class="btn btn-dark reg-btn">
+              Register Here
+            </button>
+          </div>
+          <span class="modal-login-close"
+            ><i class="far fa-times-circle fa-2x"></i
+          ></span>
+        </div>
+      </div>
+      <div class="modal-bg4">
+        <div class="modal-register">
+          <div class="modal-register-content">
+            <form class="modal-register-form" method="POST" action="/register">
+              <h3>Register</h3>
+              <div class="reg-name-form">
+                <label for="name">Name</label>
+                <input
+                  class="form-control"
+                  type="text"
+                  name="name"
+                  placeholder="Please enter full name"
+                />
+              </div>
+              <div class="reg-email-form">
+                <label for="email">Email</label>
+                <input
+                  class="form-control"
+                  type="email"
+                  name="email"
+                  placeholder="Enter email here"
+                />
+              </div>
+              <div class="reg-password-form">
+                <label for="password">Password</label>
+                <input
+                  class="form-control"
+                  type="password"
+                  name="password"
+                  placeholder="*******"
+                />
+              </div>
+              <button
+                type="submit"
+                class="btn btn-outline-dark register-button"
+              >
+                Sign Up
+              </button>
+            </form>
+          </div>
+          <span class="modal-register-close"
+            ><i class="far fa-times-circle fa-2x"></i
+          ></span>
+        </div>
+      </div>
       <div class="wrapper">
+        <button id="create-resource">+</button>
 
         <div class="block">
           <div class="img-container">
             <img src="http://placehold.it/350x250" />
-            <a href="www.google.com"><i class="fas fa-external-link-alt"></i> </a>
+            <a href="www.google.com"
+              ><i class="fas fa-external-link-alt"></i>
+            </a>
           </div>
           <div class="content">
             <h3>title</h3>
@@ -66,7 +278,9 @@
         <div class="block">
           <div class="img-container">
             <img src="http://placehold.it/350x220" />
-            <a href="www.google.com"><i class="fas fa-external-link-alt"></i> </a>
+            <a href="www.google.com"
+              ><i class="fas fa-external-link-alt"></i>
+            </a>
           </div>
           <div class="content">
             <h3>title</h3>
@@ -76,7 +290,9 @@
         <div class="block">
           <div class="img-container">
             <img src="http://placehold.it/350x120" />
-            <a href="www.google.com"><i class="fas    fa-external-link-alt"></i> </a>
+            <a href="www.google.com"
+              ><i class="fas fa-external-link-alt"></i>
+            </a>
           </div>
           <div class="content">
             <h3>title</h3>
@@ -86,7 +302,9 @@
         <div class="block">
           <div class="img-container">
             <img src="http://placehold.it/350x300" />
-            <a href="www.google.com"><i class="fas    fa-external-link-alt"></i> </a>
+            <a href="www.google.com"
+              ><i class="fas fa-external-link-alt"></i>
+            </a>
           </div>
           <div class="content">
             <h3>title</h3>
@@ -96,7 +314,9 @@
         <div class="block">
           <div class="img-container">
             <img src="http://placehold.it/350x300" />
-            <a href="www.google.com"><i class="fas    fa-external-link-alt"></i> </a>
+            <a href="www.google.com"
+              ><i class="fas fa-external-link-alt"></i>
+            </a>
           </div>
           <div class="content">
             <h3>title</h3>
@@ -106,7 +326,9 @@
         <div class="block">
           <div class="img-container">
             <img src="http://placehold.it/350x300" />
-            <a href="www.google.com"><i class="fas    fa-external-link-alt"></i> </a>
+            <a href="www.google.com"
+              ><i class="fas fa-external-link-alt"></i>
+            </a>
           </div>
           <div class="content">
             <h3>title</h3>
@@ -116,7 +338,9 @@
         <div class="block">
           <div class="img-container">
             <img src="http://placehold.it/350x300" />
-            <a href="www.google.com"><i class="fas    fa-external-link-alt"></i> </a>
+            <a href="www.google.com"
+              ><i class="fas fa-external-link-alt"></i>
+            </a>
           </div>
           <div class="content">
             <h3>title</h3>
@@ -126,7 +350,9 @@
         <div class="block">
           <div class="img-container">
             <img src="http://placehold.it/350x300" />
-            <a href="www.google.com"><i class="fas    fa-external-link-alt"></i> </a>
+            <a href="www.google.com"
+              ><i class="fas fa-external-link-alt"></i>
+            </a>
           </div>
           <div class="content">
             <h3>title</h3>
@@ -136,13 +362,14 @@
         <div class="block">
           <div class="img-container">
             <img src="http://placehold.it/350x300" />
-            <a href="www.google.com"><i class="fas    fa-external-link-alt"></i> </a>
+            <a href="www.google.com"
+              ><i class="fas fa-external-link-alt"></i>
+            </a>
           </div>
           <div class="content">
             <h3>title</h3>
           </div>
         </div>
-
       </div>
     </main>
 

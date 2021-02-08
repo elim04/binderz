@@ -1,0 +1,238 @@
+// ----------------CREATE RESOURCE ------------------
+.modal-resource {
+  background-color: white;
+  width: 75%;
+  height: 75%;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  border-radius: 25px;
+
+  .create-resource-info {
+    background-color: white;
+    width:50%;
+    height:100%;
+    display:flex;
+    justify-content:space-evenly;
+    align-items:center;
+    flex-direction:column;
+    // position:relative;
+    border-radius: 25px;
+
+    .form-group {
+      width: 80%;
+    }
+  }
+  .modal-img {
+    background-color: white;
+    width:50%;
+    height:90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25px;
+    border:solid black;
+    margin: 25px;
+  }
+
+// -----------------VIEW RESOURCE -------------------
+
+  .view-resource-info {
+    background-color: white;
+    width:50%;
+    height:96%;
+    display:flex;
+    align-items: center;
+    flex-direction:column;
+    // position:relative;
+    border-radius: 25px;
+    margin-top: 25px;
+
+    .view-title {
+      width: 90%;
+      height: 5%;
+      border:solid black;
+
+      a {
+        display: flex;
+        justify-content: center;
+      }
+    }
+    .view-description {
+      width: 90%;
+      height: 30%;
+      margin-top: 50px;
+      border:solid black;
+      overflow: auto;
+
+    }
+    .view-comments {
+      width: 90%;
+      height: 50%;
+      border:solid black;
+      margin-top: 50px;
+      margin-bottom: 25px;
+      overflow:auto;
+
+    }
+  }
+  .left-container {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .modal-img-show {
+      background-color: white;
+      width:90%;
+      height:80%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 25px;
+      border:solid black;
+      margin-left: 25px;
+      margin-top: 25px;
+      margin-right: 25px;
+
+    }
+    .below-img {
+      width: 100%;
+      height: 20%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+      .likes {
+        margin-top: 20px;
+        margin-left: 25px;
+        width: 30%;
+        height: 30%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: row;
+      }
+      .rating {
+        width: 30%;
+        height: 30%;
+        margin-top: 20px;
+        margin-right: 25px;
+        display: flex;
+        justify-content: flex-end;
+        flex-direction: row;
+      }
+    }
+  }
+  .modal-resource-close{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+}
+@media screen and (max-width: 430px) {
+  .modal-resource {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: auto;
+
+    .create-resource-info {
+      width: 100%;
+      margin-bottom: 10px;
+
+    }
+
+    .modal-img {
+      width: 80%;
+    }
+    .left-container {
+      // margin-top: 100px;
+      height: 100%;
+      width: 80%;
+      align-items: center;l
+
+      .modal-img-show {
+        width: 80%;
+      }
+
+      .below-img {
+        width: 100%;
+
+        .likes {
+
+        }
+      }
+    }
+    .view-resource-info {
+      height: 60%;
+      width: 100%;
+
+      .view-title {
+        height: 10%;
+      }
+      .view-description {
+        margin-top: 10px;
+      }
+      .view-comments {
+        margin-top: 10px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 431px) and (max-width: 800px) {
+  .modal-resource {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: auto;
+
+    .create-resource-info {
+      width: 100%;
+      margin-bottom: 10px;
+
+    }
+
+    .modal-img {
+      width: 80%;
+    }
+    .left-container {
+      // margin-top: 100px;
+      height: 100%;
+      width: 80%;
+      align-items: center;l
+
+      .modal-img-show {
+        width: 80%;
+      }
+
+      .below-img {
+        width: 100%;
+      }
+    }
+    .view-resource-info {
+      height: 60%;
+      width: 100%;
+
+      .view-title {
+        height: 10%;
+      }
+      .view-description {
+        margin-top: 10px;
+      }
+      .view-comments {
+        margin-top: 10px;
+      }
+    }
+  }
+}
+
+
+
+

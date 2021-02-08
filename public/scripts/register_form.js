@@ -4,6 +4,8 @@ $(function () {
     event.preventDefault();
     const data = $(this).serialize();
     console.log(data);
-    console.log(signUp(data));
-  })
+    signUp(data)
+  });
+
+
 })

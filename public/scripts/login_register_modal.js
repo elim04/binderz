@@ -17,4 +17,7 @@ $(function() {
     $('.modal-bg4').removeClass('bg-active');
   });
 
+
+
+
 });

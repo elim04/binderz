@@ -1,5 +1,4 @@
 $(function() {
-
   $('.modal-login-btn').on('click', () => {
     $('.img-container').addClass('change-order')
     $('.modal-bg3').addClass('bg-active');

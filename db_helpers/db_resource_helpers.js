@@ -135,3 +135,42 @@ const getComments = function(resource) {
 exports.getComments = getComments;
 
 
+const addLike = function(id, resource) {
+
+  let queryParams = [resource, id];
+
+  let queryString = `
+  INSERT INTO likes
+  (resource_id, user_id)
+  VALUES ($1, $2)
+  RETURNING *;`;
+
+  return db.query(queryString, queryParams)
+    .then(res => res.rows[0])
+    .catch(err => console.log('query error', err.stack));
+}
+
+exports.addLike = addLike;
+
+const addRating = function(id, resource, rating) {
+
+  let queryParams = [resource, id, rating];
+
+  let queryString = `
+  INSERT INTO ratings
+  (resource_id, user_id, rating)
+  VALUES ($1, $2, $3)
+  RETURNING *;
+  `
+
+  return db.query(queryString, queryParams)
+    .then(res => res.rows[0])
+    .catch(err => console.log('query error', err.stack));
+
+}
+
+exports.addRating = addRating;
+
+
+
+

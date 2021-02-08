@@ -1,4 +1,4 @@
-$(() => {
+$(function() {
 
   $('.create-resource-info').on('submit', function(event) {
     event.preventDefault();
@@ -13,8 +13,12 @@ $(() => {
       .done(() => {
         console.log("data", data);
       })
+      .fail((() => console.log('Error!')))
+      .always(() => console.log('Request completed'));
 
   });
+
+
 
 
 

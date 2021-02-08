@@ -45,13 +45,13 @@ const db_resource = require('./db_helpers/db_resource_helpers');
 
 
 // User endpoints
-const userRouter = express.Router();
-userRoutes(db_user);
+// express.Router();
+const userRouter = userRoutes(db_user);
 app.use('/api/users', userRouter);
 
 //Resource endpoints
-const resourceRouter = express.Router();
-resourceRoutes(db_resource);
+// const resourceRouter = express.Router();
+const resourceRouter = resourceRoutes(db_resource);
 app.use('/api/resources', resourceRouter);
 
 // Home page

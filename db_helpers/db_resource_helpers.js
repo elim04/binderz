@@ -96,7 +96,7 @@ exports.getAllLikedResources = getAllLikedResources;
 
 const getSpecificResource = function(id, resource) {
 
-  let queryParams = [id, resource.id];
+  let queryParams = [id, resource];
   let queryString = `
   SELECT resources.*,
     (SELECT likes.active
@@ -119,7 +119,7 @@ exports.getSpecificResource = getSpecificResource;
 
 const getComments = function(resource) {
 
-  let queryParams = [resource.id];
+  let queryParams = [resource];
 
   let queryString = `
   SELECT comment

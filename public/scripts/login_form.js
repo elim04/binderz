@@ -19,7 +19,7 @@ $(function () {
   $('main').on('submit', '.modal-login-form', function(event) {
     event.preventDefault();
     clearLoginError();
-    let data = $(this).serialize();
+    const data = $(this).serialize();
     logIn(data)
     .done(() => {
       $('.modal-bg3').removeClass('bg-active');

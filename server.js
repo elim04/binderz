@@ -9,7 +9,8 @@ const bodyParser = require("body-parser");
 const sass       = require("node-sass-middleware");
 const app        = express();
 const morgan     = require('morgan');
-const path       = require('path')
+const path       = require('path');
+const cookieSession = require('cookie-session');
 // const db_user    = require('./db_helpers/db_user_helpers');
 
 // PG database client/connection setup
@@ -26,6 +27,11 @@ app.use("/styles", sass({
   dest: __dirname + "/public/styles",
   debug: true,
   outputStyle: 'expanded'
+}));
+
+app.use(cookieSession({
+  name: 'session',
+  keys: ['key1', 'key2'],
 }));
 
 app.use(express.static(path.join(__dirname, './public')));

@@ -72,9 +72,9 @@ exports.getAllResources = getAllResources;
 
 //get all liked resources from specific user
 
-const getAllLikedResources = function(options) {
+const getAllLikedResources = function(id) {
 
-  let queryParams = [options[users.id], options[likes.user_id]];
+  let queryParams = [id];
 
   let queryString = `
   SELECT resources.*
@@ -82,7 +82,6 @@ const getAllLikedResources = function(options) {
   JOIN likes ON likes.user_id = users.id
   JOIN resources ON likes.resource_id = resources.id
   WHERE users.id = $1
-  AND likes.user_id = $2
   GROUP BY resources.id;
   `
 

@@ -1,7 +1,5 @@
 const express = require('express');
-const db_helpers = require('../db_helpers');
 const router  = express.Router();
-const db_resource = require('../db_helpers/db_resource_helpers');
 
 module.exports = (db) => {
   router.get('/', (req, res) => {
@@ -25,7 +23,7 @@ module.exports = (db) => {
       return;
     }
 
-    db.getAllLikedResources(req.query)
+    db.getAllLikedResources(userId)
       .then(resources => {
         res.json({ resources })
       })

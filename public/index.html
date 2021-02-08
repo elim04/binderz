@@ -138,7 +138,7 @@
           <div class="modal-img">
             <a>Image</a>
           </div>
-          <form class="create-resource-info"  method="POST">
+          <form class="create-resource-info" action="/api/resources" method="POST">
             <div class="form-group">
               <label for="title">Title</label>
               <input
@@ -170,7 +170,7 @@
                 placeholder="Enter image URL"
               />
             </div>
-            <button type="button" class="btn btn-primary">
+            <button type="submit" class="btn btn-primary">
               Create Resource
             </button>
             <span class="modal-resource-close">X</span>
@@ -180,7 +180,7 @@
       <div class="modal-bg3">
         <div class="modal-login">
           <div class="modal-login-content">
-            <form class="modal-login-form" method="POST" action="/login">
+            <form class="modal-login-form" method="POST" action="/api/users/login">
               <h3>Login</h3>
               <div class="login-email-form">
                 <label for="email">Email Address</label>

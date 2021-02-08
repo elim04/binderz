@@ -1,7 +1,7 @@
-const register = function (data) {
+const signUp = function (data) {
   return $.ajax({
     method:"POST",
-    url: "/users",
+    url: "/api/users/me",
     data
   });
 }

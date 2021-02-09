@@ -28,6 +28,8 @@ $(function () {
     }
   }
 
+  window.masonaryResize = masonaryResize
+
   const createResource = function (resource) {
     let resourceHTML = `
       <div class="block">
@@ -224,10 +226,10 @@ $(function () {
         .fail(() => console.log('an error has occured'))
         .always(() => console.log("successful request of modal"));
     })
-
-
     masonaryResize();
   }
+
+  window.renderResources = renderResources
 
   loadResources();
 })

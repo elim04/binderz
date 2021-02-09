@@ -92,30 +92,37 @@ $(function () {
 //render the base modal without comments
   const renderModal = function(resource) {
     $('.modal-bg1').empty();
-
     const newModal = createModalResource(resource);
     $('.modal-bg1').append(newModal);
 
     $(".modal-resource-close").on("click", function() {
-    $(".modal-bg1").removeClass("bg-active");
-    $('.img-container').removeClass('change-order')
-  })
+      updateRatingCall(resource, currentRating);
+      $(".modal-bg1").removeClass("bg-active");
+      $('.img-container').removeClass('change-order')
+    })
 
-  $('#1').on('click', function () {
-    ratings(1)
-  })
-  $('#2').on('click', function () {
-    ratings(2)
-  })
-  $('#3').on('click', function () {
-    ratings(3)
-  })
-  $('#4').on('click', function () {
-    ratings(4)
-  })
-  $('#5').on('click', function () {
-    ratings(5)
-  })
+    let currentRating;
+    $('#1').on('click', function () {
+      ratings(1);
+      currentRating = 1;
+    })
+    $('#2').on('click', function () {
+      ratings(2);
+      currentRating = 2;
+    })
+    $('#3').on('click', function () {
+      ratings(3)
+      currentRating = 3;
+    })
+    $('#4').on('click', function () {
+      ratings(4)
+      currentRating = 4;
+    })
+    $('#5').on('click', function () {
+      ratings(5)
+      currentRating = 5;
+    })
+
 
 
   }
@@ -188,8 +195,6 @@ $(function () {
       const data = $(this).data()
       $('.modal-bg1').addClass('bg-active');
       $('.img-container').addClass('change-order');
-
-
       $.ajax({
         url: `/api/resources/${data.id}`,
         method: 'GET'
@@ -199,6 +204,7 @@ $(function () {
           renderModal(data);
           loadComments(data);
           loadLikeStatus(data);
+          loadCurrentRating(data);
         })
         .fail(() => console.log('an error has occured'))
         .always(() => console.log("successful request of modal"));

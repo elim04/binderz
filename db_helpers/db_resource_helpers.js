@@ -203,4 +203,35 @@ const likeCounter = function(resource) {
     .catch(err => console.error('query error', err.stack));
 }
 
+const updateRating = function(resourceId, userId, rating) {
 
+  let queryParams = [rating, userId, resourceId];
+
+  let queryString = `
+  UPDATE ratings
+  SET rating = $1
+  WHERE user_id = $2
+  AND resource_id = $3
+  RETURNING *;`;
+
+  return db.query(queryString, queryParams)
+  .then(res => console.log('Sucessfully updated!'))
+  .catch(err => console.error('query error', err.stack))
+}
+
+exports.updateRating = updateRating;
+
+const createRating = function(resourceId, userId, rating) {
+
+  let queryParams = [resourceId, userId, rating];
+  let queryString = `
+  INSERT INTO ratings (resource_id, user_id, rating)
+  VALUES ($1, $2, $3)
+  RETURNING *;`;
+
+  return db.query(queryString, queryParams)
+  .then(res => console.log('Sucessfully Created!'))
+  .catch(err => console.error('query error', err.stack))
+}
+
+exports.createRating = createRating;

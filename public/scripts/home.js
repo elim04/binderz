@@ -44,13 +44,19 @@ $(function () {
     return resourceHTML;
   }
 
-  const createModalResource = function (resource) {
+  const createModalResource = function (resourceObj) {
+
+    const commentLooper = function(comments) {
+      for (const comment of resourceObj[1][0]) {
+
+    }
+
     let modalResourceHTML = `
     <div class="modal-bg1">
         <div class="modal-resource">
           <div class="left-container">
             <div class="modal-img-show">
-              <img src="" alt="" />
+              <img src="${resourceObj[0].image_src}" alt="" />
             </div>
             <div class="below-img">
               <div class="likes">
@@ -68,19 +74,17 @@ $(function () {
           </div>
           <div class="view-resource-info">
             <div class="view-title">
-              <a>Title</a>
+              <span>${resourceObj[0].title}</span>
             </div>
             <div class="view-description">
-              <a
-                ><p>
-
-                </p></a
-              >
+              <a><p>
+              ${resourceObj[0].description}
+              </p></a>
             </div>
             <div class="view-comments">
               <h3>Comments</h3>
               <div class="comment">
-                <a>TEST TESTING</a>
+                <a>${}</a>
               </div>
             </div>
           </div>

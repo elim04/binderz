@@ -76,6 +76,9 @@ $(function () {
             ${resourceObj["resource"].description}
             </p></a>
           </div>
+          <div class="add-comment">
+            <>
+          </div>
           <div class="view-comments">
             <h3>Comments</h3>
             <div class="comments">

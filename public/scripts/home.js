@@ -96,6 +96,12 @@ $(function () {
     const newModal = createModalResource(resource);
     $('.modal-bg1').append(newModal);
 
+    $('.modal-resource-close').on("click", function() {
+
+      $(".modal-bg1").removeClass("bg-active");
+      $('.img-container').removeClass('change-order')
+    })
+
   }
   //render comments ontop of base modal
   const loadComments = function(commentsObj) {
@@ -120,6 +126,18 @@ $(function () {
     } else {
       $('.likes').append('<i id="heart-btn" class="fas fa-heart fa-2x"></i>');
     }
+
+    $('#heart-btn').on("click", function() {
+
+      // $.ajax({
+      //   method: 'POST',
+      //   url: '/api/:resources_id/liked',
+      //   data
+      // })
+
+      console.log("liked")
+
+    })
 
   }
 

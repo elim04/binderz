@@ -37,8 +37,6 @@ module.exports = (db) => {
     const userId = req.session.userId;
     const specificResource = req.params.resources_id;
 
-    //check by mentor on promise.all to make sure doing right
-    //note that promise.all returns an array
     Promise.all([db.getSpecificResource(userId, specificResource), db.getComments(specificResource)])
       .then((data) => {
         res.json({ resource: data[0], comments: data[1]})
@@ -69,13 +67,22 @@ module.exports = (db) => {
   });
 
 
-  router.post('/:resources_id', (req, res) => {
+  router.post('/:resources_id/liked', (req, res) => {
     const userId = req.session.userId;
     const specificResource = req.params.resources_id;
 
+    db.addLike(userId, specificResource)
+      .then(likedResource => {
+        res.json({ likedResource })
+      })
+      .catch(err => {
+        console.error(err);
+        res.json( {error: err.message })
+      });
 
+  });
 
-  })
+  router.delete('/:resource_id/liked', )
 
   return router;
 };

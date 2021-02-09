@@ -59,11 +59,11 @@ $(function () {
               <a>COUNTER</a>
             </div>
             <div class="rating">
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star"></span>
-              <span class="fa fa-star"></span>
+              <span id="1" class="fa fa-star"></span>
+              <span id="2" class="fa fa-star"></span>
+              <span id="3" class="fa fa-star"></span>
+              <span id="4" class="fa fa-star"></span>
+              <span id="5" class="fa fa-star"></span>
             </div>
           </div>
         </div>
@@ -95,6 +95,28 @@ $(function () {
 
     const newModal = createModalResource(resource);
     $('.modal-bg1').append(newModal);
+
+    $(".modal-resource-close").on("click", function() {
+    $(".modal-bg1").removeClass("bg-active");
+    $('.img-container').removeClass('change-order')
+  })
+
+  $('#1').on('click', function () {
+    ratings(1)
+  })
+  $('#2').on('click', function () {
+    ratings(2)
+  })
+  $('#3').on('click', function () {
+    ratings(3)
+  })
+  $('#4').on('click', function () {
+    ratings(4)
+  })
+  $('#5').on('click', function () {
+    ratings(5)
+  })
+
 
   }
   //render comments ontop of base modal

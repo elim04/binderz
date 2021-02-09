@@ -21,10 +21,6 @@ $(function() {
     $('.img-container').removeClass('change-order')
   })
 
-  // $(".modal-bg1").on("click", function() {
-  //   $(".modal-bg1").removeClass("bg-active");
-  //   $('.img-container').removeClass('change-order')
-  // })
 
 })
 

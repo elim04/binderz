@@ -1,5 +1,5 @@
 // ----------------CREATE RESOURCE ------------------
-.modal-resource {
+.modal-resource-content {
   background-color: white;
   width: 75%;
   height: 75%;
@@ -124,6 +124,10 @@
         display: flex;
         justify-content: flex-end;
         flex-direction: row;
+
+        .checked {
+          color: orange;
+        }
       }
     }
   }
@@ -165,10 +169,6 @@
 
       .below-img {
         width: 100%;
-
-        .likes {
-
-        }
       }
     }
     .view-resource-info {

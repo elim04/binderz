@@ -14,6 +14,12 @@ const clearInput = function (type) {
   })
 }
 
+const clearTextArea = function (type) {
+  $(`.modal-${type}-content`).find('textarea').each(function () {
+    $(this).val('');
+  })
+}
+
 const ratings = function (id) {
   for (let check = 1; check <= id; check++) {
     $(`#${check}`).attr('class', 'fa fa-star checked');

@@ -7,6 +7,8 @@ $(function () {
     signUp(data)
     .done(res => {
       logIn(res)
+        .then(data => changeNavOnLogin(data))
+
       $('.modal-bg4').removeClass('bg-active');
       clearInput('register');
     })

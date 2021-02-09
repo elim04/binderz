@@ -12,6 +12,8 @@ $(function () {
       .children("button").append(`${userData.name.charAt(0)}`)
   }
 
+  window.changeNavOnLogin = changeNavOnLogin
+
   $('main').on('submit', '.modal-login-form', function (event) {
     event.preventDefault();
     clearError('login');
@@ -38,5 +40,4 @@ $(function () {
     clearInput('login');
     clearError('login');
   })
-
 })

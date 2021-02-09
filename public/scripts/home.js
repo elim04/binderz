@@ -1,6 +1,8 @@
 $(function () {
   $( window ).resize(() => {
-    masonaryResize();
+    imagesLoaded(document.querySelector('#main-container'), function(){
+      masonaryResize()
+    })
   })
 
   const masonaryResize = function(){
@@ -112,8 +114,10 @@ $(function () {
       method: 'GET'
     })
       .done((data) => {
-        renderResources(data.resources)
-        masonaryResize();
+        renderResources(data.resources);
+        imagesLoaded(document.querySelector('#main-container'), function(){
+          masonaryResize()
+        })
       })
       .fail(() => console.log('An error has occurred'))
       .always(() => console.log('Succesful request'));
@@ -141,8 +145,6 @@ $(function () {
       })
       .done(data => console.log(data))
     })
-
-    masonaryResize();
   }
 
   loadResources();

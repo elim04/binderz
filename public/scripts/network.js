@@ -14,6 +14,13 @@ const logIn = function(data) {
   });
 }
 
+const logOut = function() {
+  return $.ajax({
+    method: "POST",
+    url: "/api/users/logout"
+  })
+}
+
 
 function getAllResources() {
   console.log()

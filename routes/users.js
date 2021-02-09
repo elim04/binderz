@@ -14,7 +14,7 @@ module.exports = (db) => {
     const userId = req.session.userId;
 
     if (!userId) {
-      res.send({message: "not logged in"});
+      res.status(404).send({error: "not logged in"});
       return;
     }
 
@@ -40,7 +40,6 @@ module.exports = (db) => {
 
     const email = await getUserWithEmail(newUserInfo.email);
     if(email) {
-      // showError("email alrdy exist");
       res.status(409).send("Email already exists");
       return;
     } else {
@@ -53,7 +52,6 @@ module.exports = (db) => {
         }
         req.session.userId = user.id;
         user.password = beforeHash;
-        // const userInfo = [user, beforeHash]
         res.send(user);
       })
       .catch(e => res.send(e));
@@ -67,16 +65,17 @@ module.exports = (db) => {
   const login =  function(email, password) {
     return db.getUserWithEmail(email)
     .then(user => {
-      if (bcrypt.compareSync(password, user.password)) {
-        return user;
+      if(user) {
+        if (bcrypt.compareSync(password, user.password)) {
+          return user;
+        }
       }
       return null;
-    });
+    })
   }
 
   router.post('/login', (req, res) => {
     const {email, password} = req.body;
-
     login(email, password)
       .then(user => {
         if (!user) {
@@ -84,7 +83,6 @@ module.exports = (db) => {
           // res.send({error: "error"});
           return;
         }
-
         req.session.userId = user.id;
         res.json({user: {name: user.name, email: user.email, id: user.id}});
       })

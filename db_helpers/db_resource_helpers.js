@@ -195,7 +195,7 @@ exports.addRating = addRating;
 
 const addComment = function(id, resource_id, comment) {
 
-  let queryParams = [resource, id, comment];
+  let queryParams = [resource_id, id, comment];
 
   let queryString = `
   INSERT INTO comments

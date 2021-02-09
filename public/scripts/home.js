@@ -79,9 +79,9 @@ $(function () {
             </p></a>
           </div>
           <div class="add-comment-form">
-            <form class="add-comment method="POST" action="/api/resources>
+            <form class="add-comment method="POST" action="/api/resources">
               <label for="add-comment">Add Comment</label>
-              <input class ="form-control" type="text" name="comment" placeholder="Enter comment here" required />
+              <input class ="form-control" type="text" name="comment-from-user" placeholder="Enter comment here" required />
               <button type="submit">Submit</button>
             </form>
           </div>
@@ -143,6 +143,18 @@ $(function () {
       $('.comments').prepend(newComment);
 
     }
+
+    $('.add-comment').on('submit', function(event) {
+
+      event.preventDefault();
+      $.ajax({
+        method: 'POST',
+        url: `/api/resources/${commentsObj['resource'].id}/comment`,
+        data: $(this).serialize()
+      })
+        .done(() => console.log('comment has been added'))
+        .fail(() => console.log("comment has not been added NOOOO"))
+    })
 
   }
 

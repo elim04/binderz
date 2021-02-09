@@ -85,6 +85,23 @@ module.exports = (db) => {
 
   });
 
+
+  router.post('/:resources_id/comment', (req, res) => {
+    console.log("req.params", req.params)
+    const userId = req.session.userId;
+    const specificResource = req.params.resources_id;
+    const commentFromUser = req.body["comment-from-user"];
+    db.addComment(userId, specificResource, commentFromUser)
+      .then(comment => {
+        res.json( { comment } )
+      })
+      .catch(err => {
+        console.error(err);
+        res.json( { error: err.message })
+      });
+
+  })
+
   router.delete('/:resources_id/liked', (req,res) => {
     const userId = req.session.userId;
     const specificResource = req.params.resources_id;

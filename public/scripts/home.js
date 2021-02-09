@@ -80,7 +80,6 @@ $(function () {
           <div class="view-comments">
             <h3>Comments</h3>
             <div class="comment">
-          </div>
             </div>
           </div>
         </div>
@@ -95,24 +94,29 @@ $(function () {
   const renderModal = function(resource) {
     $('.modal-bg1').empty();
 
-    const newModal = createModalResource(resource)
+    const newModal = createModalResource(resource);
+    const modalWithComments = loadComments(resource);
+    console.log('modal with comments', modalWithComments)
     $('.modal-bg1').append(newModal);
 
   }
   //render comments ontop of base modal
-  // const loadComments = function(comments) {
+  const loadComments = function(commentsObj) {
 
-  //   for (const comment of comments) {
-  //     const newComment = `
-  //     <p class="user-name">${comment["comment"].}</p>
-  //     <p></p>
-  //     `
+    console.log("commentsObj: ", commentsObj["comments"])
 
-  //     $('.comment').prepend
+    for (const comm of commentsObj["comments"]) {
 
-  //   }
+      const newComment = `
+      <p class="user-name">${comm.name}</p>
+      <p>${comm.comment}</p>
+      `;
 
-  // }
+      $('.comment').prepend(newComment);
+
+    }
+
+  }
 
   function loadResources () {
     $.ajax({
@@ -152,8 +156,8 @@ $(function () {
         method: 'GET'
       })
         .done((data) => {
-          console.log('data', data)
-          renderModal(data)
+          console.log('data', data);
+          renderModal(data);
         })
         .fail(() => console.log('an error has occured'))
         .always(() => console.log("successful request of modal"));

@@ -41,9 +41,71 @@ $(function () {
           <p>${resource.title}</p>
         </div>
       </div>
-    `
+    `;
 
     return resourceHTML;
+  }
+
+  const createModalResource = function (resourceObj) {
+
+    //loop through comments to make individual p tags to add to larger html
+    const commentLooper = function(comments) {
+      let commentList ="";
+      for (const comment of comments) {
+        commentList += `<p>${comment.comment}</p>`
+      }
+
+      return commentList;
+    }
+
+    if (resourceObj[0].likes) {
+
+    }
+
+    let modalResourceHTML = `
+    <div class="modal-bg1">
+        <div class="modal-resource">
+          <div class="left-container">
+            <div class="modal-img-show">
+              <img src="${resourceObj[0].image_src}" alt="" />
+            </div>
+            <div class="below-img">
+              <div class="likes">
+                <i id="heart-btn" class="far fa-heart fa-2x"></i>
+                <a>COUNTER</a>
+              </div>
+              <div class="rating">
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+              </div>
+            </div>
+          </div>
+          <div class="view-resource-info">
+            <div class="view-title">
+              <span>${resourceObj[0].title}</span>
+            </div>
+            <div class="view-description">
+              <a><p>
+              ${resourceObj[0].description}
+              </p></a>
+            </div>
+            <div class="view-comments">
+              <h3>Comments</h3>
+              <div class="comment">
+                <a></a>
+              </div>
+            </div>
+          </div>
+          <span class="modal-resource-close">X</span>
+        </div>
+      </div>
+
+    `;
+
+    return modalResourceHTML;
   }
 
   function loadResources () {
@@ -75,6 +137,7 @@ $(function () {
 
     $('.block').on('click', function(){
       const data = $(this).data()
+
 
       $.ajax({
         url: `/api/resources/${data.id}`,

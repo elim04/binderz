@@ -147,7 +147,7 @@ const addLike = function(id, resource) {
 
   return db.query(queryString, queryParams)
     .then(res => res.rows[0])
-    .catch(err => console.log('query error', err.stack));
+    .catch(err => console.error('query error', err.stack));
 }
 
 exports.addLike = addLike;
@@ -165,7 +165,7 @@ const addRating = function(id, resource, rating) {
 
   return db.query(queryString, queryParams)
     .then(res => res.rows[0])
-    .catch(err => console.log('query error', err.stack));
+    .catch(err => console.error('query error', err.stack));
 
 }
 
@@ -184,9 +184,22 @@ const addComment = function(id, resource_id, comment) {
 
   return db.query(queryString, queryParams)
     .then(res => res.rows[0])
-    .catch(err => console.log('query error', err.stack));
+    .catch(err => console.error('query error', err.stack));
 }
 
 exports.addComment = addComment;
+
+
+const likeCounter = function(resource) {
+
+  let queryString = `
+  SELECT count(resource_id)
+  FROM likes JOIN resources ON resources.id = resource_id WHERE resources.id = $1;
+  `
+
+  return db.query(queryString, queryParams)
+    .then(res => res.rows[0])
+    .catch(err => console.error('query error', err.stack));
+}
 
 

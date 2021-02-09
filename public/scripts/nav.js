@@ -1,16 +1,4 @@
 $(function () {
-  // const openSearchBar = function(){
-  //     $('.search_box').toggle({
-  //       effect: "slide-left",
-  //       easing: "swing",
-  //       duration: 1000
-  //     })
-  // }
-
-  // $('.search-btn').on('click', (event) =>{
-  //   openSearchBar()
-  // })
-
   $(document).on('click', () => {
     $('.logged-in').hide();
   })
@@ -42,4 +30,37 @@ $(function () {
       .fail((error) => console.error('Error on logout:', error))
       .always(() => console.log('executing logout request'))
   }
+
+  function loadSearchedResource (params) {
+    $.ajax({
+      url: `/api/resources/?${params}`,
+      method: 'GET'
+    })
+      .done((data) => {
+        renderResources(data.resources);
+        imagesLoaded(document.querySelector('#main-container'), function(){
+          masonaryResize()
+        })
+      })
+      .fail(() => console.log('An error has occurred'))
+      .always(() => console.log('Succesful request'));
+  }
+
+  //search bar functions
+  $('#search-form').on('submit', function(e){
+    e.preventDefault();
+    console.log($(this))
+    let urlParams = $(this).serialize()
+
+    console.log($('#personal-page').is(':visible'))
+
+    if($('#personal-page').is(':visible')){
+      urlParams += '&user_id=true'
+    }
+
+    loadSearchedResource(urlParams)
+
+    $("#search-bar").val("")
+    $("#topic").val("none")
+  })
 })

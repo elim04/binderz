@@ -114,32 +114,38 @@ nav {
       height: 35px;
       width: 100%;
 
-      .search {
-        margin-right: 10px;
-        border: 0px solid;
-        width: 90%;
-        outline: none;
-      }
+      form {
+        display: flex;
+        width: 100%;
 
-      select {
-        border: 0px solid;
-        margin-left: 2%;
-        outline: none;
-        width: 18px;
-
-        &:focus {
-          width: auto;
+        .search {
+          margin-right: 10px;
+          border: 0px solid;
+          width: 90%;
+          outline: none;
         }
 
-        @media screen and (min-width: 800px) {
-          width: auto;
-        }
-      }
+        select {
+          border: 0px solid;
+          background-color: white;
+          margin-left: 2%;
+          outline: none;
+          width: 18px;
 
-      .vertical {
-        margin: 0;
-        height: 100%;
-        border-left: 1px solid black;
+          &:focus {
+            width: auto;
+          }
+
+          @media screen and (min-width: 800px) {
+            width: auto;
+          }
+        }
+
+        .vertical {
+          margin: 0;
+          height: 100%;
+          border-left: 1px solid black;
+        }
       }
     }
   }

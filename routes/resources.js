@@ -3,6 +3,10 @@ const router  = express.Router();
 
 module.exports = (db) => {
   router.get('/', (req, res) => {
+    if(req.query.user_id){
+      req.query.user_id = req.session.userId
+    }
+
     db.getAllResources(req.query, 100)
       .then(resources => {
         res.json({ resources });

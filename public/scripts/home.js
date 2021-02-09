@@ -39,9 +39,58 @@ $(function () {
           <p>${resource.title}</p>
         </div>
       </div>
-    `
+    `;
 
     return resourceHTML;
+  }
+
+  const createModalResource = function (resource) {
+    let modalResourceHTML = `
+    <div class="modal-bg1">
+        <div class="modal-resource">
+          <div class="left-container">
+            <div class="modal-img-show">
+              <img src="" alt="" />
+            </div>
+            <div class="below-img">
+              <div class="likes">
+                <i id="heart-btn" class="far fa-heart fa-2x"></i>
+                <a>COUNTER</a>
+              </div>
+              <div class="rating">
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+              </div>
+            </div>
+          </div>
+          <div class="view-resource-info">
+            <div class="view-title">
+              <a>Title</a>
+            </div>
+            <div class="view-description">
+              <a
+                ><p>
+
+                </p></a
+              >
+            </div>
+            <div class="view-comments">
+              <h3>Comments</h3>
+              <div class="comment">
+                <a>TEST TESTING</a>
+              </div>
+            </div>
+          </div>
+          <span class="modal-resource-close">X</span>
+        </div>
+      </div>
+
+    `;
+
+    return modalResourceHTML;
   }
 
   function loadResources () {

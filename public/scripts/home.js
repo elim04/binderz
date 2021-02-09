@@ -96,12 +96,6 @@ $(function () {
     const newModal = createModalResource(resource);
     $('.modal-bg1').append(newModal);
 
-    $('.modal-resource-close').on("click", function() {
-
-      $(".modal-bg1").removeClass("bg-active");
-      $('.img-container').removeClass('change-order')
-    })
-
   }
   //render comments ontop of base modal
   const loadComments = function(commentsObj) {

@@ -13,6 +13,8 @@ $(function () {
       .children("button").append(`${userData.name.charAt(0)}`)
   }
 
+  window.changeNavOnLogin = changeNavOnLogin
+
   const showLoginError = function (message) {
     $('.login_error').append(`<p>${message}</p>`);
     $('.login_error').slideDown("slow", function () { });
@@ -56,5 +58,4 @@ $(function () {
     clearLoginInput();
     clearLoginError();
   })
-
 })

@@ -56,7 +56,6 @@ $(function () {
           </div>
           <div class="below-img">
             <div class="likes">
-              <i id="heart-btn" class="far fa-heart fa-2x"></i>
               <a>COUNTER</a>
             </div>
             <div class="rating">
@@ -95,15 +94,11 @@ $(function () {
     $('.modal-bg1').empty();
 
     const newModal = createModalResource(resource);
-    const modalWithComments = loadComments(resource);
-    console.log('modal with comments', modalWithComments)
     $('.modal-bg1').append(newModal);
 
   }
   //render comments ontop of base modal
   const loadComments = function(commentsObj) {
-
-    console.log("commentsObj: ", commentsObj["comments"])
 
     for (const comm of commentsObj["comments"]) {
 
@@ -114,6 +109,16 @@ $(function () {
 
       $('.comment').prepend(newComment);
 
+    }
+
+  }
+
+  const loadLikeStatus = function(resourceObj) {
+
+    if (!resourceObj["resource"].likes) {
+      $('.likes').append('<i id="heart-btn" class="far fa-heart fa-2x"></i>');
+    } else {
+      $('.likes').append('<i id="heart-btn" class="fas fa-heart fa-2x"></i>');
     }
 
   }
@@ -158,6 +163,8 @@ $(function () {
         .done((data) => {
           console.log('data', data);
           renderModal(data);
+          loadComments(data);
+          loadLikeStatus(data);
         })
         .fail(() => console.log('an error has occured'))
         .always(() => console.log("successful request of modal"));

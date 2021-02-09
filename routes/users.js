@@ -12,7 +12,6 @@ const router  = express.Router();
 module.exports = (db) => {
   router.get('/me', (req, res) => {
     const userId = req.session.userId;
-
     if (!userId) {
       res.status(404).send({error: "not logged in"});
       return;

@@ -5,12 +5,14 @@ $(function () {
     .fail(err => err)
 
   const changeNavOnLogin = function (userData) {
-    console.log(userData)
     userData = userData.user
     $('.login').hide();
     $('.user')
       .show()
-      .children("button").append(`${userData.name.charAt(0)}`)
+      .children("button").append(`${userData.name.charAt(0)}`);
+    $('#user-initial').append((`${userData.name.charAt(0)}`));
+    $('#user-name').append(`${userData.name}`);
+    $('#user-email').append(`${userData.email}`)
   }
 
   window.changeNavOnLogin = changeNavOnLogin

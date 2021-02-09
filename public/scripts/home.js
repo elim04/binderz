@@ -80,7 +80,7 @@ $(function () {
           <div class="view-comments">
             <h3>Comments</h3>
             <div class="comment">
-              <a></a>
+          </div>
             </div>
           </div>
         </div>
@@ -91,6 +91,7 @@ $(function () {
     return modalResourceHTML;
   }
 
+//render the base modal without comments
   const renderModal = function(resource) {
     $('.modal-bg1').empty();
 
@@ -98,17 +99,19 @@ $(function () {
     $('.modal-bg1').append(newModal);
 
   }
-  //EL working on loading comments in progress
-  //  const loadComments = function(comments) {
+  //render comments ontop of base modal
+  // const loadComments = function(comments) {
 
   //   for (const comment of comments) {
-  //     const newComment = ``
+  //     const newComment = `
+  //     <p class="user-name">${comment["comment"].}</p>
+  //     <p></p>
+  //     `
 
   //     $('.comment').prepend
 
   //   }
 
-  //   return commentList;
   // }
 
   function loadResources () {
@@ -148,7 +151,10 @@ $(function () {
         url: `/api/resources/${data.id}`,
         method: 'GET'
       })
-        .done((data) => renderModal(data))
+        .done((data) => {
+          console.log('data', data)
+          renderModal(data)
+        })
         .fail(() => console.log('an error has occured'))
         .always(() => console.log("successful request of modal"));
     })

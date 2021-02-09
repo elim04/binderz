@@ -13,3 +13,13 @@ const clearInput = function (type) {
     $(this).val('');
   })
 }
+
+const ratings = function (id) {
+  for (let check = 1; check <= id; check++) {
+    $(`#${check}`).attr('class').val('fa fa-star checked');
+  }
+  for (let unchecked = 5; unchecked > id; unchecked--) {
+    $(`#${unchecked}`).attr('class').val('fa fa-star');
+  }
+}
+

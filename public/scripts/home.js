@@ -144,14 +144,14 @@ $(function () {
     }
 
     $('#heart-btn').on("click", function() {
-
+      console.log('resourceObj', resourceObj)
       if ($('#heart-btn').hasClass('far')) {
-
         $.ajax({
           method: 'POST',
-          url: '/api/:resources_id/liked',
-          data
+          url: `/api/resources/${resourceObj['resource'].id}/liked`,
         })
+          .done(() => console.log('done'))
+          .fail(() => console.log('an error has occured for liking'));
 
         $('#heart-btn').attr('class', 'fas fa-heart fa-2x');
 
@@ -159,16 +159,13 @@ $(function () {
 
         $.ajax({
           method: "DELETE",
-          url: '/api/:resources_id/liked',
-          data
+          url: `/api/resources/${resourceObj['resource'].id}/liked`,
         })
+          .done(() => console.log('done'))
+          .fail(() => console.log('an error has occured for unliking'));
 
         $('#heart-btn').attr('class', 'far fa-heart fa-2x');
       }
-
-
-
-      console.log("liked")
 
     })
 

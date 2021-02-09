@@ -70,7 +70,7 @@ module.exports = (db) => {
   router.post('/:resources_id/liked', (req, res) => {
     const userId = req.session.userId;
     const specificResource = req.params.resources_id;
-
+    console.log("req params", req.params);
     db.addLike(userId, specificResource)
       .then(likedResource => {
         res.json({ likedResource })
@@ -82,12 +82,11 @@ module.exports = (db) => {
 
   });
 
-  router.delete('/:resource_id/liked', (req,res) => {
-
+  router.delete('/:resources_id/liked', (req,res) => {
     const userId = req.session.userId;
     const specificResource = req.params.resources_id;
 
-    db.removeLike(userId, specificResouce)
+    db.removeLike(userId, specificResource)
       .then(resource => {
         res.json({ resource })
       })

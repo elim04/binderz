@@ -20,7 +20,7 @@
 
     <script src="./vendor/jquery-3.0.0.js"></script>
     <script src="./vendor/jquery-ui.js"></script>
-    <script src="./scripts/search_bar.js"></script>
+    <script src="./scripts/nav.js"></script>
     <script src="./scripts/register_form.js"></script>
     <script src="./scripts/network.js"></script>
     <script src="./scripts/login_form.js"></script>
@@ -84,7 +84,20 @@
         </button>
       </div>
       <div class="user">
-        <button></button>
+        <button id="user-btn"></button>
+      </div>
+      <div class="logged-in">
+        <div class="user-info">
+          <div class="letter"><div id="user-initial"></div></div>
+          <div><h3 id="user-name"></h3></div>
+          <div id="user-email"></div>
+        </div>
+        <span></span>
+        <div class="buttons">
+          <div class="my-page">My Page</div>
+          <div class="setting">Settings</div>
+          <div id="logout">Logout</div>
+        </div>
       </div>
     </nav>
     <main>

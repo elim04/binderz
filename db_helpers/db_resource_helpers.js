@@ -37,7 +37,7 @@ const getAllResources = function(options, limit) {
   //show resources belonging to logged in user
   if (options.user_id) {
     queryParams.push(`${options.user_id}`);
-    queryString += `AND user_id = $${queryParms.length} `;
+    queryString += `AND user_id = $${queryParams.length} `;
   }
 
 

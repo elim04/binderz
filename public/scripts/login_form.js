@@ -11,7 +11,9 @@ $(function () {
       .children("button").append(`${userData.name.charAt(0)}`);
     $('#user-initial').append((`${userData.name.charAt(0)}`));
     $('#user-name').append(`${userData.name}`);
-    $('#user-email').append(`${userData.email}`)
+    $('#user-email').append(`${userData.email}`);
+    renderPersonalArea(userData)
+    $('#my-page').data(userData)
   }
 
   window.changeNavOnLogin = changeNavOnLogin

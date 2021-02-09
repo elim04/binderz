@@ -28,6 +28,8 @@ $(function () {
     }
   }
 
+  window.masonaryResize = masonaryResize;
+
   const createResource = function (resource) {
     let resourceHTML = `
       <div class="block">
@@ -186,6 +188,8 @@ $(function () {
 
     masonaryResize();
   }
+
+  window.renderResources = renderResources
 
   loadResources();
 })

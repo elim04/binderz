@@ -12,6 +12,7 @@
       crossorigin="anonymous"
     />
     <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bttn.css/0.2.4/bttn.min.css" rel="stylesheet"></script>
 
     <script
       src="https://kit.fontawesome.com/6fc3c812b3.js"
@@ -42,6 +43,7 @@
       src="/scripts/login_register_modal.js"
     ></script>
     <script src="./scripts/home.js"></script>
+    <script src="./scripts/personal.js"></script>
     <script
       type="text/javascript"
       src="/scripts/create_resource.js"
@@ -95,13 +97,15 @@
         </div>
         <span></span>
         <div class="buttons">
-          <div class="my-page">My Page</div>
+          <div id="my-page">My Page</div>
           <div class="setting">Settings</div>
           <div id="logout">Logout</div>
         </div>
       </div>
     </nav>
     <main>
+      <div id="personal-box">
+      </div>
       <div class="modal-bg1">
         <!-- Empty for individual modal load -->
       </div>

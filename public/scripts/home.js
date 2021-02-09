@@ -145,13 +145,28 @@ $(function () {
 
     $('#heart-btn').on("click", function() {
 
-      $.ajax({
-        method: 'POST',
-        url: '/api/:resources_id/liked',
-        data
-      })
+      if ($('#heart-btn').hasClass('far')) {
 
-      $('heart-btn')
+        $.ajax({
+          method: 'POST',
+          url: '/api/:resources_id/liked',
+          data
+        })
+
+        $('#heart-btn').attr('class', 'fas fa-heart fa-2x');
+
+      } else if ($('#heart-btn').hasClass('fas')) {
+
+        $.ajax({
+          method: "DELETE",
+          url: '/api/:resources_id/liked',
+          data
+        })
+
+        $('#heart-btn').attr('class', 'far fa-heart fa-2x');
+      }
+
+
 
       console.log("liked")
 

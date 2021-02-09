@@ -82,7 +82,21 @@ module.exports = (db) => {
 
   });
 
-  router.delete('/:resource_id/liked', )
+  router.delete('/:resource_id/liked', (req,res) => {
+
+    const userId = req.session.userId;
+    const specificResource = req.params.resources_id;
+
+    db.removeLike(userId, specificResouce)
+      .then(resource => {
+        res.json({ resource })
+      })
+      .catch(err => {
+        console.error(err);
+        res.json( {error: err.message })
+      });
+
+  });
 
   return router;
 };

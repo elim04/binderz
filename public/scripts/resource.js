@@ -17,8 +17,10 @@ $(function() {
   })
 
   $(".modal-resource-close").on("click", function() {
-    $(this).closest(".modal-resource").parent().removeClass('bg-active');
+    $(this).closest(".modal-resource-content").parent().removeClass('bg-active');
     $('.img-container').removeClass('change-order')
+    clearInput('resource');
+    clearTextArea('resource');
   })
 
 

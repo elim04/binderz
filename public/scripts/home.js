@@ -49,7 +49,7 @@ $(function () {
   const createModalResource = function (resourceObj) {
 
     let modalResourceHTML = `
-      <div class="modal-resource">
+      <div class="modal-resource-content">
         <div class="left-container">
           <div class="modal-img-show">
             <img id="resource-img" src="${resourceObj["resource"].image_src}" alt="" />

@@ -46,8 +46,17 @@ $(function () {
 
   const createModalResource = function (resourceObj) {
 
+    //loop through comments to make individual p tags to add to larger html
     const commentLooper = function(comments) {
-      for (const comment of resourceObj[1][0]) {
+      let commentList ="";
+      for (const comment of comments) {
+        commentList += `<p>${comment.comment}</p>`
+      }
+
+      return commentList;
+    }
+
+    if (resourceObj[0].likes) {
 
     }
 
@@ -84,7 +93,7 @@ $(function () {
             <div class="view-comments">
               <h3>Comments</h3>
               <div class="comment">
-                <a>${}</a>
+                <a></a>
               </div>
             </div>
           </div>
@@ -124,6 +133,7 @@ $(function () {
 
     $('.block').on('click', function(){
       const data = $(this).data()
+
 
       $.ajax({
         url: `/api/resources/${data.id}`,

@@ -58,7 +58,6 @@ $(function () {
           </div>
           <div class="below-img">
             <div class="likes">
-              <i id="heart-btn" class="far fa-heart fa-2x"></i>
               <a>COUNTER</a>
             </div>
             <div class="rating">
@@ -82,7 +81,6 @@ $(function () {
           <div class="view-comments">
             <h3>Comments</h3>
             <div class="comment">
-              <a></a>
             </div>
           </div>
         </div>
@@ -93,25 +91,39 @@ $(function () {
     return modalResourceHTML;
   }
 
+//render the base modal without comments
   const renderModal = function(resource) {
     $('.modal-bg1').empty();
 
-    const newModal = createModalResource(resource)
+    const newModal = createModalResource(resource);
     $('.modal-bg1').append(newModal);
 
   }
-  //EL working on loading comments in progress
-  //  const loadComments = function(comments) {
+  //render comments ontop of base modal
+  const loadComments = function(commentsObj) {
 
-  //   for (const comment of comments) {
-  //     const newComment = ``
+    for (const comm of commentsObj["comments"]) {
 
-  //     $('.comment').prepend
+      const newComment = `
+      <p class="user-name">${comm.name}</p>
+      <p>${comm.comment}</p>
+      `;
 
-  //   }
+      $('.comment').prepend(newComment);
 
-  //   return commentList;
-  // }
+    }
+
+  }
+
+  const loadLikeStatus = function(resourceObj) {
+
+    if (!resourceObj["resource"].likes) {
+      $('.likes').append('<i id="heart-btn" class="far fa-heart fa-2x"></i>');
+    } else {
+      $('.likes').append('<i id="heart-btn" class="fas fa-heart fa-2x"></i>');
+    }
+
+  }
 
   function loadResources () {
     $.ajax({
@@ -150,7 +162,12 @@ $(function () {
         url: `/api/resources/${data.id}`,
         method: 'GET'
       })
-        .done((data) => renderModal(data))
+        .done((data) => {
+          console.log('data', data);
+          renderModal(data);
+          loadComments(data);
+          loadLikeStatus(data);
+        })
         .fail(() => console.log('an error has occured'))
         .always(() => console.log("successful request of modal"));
     })

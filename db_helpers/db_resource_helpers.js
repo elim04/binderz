@@ -122,9 +122,10 @@ const getComments = function(resource) {
   let queryParams = [resource];
 
   let queryString = `
-  SELECT *
+  SELECT comments.*, users.name
   FROM comments
-  WHERE resource_id = $1
+  JOIN users ON comments.user_id = users.id
+  WHERE resource_id = $1;
   `
   return db.query(queryString, queryParams)
     .then(res => res.rows)

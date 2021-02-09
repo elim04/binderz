@@ -78,7 +78,7 @@ $(function () {
           </div>
           <div class="view-comments">
             <h3>Comments</h3>
-            <div class="comment">
+            <div class="comments">
             </div>
           </div>
         </div>
@@ -125,11 +125,13 @@ $(function () {
     for (const comm of commentsObj["comments"]) {
 
       const newComment = `
-      <p class="user-name">${comm.name}</p>
-      <p>${comm.comment}</p>
+      <div class="comment">
+        <p class="user-name">${comm.name}</p>
+        <p>${comm.comment}</p>
+      </div>
       `;
 
-      $('.comment').prepend(newComment);
+      $('.comments').prepend(newComment);
 
     }
 

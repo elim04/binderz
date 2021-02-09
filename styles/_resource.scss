@@ -51,7 +51,7 @@
     .view-title {
       width: 90%;
       height: 5%;
-      border:solid black;
+      font-size: 2em;
 
       a {
         display: flex;
@@ -62,17 +62,34 @@
       width: 90%;
       height: 30%;
       margin-top: 50px;
-      border:solid black;
       overflow: auto;
+      font-size: 1.2em;
 
     }
     .view-comments {
       width: 90%;
       height: 50%;
-      border:solid black;
       margin-top: 50px;
       margin-bottom: 25px;
       overflow:auto;
+
+      .comment{
+        // height: 10%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        border: 1px solid black;
+        padding: 10px;
+        border-radius: 15px;
+        width: 100%;
+        .user-name {
+          margin-bottom: 10px;
+          font-weight: bold;
+        }
+        p {
+          overflow-wrap: break-word;
+        }
+      }
 
     }
   }

@@ -5,6 +5,61 @@ main {
   align-items: center;
   margin-top: 60px;
 
+
+  #personal-box{
+    width: 100%;
+    max-width: 1000px;
+    #personal-page {
+      display: flex;
+      // display: none;
+      width: 100%;
+      max-width: 1000px;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      // border: 1px solid grey;
+      // border-radius: 20px;
+      // padding: 20px 0px 50px 0px;
+      margin: 30px 0px 80px 0px;
+
+      .user-icon {
+        height: 80px;
+        width: 80px;
+        border: 1px solid black;
+        padding: 10px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        // margin: 10px;
+
+        i {
+          font-size: 60px;
+        }
+       }
+
+      .user-name {
+        font-size: 32px;
+      }
+
+      .resource-btn-group {
+        margin-top: 50px;
+        margin: 50px 5% 0px 5%;
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+
+        button {
+          width: 33.3%;
+        }
+
+        .bttn-primary {
+          color: black;
+        }
+      }
+    }
+  }
+
   .change-order {
     z-index: -1;
   }

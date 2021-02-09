@@ -122,7 +122,7 @@ const getComments = function(resource) {
   let queryParams = [resource];
 
   let queryString = `
-  SELECT comment
+  SELECT *
   FROM comments
   WHERE resource_id = $1
   `

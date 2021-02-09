@@ -46,65 +46,68 @@ $(function () {
 
   const createModalResource = function (resourceObj) {
 
-    //loop through comments to make individual p tags to add to larger html
-    const commentLooper = function(comments) {
-      let commentList ="";
-      for (const comment of comments) {
-        commentList += `<p>${comment.comment}</p>`
-      }
-
-      return commentList;
-    }
-
-    if (resourceObj[0].likes) {
-
-    }
-
     let modalResourceHTML = `
-    <div class="modal-bg1">
-        <div class="modal-resource">
-          <div class="left-container">
-            <div class="modal-img-show">
-              <img src="${resourceObj[0].image_src}" alt="" />
+      <div class="modal-resource">
+        <div class="left-container">
+          <div class="modal-img-show">
+            <img id="resource-img" src="${resourceObj["resource"].image_src}" alt="" />
+          </div>
+          <div class="below-img">
+            <div class="likes">
+              <i id="heart-btn" class="far fa-heart fa-2x"></i>
+              <a>COUNTER</a>
             </div>
-            <div class="below-img">
-              <div class="likes">
-                <i id="heart-btn" class="far fa-heart fa-2x"></i>
-                <a>COUNTER</a>
-              </div>
-              <div class="rating">
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span>
-              </div>
+            <div class="rating">
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star"></span>
+              <span class="fa fa-star"></span>
             </div>
           </div>
-          <div class="view-resource-info">
-            <div class="view-title">
-              <span>${resourceObj[0].title}</span>
-            </div>
-            <div class="view-description">
-              <a><p>
-              ${resourceObj[0].description}
-              </p></a>
-            </div>
-            <div class="view-comments">
-              <h3>Comments</h3>
-              <div class="comment">
-                <a></a>
-              </div>
-            </div>
-          </div>
-          <span class="modal-resource-close">X</span>
         </div>
+        <div class="view-resource-info">
+          <div class="view-title">
+            <span>${resourceObj["resource"].title}</span>
+          </div>
+          <div class="view-description">
+            <a><p>
+            ${resourceObj["resource"].description}
+            </p></a>
+          </div>
+          <div class="view-comments">
+            <h3>Comments</h3>
+            <div class="comment">
+              <a></a>
+            </div>
+          </div>
+        </div>
+        <span class="modal-resource-close">X</span>
       </div>
-
     `;
 
     return modalResourceHTML;
   }
+
+  const renderModal = function(resource) {
+    $('.modal-bg1').empty();
+
+    const newModal = createModalResource(resource)
+    $('.modal-bg1').append(newModal);
+
+  }
+  //EL working on loading comments in progress
+  //  const loadComments = function(comments) {
+
+  //   for (const comment of comments) {
+  //     const newComment = ``
+
+  //     $('.comment').prepend
+
+  //   }
+
+  //   return commentList;
+  // }
 
   function loadResources () {
     $.ajax({
@@ -133,14 +136,18 @@ $(function () {
 
     $('.block').on('click', function(){
       const data = $(this).data()
-
+      $('.modal-bg1').addClass('bg-active');
+      $('.img-container').addClass('change-order');
 
       $.ajax({
         url: `/api/resources/${data.id}`,
         method: 'GET'
       })
-      .done(data => console.log(data))
+        .done((data) => renderModal(data))
+        .fail(() => console.log('an error has occured'))
+        .always(() => console.log("successful request of modal"));
     })
+
 
     masonaryResize();
   }

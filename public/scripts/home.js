@@ -76,8 +76,10 @@ $(function () {
             ${resourceObj["resource"].description}
             </p></a>
           </div>
-          <div class="add-comment">
-            <>
+          <div class="add-comment-form">
+            <label for="add-comment">Add Comment</label>
+            <input class ="form-control" type="text" name="comment" placeholder="Enter comment here" required>
+            <button type="submit">Submit</button>
           </div>
           <div class="view-comments">
             <h3>Comments</h3>

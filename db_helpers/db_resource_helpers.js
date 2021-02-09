@@ -153,6 +153,26 @@ const addLike = function(id, resource) {
 
 exports.addLike = addLike;
 
+
+const removeLike = function(id, resource) {
+
+  let queryParams = [resource, id];
+
+  let queryString = `
+  DELETE FROM likes
+  WHERE resource_id = $1 AND user_id = $2
+  RETURNING *;
+  `;
+
+  return db.query(queryString, queryParams)
+    .then(res => res.rows[0])
+    .catch(err => console.error('query error', err.stack));
+}
+
+exports.removeLike = removeLike;
+
+
+
 const addRating = function(id, resource, rating) {
 
   let queryParams = [resource, id, rating];
@@ -169,6 +189,7 @@ const addRating = function(id, resource, rating) {
     .catch(err => console.error('query error', err.stack));
 
 }
+
 
 exports.addRating = addRating;
 

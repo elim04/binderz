@@ -1,5 +1,4 @@
 $(function () {
-
   getMyDetails()
     .done((user) => changeNavOnLogin(user))
     .fail(err => err)
@@ -13,48 +12,32 @@ $(function () {
       .children("button").append(`${userData.name.charAt(0)}`)
   }
 
-  const showLoginError = function (message) {
-    $('.login_error').append(`<p>${message}</p>`);
-    $('.login_error').slideDown("slow", function () { });
-  }
-
-  const clearLoginError = function () {
-    $('.login_error').empty();
-    $('.login_error').css('display', 'none');
-  }
-
-  const clearLoginInput = function () {
-    $('.modal-login-content').find('input').each(function () {
-      $(this).val('');
-    })
-  }
+  window.changeNavOnLogin = changeNavOnLogin
 
   $('main').on('submit', '.modal-login-form', function (event) {
     event.preventDefault();
-    clearLoginError();
+    clearError('login');
 
     const data = $(this).serialize();
 
     logIn(data)
       .done((user) => {
         $('.modal-bg3').removeClass('bg-active');
-        clearLoginInput();
+        clearInput('login');
         changeNavOnLogin(user)
       })
-      .fail(err => showLoginError(err.responseText))
+      .fail(err => showError(err.responseText, 'login'))
   })
 
   //clears login error when any input is selected
   $('.modal-bg3').on('focus', 'input', function () {
-    clearLoginError();
+    clearError('login');
   })
 
 
   //clears all login input/error when X is clicked
   $('.modal-login-close').on('click', function () {
-    console.log($(this))
-    clearLoginInput();
-    clearLoginError();
+    clearInput('login');
+    clearError('login');
   })
-
 })

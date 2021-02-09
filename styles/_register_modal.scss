@@ -53,9 +53,16 @@
 
       .register_error {
         display: none;
-        border:solid red;
-        color: red;
-        // margin-top: 1em;
+        width: 100%;
+        color:white;
+        font-weight: bold;
+        background-color: red;
+        border-radius: 10px;
+
+        p {
+          display: flex;
+          justify-content: center;
+        }
       }
 
     }

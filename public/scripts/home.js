@@ -138,7 +138,6 @@ $(function () {
     $('.block').on('click', function(){
       const data = $(this).data()
 
-
       $.ajax({
         url: `/api/resources/${data.id}`,
         method: 'GET'

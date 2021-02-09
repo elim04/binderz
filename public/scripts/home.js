@@ -145,11 +145,13 @@ $(function () {
 
     $('#heart-btn').on("click", function() {
 
-      // $.ajax({
-      //   method: 'POST',
-      //   url: '/api/:resources_id/liked',
-      //   data
-      // })
+      $.ajax({
+        method: 'POST',
+        url: '/api/:resources_id/liked',
+        data
+      })
+
+      $('heart-btn')
 
       console.log("liked")
 

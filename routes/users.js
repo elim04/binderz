@@ -6,7 +6,7 @@
  */
 const bcrypt = require('bcrypt');
 const express = require('express');
-const { updateRating , createRating, getUserRatings } = require('../db_helpers/db_resource_helpers');
+const { updateRating , createRating } = require('../db_helpers/db_resource_helpers');
 const { getUserWithEmail } = require('../db_helpers/db_user_helpers');
 const router  = express.Router();
 
@@ -29,6 +29,20 @@ module.exports = (db) => {
       })
       .catch(e => res.send(e));
   });
+
+  router.post('/me', (req,res) => {
+    const userId = req.session.userId;
+    const {newName} = req.body;
+    console.log(newName, "in /me")
+    if (!userId) {
+      res.status(404).send({error: "not logged in"});
+      return;
+    }
+    db.updateUserWithId(userId, newName)
+    .then(result => {res.send(result)
+      console.log(result)})
+    .catch(e => res.send(e));
+  })
 
   // ------------------ REGISTER ROUTES ---------------------
 

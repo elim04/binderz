@@ -33,3 +33,25 @@ const loadCurrentRating = function(data) {
   ratings(data.resource.rating);
 }
 
+const showUsername = function(name) {
+  $('#new-name').remove();
+  $('.user-name').prepend(name);
+  $('.setting-button-container').show();
+}
+
+const resourceToLogin = function() {
+  $('.modal-bg1').removeClass('bg-active');
+  $('.img-container').removeClass('change-order')
+  $('.modal-bg3').addClass('bg-active');
+  $('.img-container').addClass('change-order')
+}
+
+const logInCheck = async function() {
+  let isLoggedIn;
+  try {
+    isLoggedIn = await getMyDetails();
+  } catch(err) {
+    console.log(err, "error")
+  }
+  return isLoggedIn;
+}

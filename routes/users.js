@@ -6,6 +6,7 @@
  */
 const bcrypt = require('bcrypt');
 const express = require('express');
+const { updateRating , createRating, getUserRatings } = require('../db_helpers/db_resource_helpers');
 const { getUserWithEmail } = require('../db_helpers/db_user_helpers');
 const router  = express.Router();
 
@@ -92,6 +93,26 @@ module.exports = (db) => {
     req.session.userId = null;
     res.send({});
   });
+
+  router.post('/:resource_id/rating', (req, res) => {
+    const userId = req.session.userId;
+    const newRating = req.body.newRating;
+    const {id, rating} = req.body.resource;
+    console.log(id, rating, newRating)
+    if (rating && newRating) {
+      updateRating(id, userId, newRating)
+        .then(result => res.send(result))
+        .catch(e => res.send(e));
+      return;
+    } else if (newRating) {
+      createRating(id, userId, newRating)
+      .then(result => res.send(result))
+      .catch(e => res.send(e));
+      return;
+    }
+
+    res.send('no updates')
+  })
 
   return router;
 };

@@ -21,6 +21,14 @@ const logOut = function() {
   })
 }
 
+const updateRatingCall = function(data, newRating) {
+  data.newRating = newRating
+  return $.ajax({
+    method: "POST",
+    url: `/api/users/${data.resource.id}/rating`,
+    data
+  })
+}
 
 function getAllResources() {
   console.log()

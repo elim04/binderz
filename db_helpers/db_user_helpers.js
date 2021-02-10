@@ -32,3 +32,13 @@ const getUserWithId = function(id) {
 
 exports.getUserWithId = getUserWithId;
 
+// const getUserRatings = function(resourceId, userId) {
+//   return db.query(`
+//   SELECT * FROM ratings
+//   WHERE resource_id = $1
+//   AND user_id = $2`
+//   , [resourceId, userId])
+//   .then(res => res.rows[0]);
+// }
+
+// exports.getUserRatings = getUserRatings;

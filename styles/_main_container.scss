@@ -47,6 +47,19 @@ main {
           display: inline-block;
           position: absolute;
         }
+
+        #new-name {
+          border-radius: 25px;
+          border: solid black;
+
+          #newName {
+            margin-right: 10px;
+            border: 0px solid;
+            width: 90%;
+            outline: none;
+            border-radius: 25px;
+          }
+        }
       }
 
       .resource-btn-group {

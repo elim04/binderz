@@ -21,6 +21,13 @@ $(function () {
     return personalHTML
   }
 
+  const settingsInput = () => {
+    const inputHtml = `<form id="new-name" action="/me">
+    <input id="newName" name="newName" type="text" placeholder="New Name" autofocus></input>
+    <input type="submit" hidden></form>`
+    return inputHtml;
+  }
+
   const renderPersonalArea = (user) => {
     $('#personal-box').append(createPersonal(user));
     $('#personal-box').hide();
@@ -41,8 +48,30 @@ $(function () {
 
     $('#setting').on('click', function() {
       console.log('clicked setting')
-      // const oldName =
-      $('.user-name')
+      const oldName = $('.user-name').text()
+      $('.user-name').contents().filter(function(){
+        return this.nodeType === 3;
+    }).remove();
+      $('.user-name').prepend(settingsInput);
+      $('.setting-button-container').hide();
+      // $('.user-name').prepend(oldName)
+
+      $('#new-name').on('submit', function(event) {
+        event.preventDefault();
+        const data = $(this).serialize();
+        console.log(data, "DATA")
+        const newName = $('#newName').val();
+        if (newName) {
+          updateUser(data)
+          $('#new-name').remove();
+          $('.user-name').prepend(newName);
+          $('.setting-button-container').show();
+        } else {
+          $('#new-name').remove();
+          $('.user-name').prepend(oldName);
+          $('.setting-button-container').show();
+        }
+      })
     })
   }
 

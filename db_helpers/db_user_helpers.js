@@ -42,3 +42,15 @@ exports.getUserWithId = getUserWithId;
 // }
 
 // exports.getUserRatings = getUserRatings;
+
+const updateUserWithId = function(id, newName) {
+  return db.query(`
+  UPDATE users
+  SET name = $1
+  WHERE id = $2
+  RETURNING *;`
+  , [newName, id])
+  .then(res => res.rows[0]);
+}
+
+exports.updateUserWithId = updateUserWithId;

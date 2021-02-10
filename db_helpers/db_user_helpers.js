@@ -48,7 +48,7 @@ const updateUserWithId = function(id, newName) {
   UPDATE users
   SET name = $1
   WHERE id = $2
-  RETURNING *;`
+  RETURNING name, email;`
   , [newName, id])
   .then(res => res.rows[0]);
 }

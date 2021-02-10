@@ -1,27 +1,27 @@
 const signUp = function (data) {
   return $.ajax({
-    method:"POST",
+    method: "POST",
     url: "/api/users/register",
     data
   });
 }
 
-const logIn = function(data) {
+const logIn = function (data) {
   return $.ajax({
-    method:"POST",
+    method: "POST",
     url: "/api/users/login",
     data
   });
 }
 
-const logOut = function() {
+const logOut = function () {
   return $.ajax({
     method: "POST",
     url: "/api/users/logout"
   })
 }
 
-const updateRatingCall = function(data, newRating) {
+const updateRatingCall = function (data, newRating) {
   data.newRating = newRating
   return $.ajax({
     method: "POST",
@@ -30,12 +30,7 @@ const updateRatingCall = function(data, newRating) {
   })
 }
 
-// function getAllResources() {
-//   console.log()
-// }
-
-function addResource() {
-  console.log('Add resource');
+function addResource(formContent) {
   return $.ajax({
     method: "POST",
     url: "/api/resources",
@@ -76,7 +71,6 @@ function addEmptyHeart(resource) {
 
 
 function createResource(newData) {
-
   return $.ajax({
     method: "POST",
     url: "/api/resources",
@@ -110,5 +104,19 @@ const updateUser = function (newName) {
     method: "POST",
     url: "/api/users/me",
     data: newName
+  })
+}
+
+const getResources = function (params) {
+  return $.ajax({
+    url: `/api/resources/?${params}`,
+    method: 'GET'
+  })
+}
+
+const getLikedResources = function() {
+  return $.ajax({
+    url: `/api/resources/likedResources`,
+    method: 'GET'
   })
 }

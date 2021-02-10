@@ -9,6 +9,7 @@ main {
   #personal-box{
     width: 100%;
     max-width: 1000px;
+    position: relative;
     #personal-page {
       display: flex;
       // display: none;
@@ -40,6 +41,12 @@ main {
 
       .user-name {
         font-size: 32px;
+        display: inline-block;
+
+        .setting-button-container {
+          display: inline-block;
+          position: absolute;
+        }
       }
 
       .resource-btn-group {

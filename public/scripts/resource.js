@@ -1,24 +1,17 @@
 $(function() {
 
   $("#create-resource").on("click", async function() {
-    let isLoggedIn;
-    try {
-      isLoggedIn = await getMyDetails();
-    } catch(err) {
-      console.log(err, "error")
-    }
+    let isLoggedIn = await logInCheck()
+
     if (isLoggedIn) {
-      $('.modal-bg2').addClass('bg-active');
-      $('.img-container').addClass('change-order')
+      modalDisplay(2, 'add');
     } else {
-      $('.modal-bg3').addClass('bg-active');
-      $('.img-container').addClass('change-order')
+      modalDisplay(3, 'add');
     }
   })
 
-  $(".modal-resource-close").on("click", function() {
-    $(this).closest(".modal-resource-content").parent().removeClass('bg-active');
-    $('.img-container').removeClass('change-order')
+  $(".modal-create-resource-close").on("click", function() {
+    modalDisplay(2, 'remove');
     clearInput('resource');
     clearTextArea('resource');
   })

@@ -92,7 +92,7 @@ $(function () {
             </div>
           </div>
         </div>
-        <span class="modal-resource-close">X</span>
+        <span class="modal-view-resource-close">X</span>
       </div>
     `;
 
@@ -105,20 +105,18 @@ $(function () {
     const newModal = createModalResource(resource);
     $('.modal-bg1').append(newModal);
 
-    $(".modal-resource-close").on("click", function() {
+    $(".modal-view-resource-close").on("click", function() {
       updateRatingCall(resource, currentRating)
       .then(() => {
-        console.log('here')
-        $(".modal-bg1").removeClass("bg-active");
-        $('.img-container').removeClass('change-order')
+        modalDisplay(1, 'remove');
       })
       .catch((err) => console.log(err))
     })
+
     let currentRating;
-    let isLoggedIn;
     $('.rating').on('click', async function(event) {
       const id = event.target.id;
-      isLoggedIn = await logInCheck();
+      let isLoggedIn = await logInCheck();
       if (isLoggedIn) {
         ratings(id)
         currentRating = id;
@@ -204,8 +202,7 @@ $(function () {
 
     $('.block').on('click', function(){
       const data = $(this).data()
-      $('.modal-bg1').addClass('bg-active');
-      $('.img-container').addClass('change-order');
+      modalDisplay(1, 'add');
       $.ajax({
         url: `/api/resources/${data.id}`,
         method: 'GET'

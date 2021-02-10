@@ -184,7 +184,15 @@
       }
     }
   }
-  .modal-resource-close{
+  .modal-view-resource-close{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .modal-create-resource-close{
     position: absolute;
     top: 10px;
     right: 10px;

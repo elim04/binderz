@@ -71,4 +71,22 @@ const checkHeartStatus = function(resource) {
   } else {
     $('.likes').prepend('<i id="heart-btn" class="fas fa-heart fa-2x"></i>');
   }
+
+}
+
+const modalDisplay = function(id, display) {
+  console.log("IN MODAL")
+  if (display === 'add') {
+    $(`.modal-bg${id}`).addClass('bg-active')
+    $('.img-container').addClass('change-order')
+  } else if (display === 'remove') {
+    $(`.modal-bg${id}`).removeClass('bg-active')
+    $('.img-container').removeClass('change-order')
+  }
+}
+
+const loginToRegister = function() {
+  $('.img-container').addClass('change-order')
+  $('.modal-bg3').removeClass('bg-active');
+  $('.modal-bg4').addClass('bg-active');
 }

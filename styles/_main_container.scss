@@ -49,13 +49,21 @@ main {
         }
 
         #new-name {
+          margin: auto;
+          margin-top: 10px;
+          margin-bottom: 10px;
           border-radius: 25px;
-          border: solid black;
+          border: 1px solid black;
+          width: 50%;
+          height: 50%;
+
+          input {
+            text-align: center;
+          }
 
           #newName {
-            margin-right: 10px;
             border: 0px solid;
-            width: 90%;
+            width: 100%;
             outline: none;
             border-radius: 25px;
           }

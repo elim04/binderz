@@ -16,15 +16,7 @@ $(function () {
   const changeNavOnLogout = function () {
     logOut()
       .done(() => {
-        $('.user')
-          .hide()
-          .children("button").empty();
-        $('#user-initial').empty();
-        $('#user-name').empty();
-        $('#user-email').empty();
-        $('.logged-in').hide();
-        $('#my-page').removeData();
-        $('#personal-box').empty();
+        emptyUserInfo()
         $('.login').show();
       })
       .fail((error) => console.error('Error on logout:', error))
@@ -59,9 +51,7 @@ $(function () {
     }
 
     loadSearchedResource(urlParams)
-
-    $("#search-bar").val("")
-    $("#topic").val("none")
+    $("#search-bar").blur()
   })
 
   $('#search-form').on('change', 'select', function (event) {
@@ -72,13 +62,19 @@ $(function () {
     }
 
     loadSearchedResource(urlParams)
-
-    $("#search-bar").val("")
   })
 
   $('#home-btn').on('click', () => {
+    if($('#new-name').is(':visible')){
+      getMyDetails()
+      .done(res => showUsername(res.user.name))
+    }
+
     $("#create-resource").show();
     $("#personal-box").hide();
+    $("#search-bar").val("")
+    $("#topic").val("none")
+
     loadResources()
   })
 })

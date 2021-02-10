@@ -51,7 +51,7 @@ const getAllResources = function(options, limit) {
   //show based on title input in search bar
 
   if (options.title) {
-    queryParams.push(`%${options.title.trim()}%`)
+    queryParams.push(`%${options.title.trim().toLowerCase()}%`)
     queryString += `AND lower(title) LIKE $${queryParams.length} `;
   }
 

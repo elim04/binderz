@@ -47,15 +47,12 @@ $(function () {
     })
 
     $('#setting').on('click', function() {
-      console.log('clicked setting')
       const oldName = $('.user-name').text()
       $('.user-name').contents().filter(function(){
         return this.nodeType === 3;
     }).remove();
       $('.user-name').prepend(settingsInput);
       $('.setting-button-container').hide();
-      // $('.user-name').prepend(oldName)
-
       $('#new-name').on('submit', function(event) {
         event.preventDefault();
         const data = $(this).serialize();

@@ -71,7 +71,6 @@ function addEmptyHeart(resource) {
 
 
 function createResource(newData) {
-
   return $.ajax({
     method: "POST",
     url: "/api/resources",

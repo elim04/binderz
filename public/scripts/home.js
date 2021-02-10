@@ -117,19 +117,12 @@ $(function () {
     let isLoggedIn;
     $('.rating').on('click', async function(event) {
       const id = event.target.id;
-      try {
-            isLoggedIn = await getMyDetails();
-          } catch(err) {
-            console.log(err, "error")
-          }
+      isLoggedIn = await logInCheck();
       if (isLoggedIn) {
         ratings(id)
         currentRating = id;
       } else {
-        $('.modal-bg1').removeClass('bg-active');
-        $('.img-container').removeClass('change-order')
-        $('.modal-bg3').addClass('bg-active');
-        $('.img-container').addClass('change-order')
+        resourceToLogin();
       }
     })
   }

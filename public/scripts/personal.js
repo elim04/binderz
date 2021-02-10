@@ -4,9 +4,10 @@ $(function () {
     const personalHTML = `
     <div id="personal-page">
     <div class="user-icon"><i class="fas fa-user-astronaut"></i></div>
-    <div class="user-name">${userInfo.name}
-    <div class="setting-button-container">
-    <button id="setting" type="button" class="btn"><i class="fas fa-cog"></i></button></div>
+    <div class="user-name">
+      ${userInfo.name}
+      <div class="setting-button-container">
+      <button id="setting" type="button" class="btn"><i class="fas fa-cog"></i></button></div>
     </div>
     <div class="user-email">${userInfo.email}</div>
 
@@ -25,6 +26,7 @@ $(function () {
     const inputHtml = `<form id="new-name" action="/me">
     <input id="newName" name="newName" type="text" placeholder="New Name" autofocus></input>
     <input type="submit" hidden></form>`
+
     return inputHtml;
   }
 
@@ -32,37 +34,34 @@ $(function () {
     $('#personal-box').append(createPersonal(user));
     $('#personal-box').hide();
 
-    $('#personal-resource-btn').data(user)
+    $('#liked-resource-btn').bind('click', loadLikedResources)
+    $('#saved-resource-btn').bind('click', loadLikedResources)
+    $('#personal-resource-btn').bind('click', loadPersonalResources)
 
-    $('#liked-resource-btn').on('click', () => {
-      loadLikedResources();
-    })
-
-    $('#saved-resource-btn').on('click', () => {
-      loadLikedResources();
-    })
-
-    $('#personal-resource-btn').on('click', function(){
-      loadPersonalResources($(this).data());
-    })
-
-    $('#setting').on('click', function() {
-      console.log('clicked setting')
+    $('#setting').on('click', function () {
       const oldName = $('.user-name').text()
-      $('.user-name').contents().filter(function(){
+      $('.user-name').contents().filter(function () {
         return this.nodeType === 3;
-    }).remove();
+      }).remove();
+
       $('.user-name').prepend(settingsInput);
       $('.setting-button-container').hide();
-      // $('.user-name').prepend(oldName)
+      $('#newName').focus()
 
-      $('#new-name').on('submit', function(event) {
+      $('#new-name').on('submit', function (event) {
         event.preventDefault();
+
         const data = $(this).serialize();
-        console.log(data, "DATA")
+
         const newName = $('#newName').val();
+
         if (newName) {
           updateUser(data)
+          .done(data => {
+            emptyUserInfo();
+            changeNavOnLogin({user: data})
+            $('#personal-box').show()
+          })
           showUsername(newName);
         } else {
           showUsername(oldName);
@@ -73,14 +72,11 @@ $(function () {
 
   window.renderPersonalArea = renderPersonalArea;
 
-  function loadLikedResources () {
-    $.ajax({
-      url: '/api/resources/likedResources',
-      method: 'GET'
-    })
+  function loadLikedResources() {
+    getLikedResources()
       .done((data) => {
         renderResources(data.resources);
-        imagesLoaded(document.querySelector('#main-container'), function(){
+        imagesLoaded(document.querySelector('#main-container'), function () {
           masonaryResize()
         })
       })
@@ -88,14 +84,11 @@ $(function () {
       .always(() => console.log('Succesful request'));
   }
 
-  function loadPersonalResources (user) {
-    $.ajax({
-      url: `/api/resources/?user_id=${user.id}`,
-      method: 'GET'
-    })
+  function loadPersonalResources() {
+    getResources('user_id=true')
       .done((data) => {
         renderResources(data.resources);
-        imagesLoaded(document.querySelector('#main-container'), function(){
+        imagesLoaded(document.querySelector('#main-container'), function () {
           masonaryResize()
         })
       })
@@ -104,13 +97,10 @@ $(function () {
   }
 
   $('#my-page').on('click', function () {
-    if($('#personal-box').is(':hidden')){
+    if ($('#personal-box').is(':hidden')) {
       $('#main-container').empty();
-      $('#create-resource').hide()
-    }else{
-      loadResources();
-      $('#create-resource').show()
+      $('#create-resource').hide();
+      $('#personal-box').show();
     }
-    $('#personal-box').toggle()
   })
 })

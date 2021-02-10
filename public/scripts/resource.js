@@ -22,8 +22,6 @@ $(function() {
     clearInput('resource');
     clearTextArea('resource');
   })
-
-
 })
 
 

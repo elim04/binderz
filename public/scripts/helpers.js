@@ -32,3 +32,4 @@ const ratings = function (id) {
 const loadCurrentRating = function(data) {
   ratings(data.resource.rating);
 }
+

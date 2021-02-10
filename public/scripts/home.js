@@ -1,3 +1,4 @@
+
 $(function () {
   $( window ).resize(() => {
     imagesLoaded(document.querySelector('#main-container'), function(){
@@ -57,8 +58,8 @@ $(function () {
             <img id="resource-img" src="${resourceObj["resource"].image_src}" alt="" />
           </div>
           <div class="below-img">
-          <div class="likes">
-            <a>COUNT</a>
+          <p class="counter"></p>
+            <div class="likes">
             </div>
             <div class="rating">
               <span id="1" class="fa fa-star"></span>
@@ -165,6 +166,10 @@ $(function () {
 
   const loadLikeStatus = function(resourceObj) {
 
+    let currentCount = resourceObj['likeCount'].likecount;
+
+    $('.counter').html(`${currentCount}`);
+
     if (!resourceObj["resource"].likes) {
       $('.likes').append('<i id="heart-btn" class="far fa-heart fa-2x"></i>');
     } else {
@@ -250,28 +255,4 @@ $(function () {
   window.renderResources = renderResources
 
   loadResources();
-
-  const createTopicHTML = (topic) => {
-    const topicHTML = `
-      <option value="${topic.id}">${topic.topic}</option>
-    `
-    return topicHTML;
-  }
-
-  const renderTopics = (topics) => {
-    for(let topic of topics){
-      const newTopic = createTopicHTML(topic);
-
-      $('#topic option:eq(0)').after(newTopic)
-      $('#resource-modal-topic option:eq(0)').after(newTopic)
-    }
-  }
-
-  const loadTopics = () => {
-    getAllTopics()
-    .done(res => renderTopics(res))
-    .fail(err => console.error(err))
-  }
-
-  loadTopics();
 })

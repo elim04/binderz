@@ -50,4 +50,10 @@ function getMyDetails() {
   });
 }
 
+function getAllTopics() {
+  return $.ajax({
+    url: "/api/resources/topics"
+  })
+}
+
 

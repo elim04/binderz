@@ -63,4 +63,10 @@ $(function () {
     $("#search-bar").val("")
     $("#topic").val("none")
   })
+
+  $('#home-btn').on('click', () => {
+    $("#create-resource").show();
+    $("#personal-box").hide();
+    loadResources()
+  })
 })

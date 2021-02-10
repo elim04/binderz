@@ -55,3 +55,20 @@ const logInCheck = async function() {
   }
   return isLoggedIn;
 }
+
+const displayLikes = function(currentCount){
+  if (currentCount === 0) {
+    $('.counter').html(`Be the first to like this resource!`);
+  } else {
+    $('.counter').html(`${currentCount}`);
+  }
+}
+
+const checkHeartStatus = function(resource) {
+
+  if (!resource["resource"].likes) {
+    $('.likes').prepend('<i id="heart-btn" class="far fa-heart fa-2x"></i>');
+  } else {
+    $('.likes').prepend('<i id="heart-btn" class="fas fa-heart fa-2x"></i>');
+  }
+}

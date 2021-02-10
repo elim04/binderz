@@ -30,9 +30,9 @@ const updateRatingCall = function(data, newRating) {
   })
 }
 
-function getAllResources() {
-  console.log()
-}
+// function getAllResources() {
+//   console.log()
+// }
 
 function addResource() {
   console.log('Add resource');
@@ -72,6 +72,23 @@ function addEmptyHeart(resource) {
   })
     .done(() => console.log('done'))
     .fail(() => console.log('an error has occured for unliking'));
+}
+
+
+function createResource(newData) {
+
+  return $.ajax({
+    method: "POST",
+    url: "/api/resources",
+    data: newData
+  })
+    .done(() => {
+      loadResources()
+      clearInput('resource');
+      clearTextArea('resource');
+    })
+    .fail(() => console.log('Error'))
+    .always(() => console.log('Successful request'));
 }
 
 function getMyDetails() {

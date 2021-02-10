@@ -156,18 +156,9 @@ $(function () {
 
     let currentCount = Number(resourceObj['likeCount'].likecount);
 
-    if (currentCount === 0) {
-      $('.counter').html(`Be the first to like this resource!`);
-    } else {
-      $('.counter').html(`${currentCount}`);
-    }
+    displayLikes(currentCount);
 
-
-    if (!resourceObj["resource"].likes) {
-      $('.likes').prepend('<i id="heart-btn" class="far fa-heart fa-2x"></i>');
-    } else {
-      $('.likes').prepend('<i id="heart-btn" class="fas fa-heart fa-2x"></i>');
-    }
+    checkHeartStatus(resourceObj);
 
     $('#heart-btn').on("click", function() {
       if ($('#heart-btn').hasClass('far')) {

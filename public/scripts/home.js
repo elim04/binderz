@@ -57,8 +57,8 @@ $(function () {
             <img id="resource-img" src="${resourceObj["resource"].image_src}" alt="" />
           </div>
           <div class="below-img">
-            <div class="likes">
-              <a>COUNTER</a>
+          <div class="likes">
+            <a>COUNT</a>
             </div>
             <div class="rating">
               <span id="1" class="fa fa-star"></span>

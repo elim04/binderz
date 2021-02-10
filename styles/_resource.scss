@@ -147,23 +147,26 @@
       height: 20%;
       display: flex;
       flex-direction: row;
-      justify-content: space-between;
+      justify-content: space-around;
+      align-items: center;
+      margin: 3%;
 
       .likes {
-        margin-top: 20px;
-        margin-left: 25px;
+        // margin-top: 20px;
+        // margin-left: 25px;
         width: 30%;
-        height: 30%;
+        // height: 30%;
         display: flex;
         justify-content: space-between;
         align-items: center;
         flex-direction: row;
+
       }
       .rating {
         width: 30%;
         height: 30%;
         margin-top: 20px;
-        margin-right: 25px;
+        // margin-right: 25px;
         display: flex;
         justify-content: flex-end;
         flex-direction: row;
@@ -260,7 +263,6 @@
     }
 
     .left-container {
-      // margin-top: 100px;
       height: 100%;
       width: 80%;
       align-items: center;l
@@ -271,6 +273,20 @@
 
       .below-img {
         width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .likes{
+          display: flex;
+          justify-content: space-between;
+        }
+
+        .rating{
+          align-self: center;
+        }
+
       }
     }
     .view-resource-info {
@@ -279,13 +295,12 @@
 
       .view-title {
         height: 10%;
+        font-size: 1.2em;
       }
       .view-description {
         margin-top: 10px;
-      }
-
-      .view-comments {
-        margin-top: 10px;
+        font-size: 1.0em;
+        margin-bottom: 2%;
       }
 
     }

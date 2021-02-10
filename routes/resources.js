@@ -3,6 +3,7 @@ const router  = express.Router();
 
 module.exports = (db) => {
   router.get('/', (req, res) => {
+    console.log(req.query)
     if(req.query.user_id){
       req.query.user_id = req.session.userId
     }

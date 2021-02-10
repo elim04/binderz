@@ -82,11 +82,11 @@ $(function () {
             <form class="add-comment method="POST" action="/api/resources">
               <label for="add-comment">Add Comment</label>
               <input class ="form-control" type="text" name="comment-from-user" placeholder="Enter comment here" required />
-              <button type="submit">Submit</button>
+              <button class="bttn-unite bttn-sm bttn-primary comment-btn" type="submit">Submit</button>
             </form>
           </div>
+          <h3>Comments</h3>
           <div class="view-comments">
-            <h3>Comments</h3>
             <div class="comments">
             </div>
           </div>

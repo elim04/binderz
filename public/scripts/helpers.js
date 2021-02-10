@@ -55,3 +55,20 @@ const logInCheck = async function() {
   }
   return isLoggedIn;
 }
+
+const modalDisplay = function(id, display) {
+  console.log("IN MODAL")
+  if (display === 'add') {
+    $(`.modal-bg${id}`).addClass('bg-active')
+    $('.img-container').addClass('change-order')
+  } else if (display === 'remove') {
+    $(`.modal-bg${id}`).removeClass('bg-active')
+    $('.img-container').removeClass('change-order')
+  }
+}
+
+const loginToRegister = function() {
+  $('.img-container').addClass('change-order')
+  $('.modal-bg3').removeClass('bg-active');
+  $('.modal-bg4').addClass('bg-active');
+}

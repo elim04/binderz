@@ -54,12 +54,12 @@ $(function () {
     let modalResourceHTML = `
       <div class="modal-resource-content">
         <div class="left-container">
-          <div class="modal-img-show">
-            <img id="resource-img" src="${resourceObj["resource"].image_src}" alt="" />
-          </div>
+        <div class="modal-img-show">
+          <img id="resource-img" src="${resourceObj["resource"].image_src}" alt="" />
+        </div>
           <div class="below-img">
-          <p class="counter"></p>
             <div class="likes">
+            <p class="counter"></p>
             </div>
             <div class="rating">
               <span id="1" class="fa fa-star"></span>
@@ -75,9 +75,9 @@ $(function () {
             <span>${resourceObj["resource"].title}</span>
           </div>
           <div class="view-description">
-            <a><p>
+            <p>
             ${resourceObj["resource"].description}
-            </p></a>
+            </p>
           </div>
           <div class="add-comment-form">
             <form class="add-comment method="POST" action="/api/resources">
@@ -166,14 +166,19 @@ $(function () {
 
   const loadLikeStatus = function(resourceObj) {
 
-    let currentCount = resourceObj['likeCount'].likecount;
+    let currentCount = Number(resourceObj['likeCount'].likecount);
 
-    $('.counter').html(`${currentCount}`);
+    if (currentCount === 0) {
+      $('.counter').html(`Be the first the like this resource!`);
+    } else {
+      $('.counter').html(`${currentCount}`);
+    }
+
 
     if (!resourceObj["resource"].likes) {
-      $('.likes').append('<i id="heart-btn" class="far fa-heart fa-2x"></i>');
+      $('.likes').prepend('<i id="heart-btn" class="far fa-heart fa-2x"></i>');
     } else {
-      $('.likes').append('<i id="heart-btn" class="fas fa-heart fa-2x"></i>');
+      $('.likes').prepend('<i id="heart-btn" class="fas fa-heart fa-2x"></i>');
     }
 
     $('#heart-btn').on("click", function() {

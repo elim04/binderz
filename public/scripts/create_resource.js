@@ -4,11 +4,7 @@ $(function () {
     $('.modal-bg2').removeClass('bg-active');
     const data = $(this).serialize();
 
-    $.ajax({
-      method: "POST",
-      url: "/api/resources",
-      data: data
-    })
+    addResource(data)
       .done(() => {
         loadResources()
         clearInput('resource');
@@ -16,7 +12,5 @@ $(function () {
       })
       .fail(() => console.log('Error'))
       .always(() => console.log('Successful request'));
-
   });
-
 });

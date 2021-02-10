@@ -31,14 +31,14 @@ $(function () {
       .always(() => console.log('executing logout request'))
   }
 
-  function loadSearchedResource (params) {
+  function loadSearchedResource(params) {
     $.ajax({
       url: `/api/resources/?${params}`,
       method: 'GET'
     })
       .done((data) => {
         renderResources(data.resources);
-        imagesLoaded(document.querySelector('#main-container'), function(){
+        imagesLoaded(document.querySelector('#main-container'), function () {
           masonaryResize()
         })
       })
@@ -47,14 +47,27 @@ $(function () {
   }
 
   //search bar functions
-  $('#search-form').on('submit', function(e){
+  $('#search-form').on('submit', function (e) {
     e.preventDefault();
     console.log($(this))
     let urlParams = $(this).serialize()
 
     console.log($('#personal-page').is(':visible'))
 
-    if($('#personal-page').is(':visible')){
+    if ($('#personal-page').is(':visible')) {
+      urlParams += '&user_id=true'
+    }
+
+    loadSearchedResource(urlParams)
+
+    $("#search-bar").val("")
+    $("#topic").val("none")
+  })
+
+  $('#search-form').on('change', 'select', function (event) {
+    let urlParams = $(this).closest('#search-form').serialize()
+
+    if ($('#personal-page').is(':visible')) {
       urlParams += '&user_id=true'
     }
 

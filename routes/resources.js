@@ -51,9 +51,9 @@ module.exports = (db) => {
     const userId = req.session.userId;
     const specificResource = req.params.resources_id;
 
-    Promise.all([db.getSpecificResource(userId, specificResource), db.getComments(specificResource)])
+    Promise.all([db.getSpecificResource(userId, specificResource), db.getComments(specificResource), db.likeCounter(specificResource)])
       .then((data) => {
-        res.json({ resource: data[0], comments: data[1]})
+        res.json({ resource: data[0], comments: data[1], likeCount: data[2] })
       })
       .catch((err) =>  {
         console.error(err);
@@ -96,7 +96,6 @@ module.exports = (db) => {
 
 
   router.post('/:resources_id/comment', (req, res) => {
-    console.log("req.params", req.params)
     const userId = req.session.userId;
     const specificResource = req.params.resources_id;
     const commentFromUser = req.body["comment-from-user"];

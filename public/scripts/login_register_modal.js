@@ -1,22 +1,17 @@
 $(function() {
   $('.modal-login-btn').on('click', () => {
-    $('.img-container').addClass('change-order')
-    $('.modal-bg3').addClass('bg-active');
+    modalDisplay(3, 'add');
   });
 
   $('.modal-login-close').on('click', () => {
-    $('.modal-bg3').removeClass('bg-active');
-    $('.img-container').removeClass('change-order')
+    modalDisplay(3, 'remove');
   });
 
   $('.reg-btn').on('click', () => {
-    $('.img-container').addClass('change-order')
-    $('.modal-bg3').removeClass('bg-active');
-    $('.modal-bg4').addClass('bg-active');
+    loginToRegister();
   });
 
   $('.modal-register-close').on('click', () => {
-    $('.modal-bg4').removeClass('bg-active');
-    $('.img-container').removeClass('change-order')
+    modalDisplay(4, 'remove');
   });
 });

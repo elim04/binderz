@@ -1,3 +1,4 @@
+
 $(function () {
   $( window ).resize(() => {
     imagesLoaded(document.querySelector('#main-container'), function(){
@@ -53,12 +54,12 @@ $(function () {
     let modalResourceHTML = `
       <div class="modal-resource-content">
         <div class="left-container">
-          <div class="modal-img-show">
-            <img id="resource-img" src="${resourceObj["resource"].image_src}" alt="" />
-          </div>
+        <div class="modal-img-show">
+          <img id="resource-img" src="${resourceObj["resource"].image_src}" alt="" />
+        </div>
           <div class="below-img">
             <div class="likes">
-              <a>COUNTER</a>
+            <p class="counter"></p>
             </div>
             <div class="rating">
               <span id="1" class="fa fa-star"></span>
@@ -74,24 +75,24 @@ $(function () {
             <span>${resourceObj["resource"].title}</span>
           </div>
           <div class="view-description">
-            <a><p>
+            <p>
             ${resourceObj["resource"].description}
-            </p></a>
+            </p>
           </div>
           <div class="add-comment-form">
             <form class="add-comment method="POST" action="/api/resources">
               <label for="add-comment">Add Comment</label>
               <input class ="form-control" type="text" name="comment-from-user" placeholder="Enter comment here" required />
-              <button type="submit">Submit</button>
+              <button class="bttn-unite bttn-sm bttn-primary comment-btn" type="submit">Submit</button>
             </form>
           </div>
+          <h3>Comments</h3>
           <div class="view-comments">
-            <h3>Comments</h3>
             <div class="comments">
             </div>
           </div>
         </div>
-        <span class="modal-resource-close">X</span>
+        <span class="modal-view-resource-close">X</span>
       </div>
     `;
 
@@ -104,20 +105,18 @@ $(function () {
     const newModal = createModalResource(resource);
     $('.modal-bg1').append(newModal);
 
-    $(".modal-resource-close").on("click", function() {
+    $(".modal-view-resource-close").on("click", function() {
       updateRatingCall(resource, currentRating)
       .then(() => {
-        console.log('here')
-        $(".modal-bg1").removeClass("bg-active");
-        $('.img-container').removeClass('change-order')
+        modalDisplay(1, 'remove');
       })
       .catch((err) => console.log(err))
     })
+
     let currentRating;
-    let isLoggedIn;
     $('.rating').on('click', async function(event) {
       const id = event.target.id;
-      isLoggedIn = await logInCheck();
+      let isLoggedIn = await logInCheck();
       if (isLoggedIn) {
         ratings(id)
         currentRating = id;
@@ -145,46 +144,28 @@ $(function () {
     $('.add-comment').on('submit', function(event) {
 
       event.preventDefault();
-      $.ajax({
-        method: 'POST',
-        url: `/api/resources/${commentsObj['resource'].id}/comment`,
-        data: $(this).serialize()
-      })
-        .done(() => console.log('comment has been added'))
-        .fail(() => console.log("comment has not been added NOOOO"))
+      addComment(commentsObj, $(this).serialize());
+
     })
 
   }
 
   const loadLikeStatus = function(resourceObj) {
 
-    if (!resourceObj["resource"].likes) {
-      $('.likes').append('<i id="heart-btn" class="far fa-heart fa-2x"></i>');
-    } else {
-      $('.likes').append('<i id="heart-btn" class="fas fa-heart fa-2x"></i>');
-    }
+    let currentCount = Number(resourceObj['likeCount'].likecount);
+
+    displayLikes(currentCount);
+
+    checkHeartStatus(resourceObj);
 
     $('#heart-btn').on("click", function() {
-      console.log('resourceObj', resourceObj)
       if ($('#heart-btn').hasClass('far')) {
-        $.ajax({
-          method: 'POST',
-          url: `/api/resources/${resourceObj['resource'].id}/liked`,
-        })
-          .done(() => console.log('done'))
-          .fail(() => console.log('an error has occured for liking'));
 
+        addFullHeart(resourceObj);
         $('#heart-btn').attr('class', 'fas fa-heart fa-2x');
 
       } else if ($('#heart-btn').hasClass('fas')) {
-
-        $.ajax({
-          method: "DELETE",
-          url: `/api/resources/${resourceObj['resource'].id}/liked`,
-        })
-          .done(() => console.log('done'))
-          .fail(() => console.log('an error has occured for unliking'));
-
+        addEmptyHeart(resourceObj);
         $('#heart-btn').attr('class', 'far fa-heart fa-2x');
       }
 
@@ -221,8 +202,7 @@ $(function () {
 
     $('.block').on('click', function(){
       const data = $(this).data()
-      $('.modal-bg1').addClass('bg-active');
-      $('.img-container').addClass('change-order');
+      modalDisplay(1, 'add');
       $.ajax({
         url: `/api/resources/${data.id}`,
         method: 'GET'
@@ -243,28 +223,4 @@ $(function () {
   window.renderResources = renderResources
 
   loadResources();
-
-  const createTopicHTML = (topic) => {
-    const topicHTML = `
-      <option value="${topic.id}">${topic.topic}</option>
-    `
-    return topicHTML;
-  }
-
-  const renderTopics = (topics) => {
-    for(let topic of topics){
-      const newTopic = createTopicHTML(topic);
-
-      $('#topic option:eq(0)').after(newTopic)
-      $('#resource-modal-topic option:eq(0)').after(newTopic)
-    }
-  }
-
-  const loadTopics = () => {
-    getAllTopics()
-    .done(res => renderTopics(res))
-    .fail(err => console.error(err))
-  }
-
-  loadTopics();
 })

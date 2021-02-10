@@ -38,6 +38,54 @@ function addResource(formContent) {
   });
 }
 
+function addComment(comment,data) {
+  return $.ajax({
+    method: 'POST',
+    url: `/api/resources/${comment['resource'].id}/comment`,
+    data: data
+  })
+    .done(() => console.log('Comment has been added'))
+    .fail(() => console.log('Comment has not been added NOOOO'))
+
+}
+
+function addFullHeart(resource) {
+
+  return $.ajax({
+    method: 'POST',
+    url: `/api/resources/${resource['resource'].id}/liked`,
+  })
+    .done(() => console.log('done'))
+    .fail(() => console.log('an error has occured for liking'));
+}
+
+function addEmptyHeart(resource) {
+
+  return $.ajax({
+    method: "DELETE",
+    url: `/api/resources/${resource['resource'].id}/liked`,
+  })
+    .done(() => console.log('done'))
+    .fail(() => console.log('an error has occured for unliking'));
+}
+
+
+function createResource(newData) {
+
+  return $.ajax({
+    method: "POST",
+    url: "/api/resources",
+    data: newData
+  })
+    .done(() => {
+      loadResources()
+      clearInput('resource');
+      clearTextArea('resource');
+    })
+    .fail(() => console.log('Error'))
+    .always(() => console.log('Successful request'));
+}
+
 function getMyDetails() {
   console.log("getMyDetails");
   return $.ajax({

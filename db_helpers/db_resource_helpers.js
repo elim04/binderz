@@ -212,17 +212,22 @@ const addComment = function(id, resource_id, comment) {
 exports.addComment = addComment;
 
 
-const likeCounter = function(resource) {
+const likeCounter = function(resourceId) {
+
+  let queryParams = [resourceId];
 
   let queryString = `
-  SELECT count(resource_id)
-  FROM likes JOIN resources ON resources.id = resource_id WHERE resources.id = $1;
-  `
+  SELECT count(resource_id) as likeCount
+  FROM likes
+  WHERE resource_id = $1;
+  `;
 
   return db.query(queryString, queryParams)
     .then(res => res.rows[0])
     .catch(err => console.error('query error', err.stack));
 }
+
+exports.likeCounter = likeCounter;
 
 const updateRating = function(resourceId, userId, rating) {
 

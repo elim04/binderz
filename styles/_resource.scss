@@ -58,18 +58,41 @@
         justify-content: center;
       }
     }
-    .view-description {
+    .view-description{
       width: 90%;
-      height: 30%;
+      height: 25%;
       margin-top: 50px;
       overflow: auto;
       font-size: 1.2em;
 
     }
-    .view-comments {
+
+    h3{
+      align-self: flex-start;
+      margin-top: 3%;
+      margin-left: 5%;
+    }
+
+    .add-comment-form{
+      width: 90%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+
+      label{
+        margin-bottom: 2%;
+        font-size: 1.1em;
+      }
+
+      input{
+        margin-bottom: 3%;
+      }
+
+    }
+
+    .view-comments{
       width: 90%;
       height: 50%;
-      margin-top: 50px;
       margin-bottom: 25px;
       overflow:auto;
 
@@ -95,51 +118,62 @@
 
     }
   }
+
   .left-container {
     width: 50%;
     height: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
 
     .modal-img-show {
-      background-color: white;
-      width:90%;
-      height:80%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-left: 25px;
-      margin-top: 25px;
-      margin-right: 25px;
-
+      // background-color: white;
+      width:400px;
+      height:400px;
+      // display: flex;
+      // justify-content: center;
+      // align-items: center;
+      // margin-left: 25px;
+      // margin-top: 25px;
+      // margin-right: 25px;
       #resource-img{
-        width: 100%;
-        max-height: 500px;
+        max-height: 100%;
+        max-width: 100%;
         border-radius: 5%;
+        margin-top: 5%;
       }
+
     }
+
     .below-img {
       width: 100%;
       height: 20%;
       display: flex;
       flex-direction: row;
-      justify-content: space-between;
+      justify-content: space-around;
+      align-items: center;
+      margin: 5%;
 
       .likes {
-        margin-top: 20px;
-        margin-left: 25px;
+        // margin-top: 20px;
+        // margin-left: 25px;
         width: 30%;
-        height: 30%;
+        // height: 30%;
         display: flex;
-        justify-content: space-between;
+        justify-content: flex-start;
         align-items: center;
         flex-direction: row;
+
+        #heart-btn{
+          margin: 10%;
+        }
+
       }
       .rating {
         width: 30%;
         height: 30%;
         margin-top: 20px;
-        margin-right: 25px;
         display: flex;
         justify-content: flex-end;
         flex-direction: row;
@@ -150,7 +184,15 @@
       }
     }
   }
-  .modal-resource-close{
+  .modal-view-resource-close{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .modal-create-resource-close{
     position: absolute;
     top: 10px;
     right: 10px;
@@ -159,8 +201,61 @@
   }
 
 }
-@media screen and (max-width: 430px) {
-  .modal-resource {
+
+//media query
+
+// @media screen and (max-width: 430px) {
+//   .modal-resource {
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: center;
+//     align-items: center;
+//     overflow: auto;
+
+//     .create-resource-info {
+//       width: 100%;
+//       margin-bottom: 10px;
+
+//     }
+
+//     .modal-img {
+//       width: 80%;
+//     }
+//     .left-container {
+//       // margin-top: 100px;
+//       height: 100%;
+//       width: 80%;
+//       align-items: center;l
+
+//       .modal-img-show {
+//         width: 80%;
+//       }
+
+//       .below-img {
+//         width: 100%;
+//       }
+//     }
+//     .view-resource-info {
+//       height: 60%;
+//       width: 100%;
+
+//       .view-title {
+//         height: 10%;
+//       }
+//       .view-description {
+//         margin-top: 10px;
+//       }
+//       .view-comments {
+//         margin-top: 10px;
+//       }
+//     }
+//   }
+// }
+
+//media query
+
+@media screen and (max-width: 800px) {
+  .modal-resource-content {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -173,84 +268,75 @@
 
     }
 
-    .modal-img {
+    .modal-img-show {
       width: 80%;
+
     }
+
     .left-container {
-      // margin-top: 100px;
-      height: 100%;
+      height: 40%;
       width: 80%;
-      align-items: center;l
+      align-items: center;
 
       .modal-img-show {
         width: 80%;
+
+        #resource-img{
+          height: 70%;
+        }
       }
 
       .below-img {
         width: 100%;
+        height: 30%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .likes{
+          display: flex;
+          justify-content: space-between;
+        }
+
+        .rating{
+          align-self: center;
+        }
+
       }
     }
     .view-resource-info {
-      height: 60%;
+      height: 50%;
       width: 100%;
 
       .view-title {
         height: 10%;
+        font-size: 1.2em;
       }
       .view-description {
         margin-top: 10px;
-      }
-      .view-comments {
-        margin-top: 10px;
-      }
-    }
-  }
-}
+        font-size: 1.0em;
+        margin-bottom: 2%;
 
-@media screen and (min-width: 431px) and (max-width: 800px) {
-  .modal-resource {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    overflow: auto;
-
-    .create-resource-info {
-      width: 100%;
-      margin-bottom: 10px;
-
-    }
-
-    .modal-img {
-      width: 80%;
-    }
-    .left-container {
-      // margin-top: 100px;
-      height: 100%;
-      width: 80%;
-      align-items: center;l
-
-      .modal-img-show {
-        width: 80%;
       }
 
-      .below-img {
-        width: 100%;
-      }
-    }
-    .view-resource-info {
-      height: 60%;
-      width: 100%;
+      .add-comment-form{
+        .add-comment{
 
-      .view-title {
-        height: 10%;
+          label{
+            font-size: 1.0em;
+          }
+        }
       }
-      .view-description {
-        margin-top: 10px;
+
+      h3{
+        font-size: 1.2em;
       }
-      .view-comments {
-        margin-top: 10px;
-      }
+
+
+
+
+
     }
   }
 }

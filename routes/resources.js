@@ -18,6 +18,16 @@ module.exports = (db) => {
       });
   });
 
+  router.get('/topics', (req, res) => {
+    db.getTopics()
+    .then(response => res.json(response))
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: err.message });
+    });
+  })
+
   router.get('/likedresources', (req, res) => {
     const userId = req.session.userId;
 

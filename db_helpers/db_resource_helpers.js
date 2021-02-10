@@ -256,3 +256,14 @@ const createRating = function(resourceId, userId, rating) {
 }
 
 exports.createRating = createRating;
+
+const getTopics = function() {
+  let queryString = `
+    SELECT * FROM topics
+  `
+  return db.query(queryString)
+  .then(res => res.rows)
+  .catch(err => console.error('query error', err.stack))
+}
+
+exports.getTopics = getTopics;

@@ -105,7 +105,6 @@ $(function () {
     $('.modal-bg1').append(newModal);
 
     $(".modal-resource-close").on("click", function() {
-      console.log(resource)
       updateRatingCall(resource, currentRating)
       .then(() => {
         console.log('here')
@@ -114,31 +113,25 @@ $(function () {
       })
       .catch((err) => console.log(err))
     })
-
     let currentRating;
-    $('#1').on('click', function () {
-      ratings(1);
-      currentRating = 1;
+    let isLoggedIn;
+    $('.rating').on('click', async function(event) {
+      const id = event.target.id;
+      try {
+            isLoggedIn = await getMyDetails();
+          } catch(err) {
+            console.log(err, "error")
+          }
+      if (isLoggedIn) {
+        ratings(id)
+        currentRating = id;
+      } else {
+        $('.modal-bg1').removeClass('bg-active');
+        $('.img-container').removeClass('change-order')
+        $('.modal-bg3').addClass('bg-active');
+        $('.img-container').addClass('change-order')
+      }
     })
-    $('#2').on('click', function () {
-      ratings(2);
-      currentRating = 2;
-    })
-    $('#3').on('click', function () {
-      ratings(3)
-      currentRating = 3;
-    })
-    $('#4').on('click', function () {
-      ratings(4)
-      currentRating = 4;
-    })
-    $('#5').on('click', function () {
-      ratings(5)
-      currentRating = 5;
-    })
-
-
-
   }
   //render comments ontop of base modal
   const loadComments = function(commentsObj) {

@@ -68,14 +68,19 @@
       <span><img src="assets/logo_size.jpg" /></span>
       <div class="search_container">
         <div class="search_box">
-          <input type="text" placeholder="Search By Title" class="search" />
-          <span class="vertical"></span>
-          <select name="topic" id="topic">
-            <option value="volvo">Topic</option>
-            <option value="saab">Math</option>
-            <option value="opel">Physics</option>
-            <option value="audi">Comp Science</option>
-          </select>
+          <form id="search-form">
+            <input type="search" placeholder="Search By Title" class="search" id="search-bar" name="title"/>
+            <span class="vertical"></span>
+            <select name="topic_id" id="topic">
+              <option value="none" selected disabled hidden>
+                Select a Topic
+              </option>
+              <option value="1">Math</option>
+              <option value="2">Physics</option>
+              <option value="3">Comp Science</option>
+            </select>
+            <input type="submit" hidden />
+          </form>
         </div>
         <div>
           <button class="search-btn"><i class="fas fa-search"></i></button>

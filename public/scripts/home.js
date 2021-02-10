@@ -92,7 +92,7 @@ $(function () {
             </div>
           </div>
         </div>
-        <span class="modal-view-resource-close">X</span>
+        <span class="modal-view-resource-close"><i class="far fa-times-circle fa-2x"></i></span>
       </div>
     `;
 

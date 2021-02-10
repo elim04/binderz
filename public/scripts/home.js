@@ -35,7 +35,7 @@ $(function () {
       <div class="block">
         <div class="img-container">
           <img src="${resource.image_src}" />
-          <a href= "${resource.url}">
+          <a href="${resource.url}" target="_blank">
             <i class="fas fa-external-link-alt"></i>
           </a>
         </div>

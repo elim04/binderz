@@ -74,7 +74,6 @@ $(function () {
     loadSearchedResource(urlParams)
 
     $("#search-bar").val("")
-    $("#topic").val("none")
   })
 
   $('#home-btn').on('click', () => {

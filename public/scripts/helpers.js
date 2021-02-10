@@ -55,3 +55,15 @@ const logInCheck = async function() {
   }
   return isLoggedIn;
 }
+
+const emptyUserInfo = () => {
+  $('.user')
+    .hide()
+    .children("button").empty();
+  $('#user-initial').empty();
+  $('#user-name').empty();
+  $('#user-email').empty();
+  $('.logged-in').hide();
+  $('#my-page').removeData();
+  $('#personal-box').empty();
+}

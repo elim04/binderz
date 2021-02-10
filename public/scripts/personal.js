@@ -63,13 +63,9 @@ $(function () {
         const newName = $('#newName').val();
         if (newName) {
           updateUser(data)
-          $('#new-name').remove();
-          $('.user-name').prepend(newName);
-          $('.setting-button-container').show();
+          showUsername(newName);
         } else {
-          $('#new-name').remove();
-          $('.user-name').prepend(oldName);
-          $('.setting-button-container').show();
+          showUsername(oldName);
         }
       })
     })

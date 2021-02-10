@@ -96,9 +96,14 @@ $(function () {
     $('.modal-bg1').append(newModal);
 
     $(".modal-resource-close").on("click", function() {
-      updateRatingCall(resource, currentRating);
-      $(".modal-bg1").removeClass("bg-active");
-      $('.img-container').removeClass('change-order')
+      console.log(resource)
+      updateRatingCall(resource, currentRating)
+      .then(() => {
+        console.log('here')
+        $(".modal-bg1").removeClass("bg-active");
+        $('.img-container').removeClass('change-order')
+      })
+      .catch((err) => console.log(err))
     })
 
     let currentRating;

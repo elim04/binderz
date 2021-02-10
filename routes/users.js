@@ -98,15 +98,20 @@ module.exports = (db) => {
     const userId = req.session.userId;
     const newRating = req.body.newRating;
     const {id, rating} = req.body.resource;
+    console.log(id, rating, newRating)
     if (rating && newRating) {
       updateRating(id, userId, newRating)
-      .then(res => console.log('updated!!!'))
-      .catch(e => res.send(e));
+        .then(result => res.send(result))
+        .catch(e => res.send(e));
+      return;
     } else if (newRating) {
       createRating(id, userId, newRating)
-      .then(res => console.log("CREATED!"))
+      .then(result => res.send(result))
       .catch(e => res.send(e));
+      return;
     }
+
+    res.send('no updates')
   })
 
   return router;

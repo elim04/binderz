@@ -223,4 +223,28 @@ $(function () {
   window.renderResources = renderResources
 
   loadResources();
+
+  const createTopicHTML = (topic) => {
+    const topicHTML = `
+      <option value="${topic.id}">${topic.topic}</option>
+    `
+    return topicHTML;
+  }
+
+  const renderTopics = (topics) => {
+    for(let topic of topics){
+      const newTopic = createTopicHTML(topic);
+
+      $('#topic option:eq(0)').after(newTopic)
+      $('#resource-modal-topic option:eq(0)').after(newTopic)
+    }
+  }
+
+  const loadTopics = () => {
+    getAllTopics()
+    .done(res => renderTopics(res))
+    .fail(err => console.error(err))
+  }
+
+  loadTopics();
 })

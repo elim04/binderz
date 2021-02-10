@@ -44,7 +44,6 @@ function addResource() {
 }
 
 function addComment(comment,data) {
-  console.log("data", data)
   return $.ajax({
     method: 'POST',
     url: `/api/resources/${comment['resource'].id}/comment`,
@@ -53,6 +52,26 @@ function addComment(comment,data) {
     .done(() => console.log('Comment has been added'))
     .fail(() => console.log('Comment has not been added NOOOO'))
 
+}
+
+function addFullHeart(resource) {
+
+  return $.ajax({
+    method: 'POST',
+    url: `/api/resources/${resource['resource'].id}/liked`,
+  })
+    .done(() => console.log('done'))
+    .fail(() => console.log('an error has occured for liking'));
+}
+
+function addEmptyHeart(resource) {
+
+  return $.ajax({
+    method: "DELETE",
+    url: `/api/resources/${resource['resource'].id}/liked`,
+  })
+    .done(() => console.log('done'))
+    .fail(() => console.log('an error has occured for unliking'));
 }
 
 function getMyDetails() {

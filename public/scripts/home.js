@@ -146,8 +146,6 @@ $(function () {
     $('.add-comment').on('submit', function(event) {
 
       event.preventDefault();
-
-      console.log("this serialize", $(this).serialize());
       addComment(commentsObj, $(this).serialize());
 
     })
@@ -172,26 +170,13 @@ $(function () {
     }
 
     $('#heart-btn').on("click", function() {
-      console.log('resourceObj', resourceObj)
       if ($('#heart-btn').hasClass('far')) {
-        $.ajax({
-          method: 'POST',
-          url: `/api/resources/${resourceObj['resource'].id}/liked`,
-        })
-          .done(() => console.log('done'))
-          .fail(() => console.log('an error has occured for liking'));
 
+        addFullHeart(resourceObj);
         $('#heart-btn').attr('class', 'fas fa-heart fa-2x');
 
       } else if ($('#heart-btn').hasClass('fas')) {
-
-        $.ajax({
-          method: "DELETE",
-          url: `/api/resources/${resourceObj['resource'].id}/liked`,
-        })
-          .done(() => console.log('done'))
-          .fail(() => console.log('an error has occured for unliking'));
-
+        addEmptyHeart(resourceObj);
         $('#heart-btn').attr('class', 'far fa-heart fa-2x');
       }
 

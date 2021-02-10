@@ -4,7 +4,10 @@ $(function () {
     const personalHTML = `
     <div id="personal-page">
     <div class="user-icon"><i class="fas fa-user-astronaut"></i></div>
-    <div class="user-name">${userInfo.name}</div>
+    <div class="user-name">${userInfo.name}
+    <div class="setting-button-container">
+    <button id="setting" type="button" class="btn"><i class="fas fa-cog"></i></button></div>
+    </div>
     <div class="user-email">${userInfo.email}</div>
 
     <div class="resource-btn-group">
@@ -34,6 +37,12 @@ $(function () {
 
     $('#personal-resource-btn').on('click', function(){
       loadPersonalResources($(this).data());
+    })
+
+    $('#setting').on('click', function() {
+      console.log('clicked setting')
+      // const oldName =
+      $('.user-name')
     })
   }
 

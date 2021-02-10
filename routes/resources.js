@@ -53,7 +53,6 @@ module.exports = (db) => {
 
   router.post('/', (req, res) => {
     const userId = req.session.userId;
-
     // user needs to be logged in to create a new resource
     if (!userId) {
       res.error('error');

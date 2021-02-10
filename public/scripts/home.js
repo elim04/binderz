@@ -146,13 +146,10 @@ $(function () {
     $('.add-comment').on('submit', function(event) {
 
       event.preventDefault();
-      $.ajax({
-        method: 'POST',
-        url: `/api/resources/${commentsObj['resource'].id}/comment`,
-        data: $(this).serialize()
-      })
-        .done(() => console.log('comment has been added'))
-        .fail(() => console.log("comment has not been added NOOOO"))
+
+      console.log("this serialize", $(this).serialize());
+      addComment(commentsObj, $(this).serialize());
+
     })
 
   }
@@ -162,7 +159,7 @@ $(function () {
     let currentCount = Number(resourceObj['likeCount'].likecount);
 
     if (currentCount === 0) {
-      $('.counter').html(`Be the first the like this resource!`);
+      $('.counter').html(`Be the first to like this resource!`);
     } else {
       $('.counter').html(`${currentCount}`);
     }

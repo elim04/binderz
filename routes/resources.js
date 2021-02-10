@@ -96,7 +96,6 @@ module.exports = (db) => {
 
 
   router.post('/:resources_id/comment', (req, res) => {
-    console.log("req.params", req.params)
     const userId = req.session.userId;
     const specificResource = req.params.resources_id;
     const commentFromUser = req.body["comment-from-user"];

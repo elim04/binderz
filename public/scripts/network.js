@@ -43,6 +43,18 @@ function addResource() {
   });
 }
 
+function addComment(comment,data) {
+  console.log("data", data)
+  return $.ajax({
+    method: 'POST',
+    url: `/api/resources/${comment['resource'].id}/comment`,
+    data: data
+  })
+    .done(() => console.log('Comment has been added'))
+    .fail(() => console.log('Comment has not been added NOOOO'))
+
+}
+
 function getMyDetails() {
   console.log("getMyDetails");
   return $.ajax({

@@ -56,4 +56,11 @@ function getAllTopics() {
   })
 }
 
-
+const updateUser = function (newName) {
+  console.log(newName, "IN THE USER CALL")
+  return $.ajax({
+    method: "POST",
+    url: "/api/users/me",
+    data: newName
+  })
+}

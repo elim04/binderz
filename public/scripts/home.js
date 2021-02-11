@@ -75,18 +75,18 @@ $(function () {
             <span>${resourceObj["resource"].title}</span>
           </div>
           <div class="view-description">
-            <p>
+            <p class="description-title">Description</p>
+            <p class="description-content">
             ${resourceObj["resource"].description}
             </p>
           </div>
+          <h3>Comments</h3>
           <div class="add-comment-form">
             <form class="add-comment method="POST" action="/api/resources">
-              <label for="add-comment">Add Comment</label>
-              <input id="comment-box" class ="form-control" type="text" name="comment-from-user" placeholder="Enter comment here" required />
+              <input id="comment-box" type="text" name="comment-from-user" placeholder="Enter comment here" required />
               <button class="bttn-unite bttn-sm bttn-primary comment-btn" type="submit">Submit</button>
             </form>
           </div>
-          <h3>Comments</h3>
           <div class="view-comments">
             <div class="comments">
             </div>

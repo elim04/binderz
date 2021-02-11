@@ -68,8 +68,12 @@
       width: 90%;
       height: 25%;
       margin-top: 50px;
+      font-size: 1em;
       overflow: auto;
-      font-size: 1.2em;
+
+      .description-title{
+        font-size: 1.2em;
+      }
 
     }
 
@@ -351,10 +355,25 @@
         font-size: 15px;
       }
 
+      .add-comment-form{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+
+        .add-comment{
+
+          font-size: 15px;
+
+        }
+
+      }
+
       .view-comments{
+
 
         .comments{
           font-size: 10px;
+          margin-top: 2%;
         }
       }
 

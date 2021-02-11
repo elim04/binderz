@@ -23,6 +23,12 @@
       width: 80%;
     }
 
+    @media screen and (max-width: 800px){
+      .create-form {
+        margin-bottom: 20px;
+      }
+    }
+
     .create-form{
 
       width:90%;
@@ -37,6 +43,8 @@
         height: 100%;
         font-size: 30px;
       }
+
+
 
 
 
@@ -77,11 +85,7 @@
         width: 100%;
         font-size: 15px;
       }
-
     }
-
-
-
   }
   .modal-img {
     background-color: #eee;
@@ -111,8 +115,6 @@
       max-height: 100%;
       max-width: 100%;
       border-radius: 20px;
-
-
     }
   }
 
@@ -385,6 +387,8 @@
     justify-content: center;
     align-items: center;
     overflow: auto;
+
+
 
     .create-resource-info {
       width: 100%;

@@ -14,6 +14,7 @@ $(function() {
     modalDisplay(2, 'remove');
     clearInput('resource');
     clearTextArea('resource');
+    $('.title-counter').text('20');
     resetImg();
   })
 
@@ -22,7 +23,7 @@ $(function() {
 
     let characterCount = (20 - $(this).val().length);
 
-    let counter = $('.counter');
+    let counter = $('.title-counter');
 
     counter.html(characterCount);
 

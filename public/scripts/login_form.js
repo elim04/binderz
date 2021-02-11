@@ -27,6 +27,7 @@ $(function () {
     logIn(data)
       .done((user) => {
         $('.modal-bg3').removeClass('bg-active');
+        $('#create-resource').removeClass('change-order')
         clearInput('login');
         changeNavOnLogin(user)
       })

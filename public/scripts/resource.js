@@ -6,7 +6,7 @@ $(function() {
     if (isLoggedIn) {
       modalDisplay(2, 'add');
     } else {
-      modalDisplay(3, 'add');
+      resourceToLogin('create a resource')
     }
   })
 

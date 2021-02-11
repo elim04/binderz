@@ -39,11 +39,12 @@ const showUsername = function(name) {
   $('.setting-button-container').show();
 }
 
-const resourceToLogin = function() {
+const resourceToLogin = function(action) {
   $('.modal-bg1').removeClass('bg-active');
   $('.img-container').removeClass('change-order')
   $('.modal-bg3').addClass('bg-active');
   $('.img-container').addClass('change-order')
+  showError(`Please log in to ${action}.`, 'login');
 }
 
 const logInCheck = async function() {
@@ -69,10 +70,12 @@ const emptyUserInfo = () => {
 }
 
 const displayLikes = function(currentCount){
+  $('.counter').empty();
+
   if (currentCount === 0) {
-    $('.counter').html(`Be the first to like this resource!`);
+    $('.counter').append(`Be the first to like this resource!`);
   } else {
-    $('.counter').html(`${currentCount}`);
+    $('.counter').append(`${currentCount}`);
   }
 }
 

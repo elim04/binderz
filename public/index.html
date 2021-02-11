@@ -33,8 +33,13 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
-
-
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lemonada:wght@700&display=swap"
+      rel="stylesheet"
+    />
     <!--app js-->
     <script src="./vendor/jquery-3.0.0.js"></script>
     <script src="./scripts/resource.js"></script>
@@ -49,11 +54,6 @@
       src="/scripts/create_resource.js"
     ></script>
 
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Lemonada:wght@700&display=swap"
-      rel="stylesheet"
-    />
 
     <!-- Font Awesome Icons -->
     <script
@@ -62,6 +62,7 @@
     ></script>
 
     <title>Binderz</title>
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
   </head>
   <body>
     <nav>
@@ -128,6 +129,7 @@
                 class="form-control input-title"
                 name="title"
                 placeholder="Enter title"
+                maxlength="19"
                 required
               />
             </div>
@@ -206,7 +208,7 @@
                 <button type="submit" class="btn btn-outline-dark login-button">
                   Login
                 </button>
-                <a href="#">Forgot my password</a>
+                <a id="forgot-password" href="#">Forgot my password</a>
               </div>
             </form>
             <p>Don't have an account? Click below to sign up!</p>
@@ -272,7 +274,7 @@
       <div class="wrapper" id="main-container">
 
       </div>
-      <button id="create-resource">+</button>
+      <img id="create-resource" src="assets/add.svg">
     </main>
 
     <script src="vendor/jquery-3.0.0.js"></script>

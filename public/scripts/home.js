@@ -121,7 +121,7 @@ $(function () {
         ratings(id)
         currentRating = id;
       } else {
-        resourceToLogin();
+        resourceToLogin('rate');
       }
     })
   }
@@ -143,8 +143,15 @@ $(function () {
 
     }
 
-    $('.add-comment').on('submit', function (event) {
+    $('.add-comment').on('submit', async function (event) {
       event.preventDefault();
+
+      const isLoggedIn = await logInCheck();
+
+      if(!isLoggedIn){
+        resourceToLogin('comment on a resource');
+        return;
+      }
 
       addComment(commentsObj, $(this).serialize())
         .done((data) => {
@@ -169,15 +176,45 @@ $(function () {
 
     checkHeartStatus(resourceObj);
 
-    $('#heart-btn').on("click", function () {
-      if ($('#heart-btn').hasClass('far')) {
+    $('#heart-btn').on("click", async function () {
 
-        addFullHeart(resourceObj);
-        $('#heart-btn').attr('class', 'fas fa-heart fa-2x');
+      let isLoggedIn = await logInCheck();
 
-      } else if ($('#heart-btn').hasClass('fas')) {
-        addEmptyHeart(resourceObj);
-        $('#heart-btn').attr('class', 'far fa-heart fa-2x');
+      if (isLoggedIn) {
+
+        if ($('#heart-btn').hasClass('far')) {
+
+          $('#heart-btn').attr('class', 'fas fa-heart fa-2x');
+          addFullHeart(resourceObj)
+          .done((data) => {
+              $.ajax({
+                method: 'GET',
+                url: `/api/resources/${data['likedResource'].resource_id}/likes`,
+              })
+                .done((currentCount) => {
+                  displayLikes(Number(currentCount.data.likecount))
+                })
+                .fail(() => console.log('noo have to fix refresh'))
+            });
+
+        } else if ($('#heart-btn').hasClass('fas')) {
+          $('#heart-btn').attr('class', 'far fa-heart fa-2x');
+          addEmptyHeart(resourceObj)
+            .done((data) => {
+              console.log("data", data)
+              $.ajax({
+                method: 'GET',
+                url: `/api/resources/${data['resource'].resource_id}/likes`,
+              })
+                .done((currentCount) => {
+                  displayLikes(Number(currentCount.data.likecount))
+                })
+                .fail(() => console.log('noo have to fix refresh'))
+            });
+        }
+
+      } else {
+        resourceToLogin('like');
       }
 
     })

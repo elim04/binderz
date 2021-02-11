@@ -18,13 +18,10 @@ $(function () {
     }
 
     if ($viewportWidth >= 1024) {
-      console.log(1024)
       $masonary.height(masonaryHeight / 4 + masonaryHeight / ($masonaryBrick.length + 1))
     } else if ($viewportWidth < 1024 && $viewportWidth >= 800) {
-      console.log(800)
       $masonary.height(masonaryHeight / 3 + masonaryHeight / ($masonaryBrick.length + 1))
     } else {
-      console.log('<800')
       $masonary.height(masonaryHeight / 2 + masonaryHeight / ($masonaryBrick.length + 1))
     }
   }
@@ -95,7 +92,7 @@ $(function () {
           </div>
         </div>
         <span class="modal-view-resource-close"><i class="far fa-times-circle fa-2x"></i></span>
-      </div>
+    </div>
     `;
 
     return modalResourceHTML;
@@ -132,8 +129,6 @@ $(function () {
     $('.comments').empty();
 
     for (const comm of commentsObj["comments"]) {
-      console.log(comm)
-
       const newComment = `
       <div class="comment">
         <p class="user-name">${comm.name}</p>
@@ -150,7 +145,7 @@ $(function () {
 
       const isLoggedIn = await logInCheck();
 
-      if(!isLoggedIn){
+      if (!isLoggedIn) {
         resourceToLogin('comment on a resource');
         return;
       }
@@ -188,7 +183,7 @@ $(function () {
 
           $('#heart-btn').attr('class', 'fas fa-heart fa-2x');
           addFullHeart(resourceObj)
-          .done((data) => {
+            .done((data) => {
               $.ajax({
                 method: 'GET',
                 url: `/api/resources/${data['likedResource'].resource_id}/likes`,
@@ -203,7 +198,6 @@ $(function () {
           $('#heart-btn').attr('class', 'far fa-heart fa-2x');
           addEmptyHeart(resourceObj)
             .done((data) => {
-              console.log("data", data)
               $.ajax({
                 method: 'GET',
                 url: `/api/resources/${data['resource'].resource_id}/likes`,
@@ -258,7 +252,6 @@ $(function () {
         method: 'GET'
       })
         .done((data) => {
-          console.log('data', data);
           renderModal(data);
           loadComments(data);
           loadLikeStatus(data);

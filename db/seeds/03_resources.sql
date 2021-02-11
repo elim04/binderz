@@ -39,7 +39,7 @@ VALUES ('Canadian History', 'Learn more about the Underground Railroad...', 2, 9
 INSERT INTO resources (title, description, user_id, topic_id, image_src, url)
 VALUES ('7 JavaScript Tricks', 'JavaScript is a very powerful programming language, especially in web development. In the last five years, this language has improved a lot and it becomes much easier to write due to the new amazing features it has. So, you need to take advantage of these features because they will allow you to easily do many powerful things in the language.', 4 , 2, 'https://miro.medium.com/max/700/0*LBf6Ag0EMZhcaKPi', 'https://medium.com/javascript-in-plain-english/7-extremely-powerful-javascript-tricks-that-you-should-know-559bf2d267a2');
 INSERT INTO resources (title, description, user_id, topic_id, image_src, url)
-VALUES ('6 Chemical Reactions', '6 chemical reactions that changed history',4, 7, '', 'https://www.youtube.com/watch?v=jb4CMnT2-ao');
+VALUES ('6 Chemical Reactions', '6 chemical reactions that changed history',4, 7, 'https://i.ytimg.com/vi/jb4CMnT2-ao/maxresdefault.jpg', 'https://www.youtube.com/watch?v=jb4CMnT2-ao');
 INSERT INTO resources (title, description, user_id, topic_id, image_src, url)
 VALUES ('French Games', 'Games to learn French',3 ,3 , 'https://images-na.ssl-images-amazon.com/images/I/A1bEa4qU2pL.png', 'https://www.youtube.com/watch?v=AdTwjIm0ABk');
 INSERT INTO resources (title, description, user_id, topic_id, image_src, url)

@@ -48,7 +48,7 @@ $(function () {
 
     return resourceHTML;
   }
-  window.masonaryResize = masonaryResize;
+
   const createModalResource = function (resourceObj) {
 
     let modalResourceHTML = `

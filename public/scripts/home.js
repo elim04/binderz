@@ -59,7 +59,7 @@ $(function () {
         </div>
           <div class="below-img">
             <div class="likes">
-            <p class="counter"></p>
+              <p class="counter"></p>
             </div>
             <div class="rating">
               <span id="1" class="fa fa-star"></span>

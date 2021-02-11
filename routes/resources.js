@@ -62,7 +62,6 @@ module.exports = (db) => {
   });
 
   router.get('/:resources_id/likes', (req, res) => {
-    const userId = req.session.userId;
     const specificResource = req.params.resources_id;
 
     db.likeCounter(specificResource)

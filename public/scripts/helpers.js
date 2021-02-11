@@ -69,10 +69,12 @@ const emptyUserInfo = () => {
 }
 
 const displayLikes = function(currentCount){
+  $('.counter').empty();
+
   if (currentCount === 0) {
-    $('.counter').html(`Be the first to like this resource!`);
+    $('.counter').append(`Be the first to like this resource!`);
   } else {
-    $('.counter').html(`${currentCount}`);
+    $('.counter').append(`${currentCount}`);
   }
 }
 

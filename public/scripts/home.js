@@ -174,29 +174,31 @@ $(function () {
 
         $('#heart-btn').attr('class', 'fas fa-heart fa-2x');
         addFullHeart(resourceObj)
-        // .done(() => {
-        //   console.log('inside resourceObj', resourceObj)
-        //     let newCount = Number(resourceObj['likeCount'].likecount);
-        //     displayLikes(newCount)
-        //     $.ajax({
-        //       method: 'GET',
-        //       url: `/api/resources/${resourceObj['resource'].id}/likes`,
-        //     })
-        //       .done(() => console.log('yes refresh liked worked!'))
-        //       .fail(() => console.log('noo have to fix refresh'))
-        //   });
+        .done((data) => {
+            $.ajax({
+              method: 'GET',
+              url: `/api/resources/${data['likedResource'].resource_id}/likes`,
+            })
+              .done((currentCount) => {
+                displayLikes(Number(currentCount.data.likecount))
+              })
+              .fail(() => console.log('noo have to fix refresh'))
+          });
 
       } else if ($('#heart-btn').hasClass('fas')) {
         $('#heart-btn').attr('class', 'far fa-heart fa-2x');
         addEmptyHeart(resourceObj)
-          // .done(() => {
-          //   $.ajax({
-          //     method: 'GET',
-          //     url: `/api/resources/${resourceObj['resource'].id}/likes`
-          //   })
-          //     .done(() => console.log('yes refresh liked worked!'))
-          //     .fail(() => console.log('noo have to fix refresh'))
-          // });
+          .done((data) => {
+            console.log("data", data)
+            $.ajax({
+              method: 'GET',
+              url: `/api/resources/${data['resource'].resource_id}/likes`,
+            })
+              .done((currentCount) => {
+                displayLikes(Number(currentCount.data.likecount))
+              })
+              .fail(() => console.log('noo have to fix refresh'))
+          });
       }
 
     })

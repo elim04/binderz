@@ -31,8 +31,13 @@
     justify-content: center;
     align-items: center;
     border-radius: 25px;
-    border:solid black;
     margin: 25px;
+
+    .create-resource-img {
+      max-height: 100%;
+      max-width: 100%;
+      border-radius: 20px;
+    }
   }
 
 // -----------------VIEW RESOURCE -------------------
@@ -52,6 +57,7 @@
       width: 90%;
       height: 5%;
       font-size: 2em;
+      font-family: 'Lemonada', cursive;
 
       a {
         display: flex;
@@ -264,11 +270,6 @@
         height:300px;
       }
 
-    }
-
-
-    .view-resource-info{
-      // margin-top: 50px;
     }
   }
 }

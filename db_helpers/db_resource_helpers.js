@@ -125,7 +125,8 @@ const getComments = function(resource) {
   SELECT comments.*, users.name
   FROM comments
   JOIN users ON comments.user_id = users.id
-  WHERE resource_id = $1;
+  WHERE resource_id = $1
+  ORDER BY comments.id;
   `
   return db.query(queryString, queryParams)
     .then(res => res.rows)

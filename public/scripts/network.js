@@ -55,8 +55,6 @@ function addFullHeart(resource) {
     method: 'POST',
     url: `/api/resources/${resource['resource'].id}/liked`,
   })
-    .done(() => console.log('done'))
-    .fail(() => console.log('an error has occured for liking'));
 }
 
 function addEmptyHeart(resource) {
@@ -65,8 +63,7 @@ function addEmptyHeart(resource) {
     method: "DELETE",
     url: `/api/resources/${resource['resource'].id}/liked`,
   })
-    .done(() => console.log('done'))
-    .fail(() => console.log('an error has occured for unliking'));
+
 }
 
 

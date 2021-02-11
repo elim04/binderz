@@ -48,7 +48,6 @@ $(function () {
 
     return resourceHTML;
   }
-  window.masonaryResize = masonaryResize;
   const createModalResource = function (resourceObj) {
 
     let modalResourceHTML = `
@@ -121,7 +120,7 @@ $(function () {
         ratings(id)
         currentRating = id;
       } else {
-        resourceToLogin();
+        resourceToLogin('rate');
       }
     })
   }
@@ -207,7 +206,7 @@ $(function () {
         }
 
       } else {
-        resourceToLogin();
+        resourceToLogin('like');
       }
 
     })

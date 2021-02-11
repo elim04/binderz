@@ -109,6 +109,17 @@ module.exports = (db) => {
 
   });
 
+  router.get('/:resource_id/comments', (req, res) => {
+    const resourceId = req.params.resource_id;
+    console.log(resourceId)
+    db.getComments(resourceId)
+    .then(comments => res.json(comments))
+    .catch(err => {
+      console.error(err);
+      res.json( {error: err.message })
+    });
+  })
+
 
   router.post('/:resources_id/comment', (req, res) => {
     const userId = req.session.userId;

@@ -71,26 +71,28 @@ $(function () {
           <div class="view-title">
             <span>${resourceObj["resource"].title}</span>
           </div>
+          <div class="description">
+            <p class="description-title">Description</p>
+          </div>
           <div class="view-description">
-            <p>
+            <p class="description-content">
             ${resourceObj["resource"].description}
             </p>
           </div>
+          <h3>Comments</h3>
           <div class="add-comment-form">
             <form class="add-comment method="POST" action="/api/resources">
-              <label for="add-comment">Add Comment</label>
-              <input id="comment-box" class ="form-control" type="text" name="comment-from-user" placeholder="Enter comment here" required />
+              <input id="comment-box" type="text" name="comment-from-user" placeholder="Enter comment here" required />
               <button class="bttn-unite bttn-sm bttn-primary comment-btn" type="submit">Submit</button>
             </form>
           </div>
-          <h3>Comments</h3>
           <div class="view-comments">
             <div class="comments">
             </div>
           </div>
         </div>
         <span class="modal-view-resource-close"><i class="far fa-times-circle fa-2x"></i></span>
-      </div>
+    </div>
     `;
 
     return modalResourceHTML;
@@ -143,7 +145,7 @@ $(function () {
 
       const isLoggedIn = await logInCheck();
 
-      if(!isLoggedIn){
+      if (!isLoggedIn) {
         resourceToLogin('comment on a resource');
         return;
       }
@@ -181,7 +183,7 @@ $(function () {
 
           $('#heart-btn').attr('class', 'fas fa-heart fa-2x');
           addFullHeart(resourceObj)
-          .done((data) => {
+            .done((data) => {
               $.ajax({
                 method: 'GET',
                 url: `/api/resources/${data['likedResource'].resource_id}/likes`,

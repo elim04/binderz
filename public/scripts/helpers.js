@@ -102,3 +102,8 @@ const loginToRegister = function() {
   $('.modal-bg3').removeClass('bg-active');
   $('.modal-bg4').addClass('bg-active');
 }
+
+const resetImg = () => {
+  $('.modal-img').empty()
+  $('.modal-img').append('<a>Image</a>')
+}

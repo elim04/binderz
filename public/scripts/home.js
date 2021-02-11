@@ -1,31 +1,31 @@
 
 $(function () {
-  $( window ).resize(() => {
-    imagesLoaded(document.querySelector('#main-container'), function(){
+  $(window).resize(() => {
+    imagesLoaded(document.querySelector('#main-container'), function () {
       masonaryResize()
     })
   })
 
-  const masonaryResize = function(){
+  const masonaryResize = function () {
     const $masonary = $('#main-container');
     const $masonaryBrick = $('.block');
     const $viewportWidth = $(window).width();
 
     let masonaryHeight = 0;
 
-    for(let i = 0; i < $masonaryBrick.length; i++){
+    for (let i = 0; i < $masonaryBrick.length; i++) {
       masonaryHeight += $masonaryBrick[i].offsetHeight + 15;
     }
 
-    if($viewportWidth >= 1024){
+    if ($viewportWidth >= 1024) {
       console.log(1024)
-      $masonary.height(masonaryHeight/4 + masonaryHeight/($masonaryBrick.length +1))
-    }else if($viewportWidth < 1024 && $viewportWidth >= 800){
+      $masonary.height(masonaryHeight / 4 + masonaryHeight / ($masonaryBrick.length + 1))
+    } else if ($viewportWidth < 1024 && $viewportWidth >= 800) {
       console.log(800)
-      $masonary.height(masonaryHeight/3 + masonaryHeight/($masonaryBrick.length +1))
-    }else{
+      $masonary.height(masonaryHeight / 3 + masonaryHeight / ($masonaryBrick.length + 1))
+    } else {
       console.log('<800')
-      $masonary.height(masonaryHeight/2 + masonaryHeight/($masonaryBrick.length +1))
+      $masonary.height(masonaryHeight / 2 + masonaryHeight / ($masonaryBrick.length + 1))
     }
   }
 
@@ -82,7 +82,7 @@ $(function () {
           <div class="add-comment-form">
             <form class="add-comment method="POST" action="/api/resources">
               <label for="add-comment">Add Comment</label>
-              <input class ="form-control" type="text" name="comment-from-user" placeholder="Enter comment here" required />
+              <input id="comment-box" class ="form-control" type="text" name="comment-from-user" placeholder="Enter comment here" required />
               <button class="bttn-unite bttn-sm bttn-primary comment-btn" type="submit">Submit</button>
             </form>
           </div>
@@ -99,22 +99,22 @@ $(function () {
     return modalResourceHTML;
   }
 
-//render the base modal without comments
-  const renderModal = function(resource) {
+  //render the base modal without comments
+  const renderModal = function (resource) {
     $('.modal-bg1').empty();
     const newModal = createModalResource(resource);
     $('.modal-bg1').append(newModal);
 
-    $(".modal-view-resource-close").on("click", function() {
+    $(".modal-view-resource-close").on("click", function () {
       updateRatingCall(resource, currentRating)
-      .then(() => {
-        modalDisplay(1, 'remove');
-      })
-      .catch((err) => console.log(err))
+        .then(() => {
+          modalDisplay(1, 'remove');
+        })
+        .catch((err) => console.log(err))
     })
 
     let currentRating;
-    $('.rating').on('click', async function(event) {
+    $('.rating').on('click', async function (event) {
       const id = event.target.id;
       let isLoggedIn = await logInCheck();
       if (isLoggedIn) {
@@ -126,9 +126,11 @@ $(function () {
     })
   }
   //render comments ontop of base modal
-  const loadComments = function(commentsObj) {
+  const loadComments = function (commentsObj) {
+    $('.comments').empty();
 
     for (const comm of commentsObj["comments"]) {
+      console.log(comm)
 
       const newComment = `
       <div class="comment">
@@ -141,16 +143,25 @@ $(function () {
 
     }
 
-    $('.add-comment').on('submit', function(event) {
-
+    $('.add-comment').on('submit', function (event) {
       event.preventDefault();
-      addComment(commentsObj, $(this).serialize());
 
+      addComment(commentsObj, $(this).serialize())
+        .done((data) => {
+          $.ajax({
+            url: `api/resources/${data.comment.resource_id}/comments`,
+            method: 'GET'
+          })
+            .done(comments => {
+              loadComments({ comments: comments })
+            })
+        });
+      $('#comment-box').val('')
     })
 
   }
 
-  const loadLikeStatus = function(resourceObj) {
+  const loadLikeStatus = function (resourceObj) {
 
     let currentCount = Number(resourceObj['likeCount'].likecount);
 
@@ -158,7 +169,7 @@ $(function () {
 
     checkHeartStatus(resourceObj);
 
-    $('#heart-btn').on("click", function() {
+    $('#heart-btn').on("click", function () {
       if ($('#heart-btn').hasClass('far')) {
 
         addFullHeart(resourceObj);
@@ -173,14 +184,14 @@ $(function () {
 
   }
 
-  function loadResources () {
+  function loadResources() {
     $.ajax({
       url: '/api/resources',
       method: 'GET'
     })
       .done((data) => {
         renderResources(data.resources);
-        imagesLoaded(document.querySelector('#main-container'), function(){
+        imagesLoaded(document.querySelector('#main-container'), function () {
           masonaryResize()
         })
       })
@@ -190,7 +201,7 @@ $(function () {
 
   window.loadResources = loadResources;
 
-  const renderResources = function(resources){
+  const renderResources = function (resources) {
     $('#main-container').empty();
 
     for (let resource of resources) {
@@ -200,7 +211,7 @@ $(function () {
       $('#main-container .block').first().data(resource)
     }
 
-    $('.block').on('click', function(){
+    $('.block').on('click', function () {
       const data = $(this).data()
       modalDisplay(1, 'add');
       $.ajax({
@@ -232,7 +243,7 @@ $(function () {
   }
 
   const renderTopics = (topics) => {
-    for(let topic of topics){
+    for (let topic of topics) {
       const newTopic = createTopicHTML(topic);
 
       $('#topic option:eq(0)').after(newTopic)
@@ -242,8 +253,8 @@ $(function () {
 
   const loadTopics = () => {
     getAllTopics()
-    .done(res => renderTopics(res))
-    .fail(err => console.error(err))
+      .done(res => renderTopics(res))
+      .fail(err => console.error(err))
   }
 
   loadTopics();

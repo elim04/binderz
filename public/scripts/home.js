@@ -169,36 +169,45 @@ $(function () {
 
     checkHeartStatus(resourceObj);
 
-    $('#heart-btn').on("click", function () {
-      if ($('#heart-btn').hasClass('far')) {
+    $('#heart-btn').on("click", async function () {
 
-        $('#heart-btn').attr('class', 'fas fa-heart fa-2x');
-        addFullHeart(resourceObj)
-        .done((data) => {
-            $.ajax({
-              method: 'GET',
-              url: `/api/resources/${data['likedResource'].resource_id}/likes`,
-            })
-              .done((currentCount) => {
-                displayLikes(Number(currentCount.data.likecount))
-              })
-              .fail(() => console.log('noo have to fix refresh'))
-          });
+      let isLoggedIn = await logInCheck();
 
-      } else if ($('#heart-btn').hasClass('fas')) {
-        $('#heart-btn').attr('class', 'far fa-heart fa-2x');
-        addEmptyHeart(resourceObj)
+      if (isLoggedIn) {
+
+        if ($('#heart-btn').hasClass('far')) {
+
+          $('#heart-btn').attr('class', 'fas fa-heart fa-2x');
+          addFullHeart(resourceObj)
           .done((data) => {
-            console.log("data", data)
-            $.ajax({
-              method: 'GET',
-              url: `/api/resources/${data['resource'].resource_id}/likes`,
-            })
-              .done((currentCount) => {
-                displayLikes(Number(currentCount.data.likecount))
+              $.ajax({
+                method: 'GET',
+                url: `/api/resources/${data['likedResource'].resource_id}/likes`,
               })
-              .fail(() => console.log('noo have to fix refresh'))
-          });
+                .done((currentCount) => {
+                  displayLikes(Number(currentCount.data.likecount))
+                })
+                .fail(() => console.log('noo have to fix refresh'))
+            });
+
+        } else if ($('#heart-btn').hasClass('fas')) {
+          $('#heart-btn').attr('class', 'far fa-heart fa-2x');
+          addEmptyHeart(resourceObj)
+            .done((data) => {
+              console.log("data", data)
+              $.ajax({
+                method: 'GET',
+                url: `/api/resources/${data['resource'].resource_id}/likes`,
+              })
+                .done((currentCount) => {
+                  displayLikes(Number(currentCount.data.likecount))
+                })
+                .fail(() => console.log('noo have to fix refresh'))
+            });
+        }
+
+      } else {
+        resourceToLogin();
       }
 
     })

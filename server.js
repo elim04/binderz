@@ -11,6 +11,7 @@ const app        = express();
 const morgan     = require('morgan');
 const path       = require('path');
 const cookieSession = require('cookie-session');
+const cors       = require('cors');
 // const db_user    = require('./db_helpers/db_user_helpers');
 
 // PG database client/connection setup
@@ -35,6 +36,7 @@ app.use(cookieSession({
 }));
 
 app.use(express.static(path.join(__dirname, './public')));
+app.use(cors())
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own

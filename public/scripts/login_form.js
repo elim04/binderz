@@ -8,8 +8,8 @@ $(function () {
     $('.login').hide();
     $('.user')
       .show()
-      .children("button").append(`${userData.name.charAt(0)}`);
-    $('#user-initial').append((`${userData.name.charAt(0)}`));
+      .children("button").append(`${userData.name.charAt(0).toUpperCase()}`);
+    $('#user-initial').append((`${userData.name.charAt(0).toUpperCase()}`));
     $('#user-name').append(`${userData.name}`);
     $('#user-email').append(`${userData.email}`);
     renderPersonalArea(userData)
@@ -43,5 +43,9 @@ $(function () {
   $('.modal-login-close').on('click', function () {
     clearInput('login');
     clearError('login');
+  })
+
+  $('#forgot-password').on('click', () => {
+    alert('Your password is probably just password :D')
   })
 })

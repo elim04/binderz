@@ -48,7 +48,7 @@ $(function () {
 
     return resourceHTML;
   }
-  window.masonaryResize = masonaryResize;
+
   const createModalResource = function (resourceObj) {
 
     let modalResourceHTML = `
@@ -59,7 +59,7 @@ $(function () {
         </div>
           <div class="below-img">
             <div class="likes">
-            <p class="counter"></p>
+              <p class="counter"></p>
             </div>
             <div class="rating">
               <span id="1" class="fa fa-star"></span>
@@ -123,7 +123,7 @@ $(function () {
         ratings(id)
         currentRating = id;
       } else {
-        resourceToLogin();
+        resourceToLogin('rate');
       }
     })
   }
@@ -145,8 +145,15 @@ $(function () {
 
     }
 
-    $('.add-comment').on('submit', function (event) {
+    $('.add-comment').on('submit', async function (event) {
       event.preventDefault();
+
+      const isLoggedIn = await logInCheck();
+
+      if(!isLoggedIn){
+        resourceToLogin('comment on a resource');
+        return;
+      }
 
       addComment(commentsObj, $(this).serialize())
         .done((data) => {
@@ -209,7 +216,7 @@ $(function () {
         }
 
       } else {
-        resourceToLogin();
+        resourceToLogin('like');
       }
 
     })

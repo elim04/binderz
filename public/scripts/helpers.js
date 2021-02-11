@@ -44,6 +44,7 @@ const resourceToLogin = function(action) {
   $('.img-container').removeClass('change-order')
   $('.modal-bg3').addClass('bg-active');
   $('.img-container').addClass('change-order')
+  $('#create-resource').addClass('change-order')
   showError(`Please log in to ${action}.`, 'login');
 }
 
@@ -93,9 +94,11 @@ const modalDisplay = function(id, display) {
   if (display === 'add') {
     $(`.modal-bg${id}`).addClass('bg-active')
     $('.img-container').addClass('change-order')
+    $('#create-resource').addClass('change-order')
   } else if (display === 'remove') {
     $(`.modal-bg${id}`).removeClass('bg-active')
     $('.img-container').removeClass('change-order')
+    $('#create-resource').removeClass('change-order')
   }
 }
 
@@ -103,6 +106,7 @@ const loginToRegister = function() {
   $('.img-container').addClass('change-order')
   $('.modal-bg3').removeClass('bg-active');
   $('.modal-bg4').addClass('bg-active');
+  clearError('login');
 }
 
 const resetImg = () => {

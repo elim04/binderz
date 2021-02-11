@@ -1,5 +1,6 @@
 const express = require('express');
 const router  = express.Router();
+const request = require('request');
 
 module.exports = (db) => {
   router.get('/', (req, res) => {
@@ -135,6 +136,18 @@ module.exports = (db) => {
       });
 
   });
+
+  router.post('/urlTest', (req, res) => {
+    console.log(req.body.url)
+    request(`${req.body.url}`, (error, response, body) => {
+      if(error){
+        res.status(500).send({error: error.message})
+        return
+      }
+
+      res.send(response)
+    })
+  })
 
   return router;
 };

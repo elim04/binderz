@@ -61,6 +61,21 @@ module.exports = (db) => {
       });
   });
 
+  router.get('/:resources_id/likes', (req, res) => {
+    const userId = req.session.userId;
+    const specificResource = req.params.resources_id;
+
+    db.likeCounter(specificResource)
+      .then((data) => {
+        res.json( { data });
+      })
+      .catch((err) => {
+        console.error(err);
+        res.json({ error: err.message })
+      });
+
+  })
+
   router.post('/', (req, res) => {
     const userId = req.session.userId;
     // user needs to be logged in to create a new resource

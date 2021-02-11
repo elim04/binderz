@@ -30,7 +30,8 @@
         border-top-style: hidden;
         border-right-style: hidden;
         border-left-style: hidden;
-        border-bottom-style: groove;
+        // border-bottom-style: groove;
+        border-color: rgb(147, 147, 147);
         width: 100%;
         height: 100%;
         font-size: 30px;
@@ -42,7 +43,8 @@
         border-top-style: hidden;
         border-right-style: hidden;
         border-left-style: hidden;
-        border-bottom-style: groove;
+        // border-bottom-style: groove;
+        border-color: rgb(147, 147, 147);
         width: 100%;
         height: 30px;
         font-size: 17px;
@@ -52,7 +54,8 @@
         border-top-style: hidden;
         border-right-style: hidden;
         border-left-style: hidden;
-        border-bottom-style: groove;
+        // border-bottom-style: groove;
+        border-color: rgb(147, 147, 147);
         width: 100%;
         height: 100%;
         font-size: 15px;
@@ -62,7 +65,8 @@
         border-top-style: hidden;
         border-right-style: hidden;
         border-left-style: hidden;
-        border-bottom-style: groove;
+        // border-bottom-style: groove;
+        border-color: rgb(147, 147, 147);
         width: 100%;
         height: 100%;
         font-size: 15px;
@@ -189,6 +193,7 @@
           width:80%;
           border-radius: 10px;
           border: solid black 1px;
+          padding: 5px;
         }
 
         .comment-btn{
@@ -308,6 +313,21 @@
 
 }
 
+
+@media screen and (max-width: 1300px) {
+  .modal-resource-content{
+
+    .view-resource-info{
+
+      .view-title{
+        font-size: 1.5em;
+      }
+
+    }
+  }
+
+
+}
 
 @media screen and (max-width: 1024px) {
 

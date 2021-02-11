@@ -14,6 +14,7 @@ $(function() {
     modalDisplay(2, 'remove');
     clearInput('resource');
     clearTextArea('resource');
+    resetImg();
   })
 })
 

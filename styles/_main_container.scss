@@ -98,8 +98,11 @@ main {
     right: 30px;
     width: 70px;
     height: 70px;
-    border-radius: 50%;
-    font-size: x-large;
+    outline: none;
+    font-size: xx-large;
+    background-color: #FFFAF0;
+    border-radius: 100%;
+
   }
 
   .wrapper {

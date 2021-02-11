@@ -44,6 +44,7 @@ const resourceToLogin = function() {
   $('.img-container').removeClass('change-order')
   $('.modal-bg3').addClass('bg-active');
   $('.img-container').addClass('change-order')
+  showError('Please log in to rate', 'login');
 }
 
 const logInCheck = async function() {
@@ -102,3 +103,4 @@ const loginToRegister = function() {
   $('.modal-bg3').removeClass('bg-active');
   $('.modal-bg4').addClass('bg-active');
 }
+

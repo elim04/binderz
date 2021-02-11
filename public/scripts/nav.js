@@ -13,6 +13,14 @@ $(function () {
     loadResources();
   })
 
+  $('.setting').on('click', () => {
+    if ($('#personal-box').is(':hidden')) {
+      $('#main-container').empty();
+      $('#create-resource').hide();
+      $('#personal-box').show();
+    }
+  })
+
   const changeNavOnLogout = function () {
     logOut()
       .done(() => {

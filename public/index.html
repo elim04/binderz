@@ -115,55 +115,57 @@
       <div class="modal-bg2">
         <div class="modal-resource-content">
           <div class="modal-img">
-            <a>Image</a>
+            <div class="inside-create-img">
+              <a>Image</a>
+            </div>
           </div>
           <form
           class="create-resource-info"
           action="/api/resources"
           method="POST"
           >
-          <div class="form-group">
+          <div class="create-form">
               <!-- <label for="title">Title</label> -->
-              <input id="create-title"
+              <input
                 type="text"
-                class="form-control input-title"
+                class="input-title"
                 name="title"
                 placeholder="Add your title"
                 maxlength="19"
                 required
               />
             </div>
-            <div class="form-group">
-              <label for="description">Description</label>
-              <textarea class="form-control input-description" name="description" required></textarea>
+            <div class="create-form">
+              <!-- <label for="description">Description</label> -->
+              <textarea class="input-description" name="description" placeholder="Tell everyone what your resource is about" required></textarea>
             </div>
-            <div class="form-group">
-              <label for="resource-url">Resource URL</label>
+            <div class="create-form">
+              <!-- <label for="resource-url">Resource URL</label> -->
               <input
                 type="text"
-                class="form-control input-url"
+                class="input-url"
                 name="url"
                 id="resource-url"
-                placeholder="Enter resource"
+                placeholder="Add url of your resource"
                 required
               />
             </div>
-            <div class="form-group">
-              <label for="resource-topic">Resource Topic</label>
+            <div class="create-form">
+              <!-- <label for="resource-topic">Resource Topic</label> -->
               <select name="topic_id" id="resource-modal-topic">
                 <option value="none" selected disabled hidden>
                   Select a Topic
                 </option>
               </select>
             </div>
-            <div class="form-group">
-              <label for="image-url">Image-Url</label>
+            <div class="create-form">
+              <!-- <label for="image-url">Image-Url</label> -->
               <input
                 type="text"
-                class="form-control input-image-url"
+                class="input-image-url"
                 name="image_src"
                 id="image-url"
-                placeholder="Enter image URL"
+                placeholder="Add image url for your resource"
                 required
               />
             </div>

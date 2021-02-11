@@ -83,7 +83,6 @@ function createResource(newData) {
 }
 
 function getMyDetails() {
-  console.log("getMyDetails");
   return $.ajax({
     url: "/api/users/me",
   });
@@ -96,7 +95,6 @@ function getAllTopics() {
 }
 
 const updateUser = function (newName) {
-  console.log(newName, "IN THE USER CALL")
   return $.ajax({
     method: "POST",
     url: "/api/users/me",

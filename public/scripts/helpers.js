@@ -90,7 +90,6 @@ const checkHeartStatus = function(resource) {
 }
 
 const modalDisplay = function(id, display) {
-  console.log("IN MODAL")
   if (display === 'add') {
     $(`.modal-bg${id}`).addClass('bg-active')
     $('.img-container').addClass('change-order')

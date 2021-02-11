@@ -49,10 +49,7 @@ $(function () {
   //search bar functions
   $('#search-form').on('submit', function (e) {
     e.preventDefault();
-    console.log($(this))
     let urlParams = $(this).serialize()
-
-    console.log($('#personal-page').is(':visible'))
 
     if ($('#personal-page').is(':visible')) {
       urlParams += '&user_id=true'

@@ -111,7 +111,7 @@ module.exports = (db) => {
 
   router.get('/:resource_id/comments', (req, res) => {
     const resourceId = req.params.resource_id;
-    console.log(resourceId)
+
     db.getComments(resourceId)
     .then(comments => res.json(comments))
     .catch(err => {
@@ -152,7 +152,6 @@ module.exports = (db) => {
   });
 
   router.post('/urlTest', (req, res) => {
-    console.log(req.body.url)
     request(`${req.body.url}`, (error, response, body) => {
       if(error){
         res.status(500).send({error: error.message})

@@ -33,14 +33,13 @@ module.exports = (db) => {
   router.post('/me', (req,res) => {
     const userId = req.session.userId;
     const {newName} = req.body;
-    console.log(newName, "in /me")
+
     if (!userId) {
       res.status(404).send({error: "not logged in"});
       return;
     }
     db.updateUserWithId(userId, newName)
-    .then(result => {res.send(result)
-      console.log(result)})
+    .then(result => res.send(result))
     .catch(e => res.send(e));
   })
 
@@ -50,7 +49,6 @@ module.exports = (db) => {
     const newUserInfo = req.body;
     const beforeHash = newUserInfo.password;
     newUserInfo.password = bcrypt.hashSync(newUserInfo.password, 10);
-    console.log(newUserInfo.email)
 
     const email = await getUserWithEmail(newUserInfo.email);
     if(email) {
@@ -112,7 +110,7 @@ module.exports = (db) => {
     const userId = req.session.userId;
     const newRating = req.body.newRating;
     const {id, rating} = req.body.resource;
-    console.log(id, rating, newRating)
+
     if (rating && newRating) {
       updateRating(id, userId, newRating)
         .then(result => res.send(result))

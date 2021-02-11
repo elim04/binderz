@@ -18,13 +18,10 @@ $(function () {
     }
 
     if ($viewportWidth >= 1024) {
-      console.log(1024)
       $masonary.height(masonaryHeight / 4 + masonaryHeight / ($masonaryBrick.length + 1))
     } else if ($viewportWidth < 1024 && $viewportWidth >= 800) {
-      console.log(800)
       $masonary.height(masonaryHeight / 3 + masonaryHeight / ($masonaryBrick.length + 1))
     } else {
-      console.log('<800')
       $masonary.height(masonaryHeight / 2 + masonaryHeight / ($masonaryBrick.length + 1))
     }
   }
@@ -74,21 +71,19 @@ $(function () {
           <div class="view-title">
             <span>${resourceObj["resource"].title}</span>
           </div>
-          <div class="description">
-            <p class="description-title">Description</p>
-          </div>
           <div class="view-description">
-            <p class="description-content">
+            <p>
             ${resourceObj["resource"].description}
             </p>
           </div>
-          <h3>Comments</h3>
           <div class="add-comment-form">
             <form class="add-comment method="POST" action="/api/resources">
-              <input id="comment-box" type="text" name="comment-from-user" placeholder="Enter comment here" required />
+              <label for="add-comment">Add Comment</label>
+              <input id="comment-box" class ="form-control" type="text" name="comment-from-user" placeholder="Enter comment here" required />
               <button class="bttn-unite bttn-sm bttn-primary comment-btn" type="submit">Submit</button>
             </form>
           </div>
+          <h3>Comments</h3>
           <div class="view-comments">
             <div class="comments">
             </div>
@@ -132,8 +127,6 @@ $(function () {
     $('.comments').empty();
 
     for (const comm of commentsObj["comments"]) {
-      console.log(comm)
-
       const newComment = `
       <div class="comment">
         <p class="user-name">${comm.name}</p>
@@ -203,7 +196,6 @@ $(function () {
           $('#heart-btn').attr('class', 'far fa-heart fa-2x');
           addEmptyHeart(resourceObj)
             .done((data) => {
-              console.log("data", data)
               $.ajax({
                 method: 'GET',
                 url: `/api/resources/${data['resource'].resource_id}/likes`,
@@ -258,7 +250,6 @@ $(function () {
         method: 'GET'
       })
         .done((data) => {
-          console.log('data', data);
           renderModal(data);
           loadComments(data);
           loadLikeStatus(data);

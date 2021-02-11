@@ -39,12 +39,12 @@ const showUsername = function(name) {
   $('.setting-button-container').show();
 }
 
-const resourceToLogin = function() {
+const resourceToLogin = function(action) {
   $('.modal-bg1').removeClass('bg-active');
   $('.img-container').removeClass('change-order')
   $('.modal-bg3').addClass('bg-active');
   $('.img-container').addClass('change-order')
-  showError('Please log in to rate', 'login');
+  showError(`Please log in to ${action}.`, 'login');
 }
 
 const logInCheck = async function() {

@@ -4,7 +4,7 @@ $(function () {
     const personalHTML = `
     <div id="personal-page">
     <div class="user-icon"><i class="fas fa-user-astronaut"></i></div>
-    <div class="user-name">
+    <div id="user-name-personal" class="user-name">
       ${userInfo.name}
       <div class="setting-button-container">
       <button id="setting" type="button" class="btn"><i class="fas fa-cog"></i></button></div>
@@ -40,11 +40,11 @@ $(function () {
 
     $('#setting').on('click', function () {
       const oldName = $('.user-name').text()
-      $('.user-name').contents().filter(function () {
+      $('#user-name-personal').contents().filter(function () {
         return this.nodeType === 3;
       }).remove();
 
-      $('.user-name').prepend(settingsInput);
+      $('#user-name-personal').prepend(settingsInput);
       $('.setting-button-container').hide();
       $('#newName').focus()
 

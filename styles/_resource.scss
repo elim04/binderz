@@ -64,17 +64,32 @@
         justify-content: center;
       }
     }
+
     .view-description{
       width: 90%;
       height: 25%;
-      margin-top: 50px;
+      // margin-top: 50px;
+      align-items: flex-start;
       font-size: 1em;
       overflow: auto;
 
-      .description-title{
-        font-size: 1.2em;
-      }
+      // .description-title{
+      //   font-size: 1.2em;
+      // }
 
+    }
+
+    .description{
+      margin-top: 7%;
+      align-items: flex-start;
+      width: 100%;
+
+      .description-title{
+        font-weight: bold;
+        font-size: 20px;
+        margin-left: 5%;
+
+      }
     }
 
     h3{
@@ -86,12 +101,27 @@
     .add-comment-form{
       width: 90%;
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       justify-content: space-around;
+      align-items: center;
 
-      label{
-        margin-bottom: 2%;
-        font-size: 1.1em;
+      .add-comment{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+        align-items: center;
+
+        input{
+          width:80%;
+          border-radius: 10px;
+          border: solid black 1px;
+        }
+
+        .comment-btn{
+          margin-bottom: 3%;
+        }
+
       }
 
       input{
@@ -107,7 +137,6 @@
       overflow:auto;
 
       .comment{
-        // height: 10%;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -165,10 +194,7 @@
       margin: 5%;
 
       .likes {
-        // margin-top: 20px;
-        // margin-left: 25px;
         width: 30%;
-        // height: 30%;
         display: flex;
         justify-content: flex-start;
         align-items: center;
@@ -214,6 +240,34 @@
 
   .modal-resource-content{
     width: 90%;
+    display:flex;
+
+    .view-title{
+      width: 100%;
+    }
+
+    .description{
+      align-self: flex-start;
+      margin-top: 7%;
+      font-weight: bold;
+
+    }
+
+    .view-resource-info{
+      .view-description{
+        margin-top: 0;
+        font-size: 0.9em;
+      }
+
+      .view-title{
+        font-size: 1.5em;
+      }
+
+      h3{
+        font-size: 1.5em;
+      }
+    }
+
 
     .left-container{
 
@@ -223,6 +277,8 @@
       }
 
     }
+
+
   }
 }
 
@@ -288,20 +344,38 @@
         height: 10%;
         font-size: 1.2em;
       }
+
+      .description{
+        align-self: flex-start;
+        margin-top: 0;
+
+        .description-title{
+          margin-bottom: 0;
+        }
+      }
+
       .view-description {
         margin-top: 10px;
-        font-size: 1.0em;
+        font-size: 12px;
         margin-bottom: 2%;
 
       }
 
       .add-comment-form{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+
         .add-comment{
 
-          label{
-            font-size: 1.0em;
+          font-size: 15px;
+
+          input{
+            width: 70%;
           }
+
         }
+
       }
 
       h3{
@@ -347,6 +421,16 @@
     .view-resource-info{
       margin-top: 50px;
 
+      .description{
+        align-self: flex-start;
+        margin-top: 0;
+
+        .description-title{
+          margin-bottom: 0;
+        }
+
+      }
+
       .view-description{
         font-size: 12px;
       }
@@ -363,6 +447,10 @@
         .add-comment{
 
           font-size: 15px;
+
+          input{
+            width: 70%;
+          }
 
         }
 

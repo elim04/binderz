@@ -74,8 +74,10 @@ $(function () {
           <div class="view-title">
             <span>${resourceObj["resource"].title}</span>
           </div>
-          <div class="view-description">
+          <div class="description">
             <p class="description-title">Description</p>
+          </div>
+          <div class="view-description">
             <p class="description-content">
             ${resourceObj["resource"].description}
             </p>

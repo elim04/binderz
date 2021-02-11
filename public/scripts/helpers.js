@@ -107,5 +107,9 @@ const loginToRegister = function() {
 
 const resetImg = () => {
   $('.modal-img').empty()
-  $('.modal-img').append('<a>Image</a>')
+  $('.modal-img').append(
+    `<div class="inside-create-img">
+      <a>Image</a>
+    </div>`
+    )
 }

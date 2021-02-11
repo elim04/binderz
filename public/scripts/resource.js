@@ -16,6 +16,17 @@ $(function() {
     clearTextArea('resource');
     resetImg();
   })
+
+
+  $('.input-title').on('input', function(event) {
+
+    let characterCount = (20 - $(this).val().length);
+
+    let counter = $('.counter');
+
+    counter.html(characterCount);
+
+  })
 })
 
 

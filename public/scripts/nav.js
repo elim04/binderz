@@ -1,17 +1,17 @@
-$(function () {
+$(function() {
   $(document).on('click', () => {
     $('.logged-in').hide();
-  })
+  });
 
   $('#user-btn').on('click', () => {
     $('.logged-in').slideToggle();
     return false;
-  })
+  });
 
   $('#logout').on('click', () => {
     changeNavOnLogout();
     loadResources();
-  })
+  });
 
   $('.setting').on('click', () => {
     if ($('#personal-box').is(':hidden')) {
@@ -19,17 +19,17 @@ $(function () {
       $('#create-resource').hide();
       $('#personal-box').show();
     }
-  })
+  });
 
-  const changeNavOnLogout = function () {
+  const changeNavOnLogout = function() {
     logOut()
       .done(() => {
-        emptyUserInfo()
+        emptyUserInfo();
         $('.login').show();
       })
       .fail((error) => console.error('Error on logout:', error))
-      .always(() => console.log('executing logout request'))
-  }
+      .always(() => console.log('executing logout request'));
+  };
 
   function loadSearchedResource(params) {
     $.ajax({
@@ -38,48 +38,48 @@ $(function () {
     })
       .done((data) => {
         renderResources(data.resources);
-        imagesLoaded(document.querySelector('#main-container'), function () {
-          masonaryResize()
-        })
+        imagesLoaded(document.querySelector('#main-container'), function() {
+          masonaryResize();
+        });
       })
       .fail(() => console.log('An error has occurred'))
       .always(() => console.log('Succesful request'));
   }
 
   //search bar functions
-  $('#search-form').on('submit', function (e) {
+  $('#search-form').on('submit', function(e) {
     e.preventDefault();
-    let urlParams = $(this).serialize()
+    let urlParams = $(this).serialize();
 
     if ($('#personal-page').is(':visible')) {
-      urlParams += '&user_id=true'
+      urlParams += '&user_id=true';
     }
 
-    loadSearchedResource(urlParams)
-    $("#search-bar").blur()
-  })
+    loadSearchedResource(urlParams);
+    $("#search-bar").blur();
+  });
 
-  $('#search-form').on('change', 'select', function (event) {
-    let urlParams = $(this).closest('#search-form').serialize()
+  $('#search-form').on('change', 'select', function(event) {
+    let urlParams = $(this).closest('#search-form').serialize();
 
     if ($('#personal-page').is(':visible')) {
-      urlParams += '&user_id=true'
+      urlParams += '&user_id=true';
     }
 
-    loadSearchedResource(urlParams)
-  })
+    loadSearchedResource(urlParams);
+  });
 
   $('#home-btn').on('click', () => {
-    if($('#new-name').is(':visible')){
+    if ($('#new-name').is(':visible')) {
       getMyDetails()
-      .done(res => showUsername(res.user.name))
+        .done(res => showUsername(res.user.name));
     }
 
     $("#create-resource").show();
     $("#personal-box").hide();
-    $("#search-bar").val("")
-    $("#topic").val("none")
+    $("#search-bar").val("");
+    $("#topic").val("none");
 
-    loadResources()
-  })
-})
+    loadResources();
+  });
+});

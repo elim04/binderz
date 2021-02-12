@@ -7,7 +7,7 @@ const addUser = function(user) {
   VALUES ($1, $2, $3)
   RETURNING *;`
   , [user.name, user.email, user.password])
-  .then(res => res.rows[0]);
+    .then(res => res.rows[0]);
 };
 
 exports.addUser = addUser;
@@ -17,7 +17,7 @@ const getUserWithEmail = function(email) {
   SELECT * FROM users
   where email = $1`
   , [email])
-  .then(res => res.rows[0]);
+    .then(res => res.rows[0]);
 };
 
 exports.getUserWithEmail = getUserWithEmail;
@@ -27,7 +27,7 @@ const getUserWithId = function(id) {
   SELECT * FROM users
   WHERE id = $1`
   , [id])
-  .then(res => res.rows[0]);
+    .then(res => res.rows[0]);
 };
 
 exports.getUserWithId = getUserWithId;
@@ -50,7 +50,7 @@ const updateUserWithId = function(id, newName) {
   WHERE id = $2
   RETURNING name, email;`
   , [newName, id])
-  .then(res => res.rows[0]);
-}
+    .then(res => res.rows[0]);
+};
 
 exports.updateUserWithId = updateUserWithId;

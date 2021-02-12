@@ -4,8 +4,8 @@ const request = require('request');
 
 module.exports = (db) => {
   router.get('/', (req, res) => {
-    if(req.query.user_id){
-      req.query.user_id = req.session.userId
+    if (req.query.user_id) {
+      req.query.user_id = req.session.userId;
     }
 
     db.getAllResources(req.query, 100)
@@ -21,13 +21,13 @@ module.exports = (db) => {
 
   router.get('/topics', (req, res) => {
     db.getTopics()
-    .then(response => res.json(response))
-    .catch(err => {
-      res
-        .status(500)
-        .json({ error: err.message });
-    });
-  })
+      .then(response => res.json(response))
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
 
   router.get('/likedresources', (req, res) => {
     const userId = req.session.userId;
@@ -40,7 +40,7 @@ module.exports = (db) => {
 
     db.getAllLikedResources(userId)
       .then(resources => {
-        res.json({ resources })
+        res.json({ resources });
       })
       .catch((err) => {
         console.error(err);
@@ -54,7 +54,7 @@ module.exports = (db) => {
 
     Promise.all([db.getSpecificResource(userId, specificResource), db.getComments(specificResource), db.likeCounter(specificResource)])
       .then((data) => {
-        res.json({ resource: data[0], comments: data[1], likeCount: data[2] })
+        res.json({ resource: data[0], comments: data[1], likeCount: data[2] });
       })
       .catch((err) =>  {
         console.error(err);
@@ -67,14 +67,14 @@ module.exports = (db) => {
 
     db.likeCounter(specificResource)
       .then((data) => {
-        res.json( { data });
+        res.json({ data });
       })
       .catch((err) => {
         console.error(err);
-        res.json({ error: err.message })
+        res.json({ error: err.message });
       });
 
-  })
+  });
 
   router.post('/', (req, res) => {
     const userId = req.session.userId;
@@ -86,12 +86,12 @@ module.exports = (db) => {
 
     db.addResource({...req.body, user_id: userId})
       .then(resource => {
-      res.json({ resource });
-    })
+        res.json({ resource });
+      })
       .catch(err => {
-      console.error(err);
-      res.json({ error: err.message });
-    });
+        console.error(err);
+        res.json({ error: err.message });
+      });
   });
 
 
@@ -100,11 +100,11 @@ module.exports = (db) => {
     const specificResource = req.params.resources_id;
     db.addLike(userId, specificResource)
       .then(likedResource => {
-        res.json({ likedResource })
+        res.json({ likedResource });
       })
       .catch(err => {
         console.error(err);
-        res.json( {error: err.message })
+        res.json({error: err.message });
       });
 
   });
@@ -113,12 +113,12 @@ module.exports = (db) => {
     const resourceId = req.params.resource_id;
 
     db.getComments(resourceId)
-    .then(comments => res.json(comments))
-    .catch(err => {
-      console.error(err);
-      res.json( {error: err.message })
-    });
-  })
+      .then(comments => res.json(comments))
+      .catch(err => {
+        console.error(err);
+        res.json({error: err.message });
+      });
+  });
 
 
   router.post('/:resources_id/comment', (req, res) => {
@@ -127,14 +127,14 @@ module.exports = (db) => {
     const commentFromUser = req.body["comment-from-user"];
     db.addComment(userId, specificResource, commentFromUser)
       .then(comment => {
-        res.json( { comment } )
+        res.json({ comment });
       })
       .catch(err => {
         console.error(err);
-        res.json( { error: err.message })
+        res.json({ error: err.message });
       });
 
-  })
+  });
 
   router.delete('/:resources_id/liked', (req,res) => {
     const userId = req.session.userId;
@@ -142,25 +142,25 @@ module.exports = (db) => {
 
     db.removeLike(userId, specificResource)
       .then(resource => {
-        res.json({ resource })
+        res.json({ resource });
       })
       .catch(err => {
         console.error(err);
-        res.json( {error: err.message })
+        res.json({error: err.message });
       });
 
   });
 
   router.post('/urlTest', (req, res) => {
     request(`${req.body.url}`, (error, response, body) => {
-      if(error){
-        res.status(500).send({error: error.message})
-        return
+      if (error) {
+        res.status(500).send({error: error.message});
+        return;
       }
 
-      res.send(response)
-    })
-  })
+      res.send(response);
+    });
+  });
 
   return router;
 };

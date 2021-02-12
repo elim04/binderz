@@ -39,34 +39,34 @@ module.exports = (db) => {
       return;
     }
     db.updateUserWithId(userId, newName)
-    .then(result => res.send(result))
-    .catch(e => res.send(e));
-  })
+      .then(result => res.send(result))
+      .catch(e => res.send(e));
+  });
 
   // ------------------ REGISTER ROUTES ---------------------
 
-  router.post('/register', async (req, res) => {
+  router.post('/register', async(req, res) => {
     const newUserInfo = req.body;
     const beforeHash = newUserInfo.password;
     newUserInfo.password = bcrypt.hashSync(newUserInfo.password, 10);
 
     const email = await getUserWithEmail(newUserInfo.email);
-    if(email) {
+    if (email) {
       res.status(409).send("Email already exists");
       return;
     } else {
 
       db.addUser(newUserInfo)
-      .then(user => {
-        if (!user) {
-          res.send({error: 'user not created'});
-          return;
-        }
-        req.session.userId = user.id;
-        user.password = beforeHash;
-        res.send(user);
-      })
-      .catch(e => res.send(e));
+        .then(user => {
+          if (!user) {
+            res.send({error: 'user not created'});
+            return;
+          }
+          req.session.userId = user.id;
+          user.password = beforeHash;
+          res.send(user);
+        })
+        .catch(e => res.send(e));
     }
 
   });
@@ -76,15 +76,15 @@ module.exports = (db) => {
 
   const login =  function(email, password) {
     return db.getUserWithEmail(email)
-    .then(user => {
-      if(user) {
-        if (bcrypt.compareSync(password, user.password)) {
-          return user;
+      .then(user => {
+        if (user) {
+          if (bcrypt.compareSync(password, user.password)) {
+            return user;
+          }
         }
-      }
-      return null;
-    })
-  }
+        return null;
+      });
+  };
 
   router.post('/login', (req, res) => {
     const {email, password} = req.body;
@@ -118,13 +118,13 @@ module.exports = (db) => {
       return;
     } else if (newRating) {
       createRating(id, userId, newRating)
-      .then(result => res.send(result))
-      .catch(e => res.send(e));
+        .then(result => res.send(result))
+        .catch(e => res.send(e));
       return;
     }
 
-    res.send('no updates')
-  })
+    res.send('no updates');
+  });
 
   return router;
 };

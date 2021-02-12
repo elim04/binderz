@@ -51,7 +51,7 @@ const getAllResources = function(options, limit) {
   //show based on title input in search bar
 
   if (options.title) {
-    queryParams.push(`%${options.title.trim().toLowerCase()}%`)
+    queryParams.push(`%${options.title.trim().toLowerCase()}%`);
     queryString += `AND lower(title) LIKE $${queryParams.length} `;
   }
 
@@ -83,7 +83,7 @@ const getAllLikedResources = function(id) {
   JOIN resources ON likes.resource_id = resources.id
   WHERE users.id = $1
   GROUP BY resources.id;
-  `
+  `;
 
   return db.query(queryString, queryParams)
     .then(res => res.rows)
@@ -107,7 +107,7 @@ const getSpecificResource = function(id, resource) {
     AND resource_id = $2) as rating
   FROM resources
   WHERE resources.id = $2;
-  `
+  `;
   return db.query(queryString, queryParams)
     .then(res => res.rows[0])
     .catch(err => console.error('query error', err.stack));
@@ -127,7 +127,7 @@ const getComments = function(resource) {
   JOIN users ON comments.user_id = users.id
   WHERE resource_id = $1
   ORDER BY comments.id;
-  `
+  `;
   return db.query(queryString, queryParams)
     .then(res => res.rows)
     .catch(err => console.error('query error', err.stack));
@@ -150,7 +150,7 @@ const addLike = function(id, resource) {
   return db.query(queryString, queryParams)
     .then(res => res.rows[0])
     .catch(err => console.error('query error', err.stack));
-}
+};
 
 exports.addLike = addLike;
 
@@ -168,7 +168,7 @@ const removeLike = function(id, resource) {
   return db.query(queryString, queryParams)
     .then(res => res.rows[0])
     .catch(err => console.error('query error', err.stack));
-}
+};
 
 exports.removeLike = removeLike;
 
@@ -189,7 +189,7 @@ const addRating = function(id, resource, rating) {
     .then(res => res.rows[0])
     .catch(err => console.error('query error', err.stack));
 
-}
+};
 
 
 exports.addRating = addRating;
@@ -208,7 +208,7 @@ const addComment = function(id, resource_id, comment) {
   return db.query(queryString, queryParams)
     .then(res => res.rows[0])
     .catch(err => console.error('query error', err.stack));
-}
+};
 
 exports.addComment = addComment;
 
@@ -226,7 +226,7 @@ const likeCounter = function(resourceId) {
   return db.query(queryString, queryParams)
     .then(res => res.rows[0])
     .catch(err => console.error('query error', err.stack));
-}
+};
 
 exports.likeCounter = likeCounter;
 
@@ -242,9 +242,9 @@ const updateRating = function(resourceId, userId, rating) {
   RETURNING *;`;
 
   return db.query(queryString, queryParams)
-  .then(res => console.log('Sucessfully updated!'))
-  .catch(err => console.error('query error', err.stack))
-}
+    .then(res => console.log('Sucessfully updated!'))
+    .catch(err => console.error('query error', err.stack));
+};
 
 exports.updateRating = updateRating;
 
@@ -257,19 +257,19 @@ const createRating = function(resourceId, userId, rating) {
   RETURNING *;`;
 
   return db.query(queryString, queryParams)
-  .then(res => console.log('Sucessfully Created!'))
-  .catch(err => console.error('query error', err.stack))
-}
+    .then(res => console.log('Sucessfully Created!'))
+    .catch(err => console.error('query error', err.stack));
+};
 
 exports.createRating = createRating;
 
 const getTopics = function() {
   let queryString = `
     SELECT * FROM topics
-  `
+  `;
   return db.query(queryString)
-  .then(res => res.rows)
-  .catch(err => console.error('query error', err.stack))
-}
+    .then(res => res.rows)
+    .catch(err => console.error('query error', err.stack));
+};
 
 exports.getTopics = getTopics;

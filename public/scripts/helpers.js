@@ -1,62 +1,62 @@
 const showError = function(message, type) {
   $(`.${type}_error`).append(`<p>${message}</p>`);
-  $(`.${type}_error`).slideDown("slow", function () { });
-}
+  $(`.${type}_error`).slideDown("slow", function() { });
+};
 
 const clearError = function(type) {
   $(`.${type}_error`).empty();
   $(`.${type}_error`).css('display', 'none');
-}
+};
 
-const clearInput = function (type) {
-  $(`.modal-${type}-content`).find('input').each(function () {
+const clearInput = function(type) {
+  $(`.modal-${type}-content`).find('input').each(function() {
     $(this).val('');
-  })
-}
+  });
+};
 
-const clearTextArea = function (type) {
-  $(`.modal-${type}-content`).find('textarea').each(function () {
+const clearTextArea = function(type) {
+  $(`.modal-${type}-content`).find('textarea').each(function() {
     $(this).val('');
-  })
-}
+  });
+};
 
-const ratings = function (id) {
+const ratings = function(id) {
   for (let check = 1; check <= id; check++) {
     $(`#${check}`).attr('class', 'fa fa-star checked');
   }
   for (let uncheck = 5; uncheck > id; uncheck--) {
     $(`#${uncheck}`).attr('class', 'fa fa-star');
   }
-}
+};
 
 const loadCurrentRating = function(data) {
   ratings(data.resource.rating);
-}
+};
 
 const showUsername = function(name) {
   $('#new-name').remove();
   $('.user-name').prepend(name);
   $('.setting-button-container').show();
-}
+};
 
 const resourceToLogin = function(action) {
   $('.modal-bg1').removeClass('bg-active');
-  $('.img-container').removeClass('change-order')
+  $('.img-container').removeClass('change-order');
   $('.modal-bg3').addClass('bg-active');
-  $('.img-container').addClass('change-order')
-  $('#create-resource').addClass('change-order')
+  $('.img-container').addClass('change-order');
+  $('#create-resource').addClass('change-order');
   showError(`Please log in to ${action}.`, 'login');
-}
+};
 
 const logInCheck = async function() {
   let isLoggedIn;
   try {
     isLoggedIn = await getMyDetails();
-  } catch(err) {
-    console.log(err, "error")
+  } catch (err) {
+    console.log(err, "error");
   }
   return isLoggedIn;
-}
+};
 
 const emptyUserInfo = () => {
   $('.user')
@@ -68,9 +68,9 @@ const emptyUserInfo = () => {
   $('.logged-in').hide();
   $('#my-page').removeData();
   $('#personal-box').empty();
-}
+};
 
-const displayLikes = function(currentCount){
+const displayLikes = function(currentCount) {
   $('.counter').empty();
 
   if (currentCount === 0) {
@@ -78,7 +78,7 @@ const displayLikes = function(currentCount){
   } else {
     $('.counter').append(`${currentCount}`);
   }
-}
+};
 
 const checkHeartStatus = function(resource) {
 
@@ -88,32 +88,32 @@ const checkHeartStatus = function(resource) {
     $('.likes').prepend('<i id="heart-btn" class="fas fa-heart fa-2x"></i>');
   }
 
-}
+};
 
 const modalDisplay = function(id, display) {
   if (display === 'add') {
-    $(`.modal-bg${id}`).addClass('bg-active')
-    $('.img-container').addClass('change-order')
-    $('#create-resource').addClass('change-order')
+    $(`.modal-bg${id}`).addClass('bg-active');
+    $('.img-container').addClass('change-order');
+    $('#create-resource').addClass('change-order');
   } else if (display === 'remove') {
-    $(`.modal-bg${id}`).removeClass('bg-active')
-    $('.img-container').removeClass('change-order')
-    $('#create-resource').removeClass('change-order')
+    $(`.modal-bg${id}`).removeClass('bg-active');
+    $('.img-container').removeClass('change-order');
+    $('#create-resource').removeClass('change-order');
   }
-}
+};
 
 const loginToRegister = function() {
-  $('.img-container').addClass('change-order')
+  $('.img-container').addClass('change-order');
   $('.modal-bg3').removeClass('bg-active');
   $('.modal-bg4').addClass('bg-active');
   clearError('login');
-}
+};
 
 const resetImg = () => {
-  $('.modal-img').empty()
+  $('.modal-img').empty();
   $('.modal-img').append(
     `<div class="inside-create-img">
       <a>Image</a>
     </div>`
-    )
-}
+  );
+};

@@ -1,4 +1,4 @@
-$(function () {
+$(function() {
 
   const createPersonal = (userInfo) => {
     const personalHTML = `
@@ -17,38 +17,38 @@ $(function () {
       <button id="personal-resource-btn" class="bttn-stretch bttn-md bttn-primary">Personal</button>
     </div>
     </div>
-    `
+    `;
 
-    return personalHTML
-  }
+    return personalHTML;
+  };
 
   const settingsInput = () => {
     const inputHtml = `<form id="new-name" action="/me">
     <input id="newName" name="newName" type="text" placeholder="New Name" autofocus></input>
-    <input type="submit" hidden></form>`
+    <input type="submit" hidden></form>`;
 
     return inputHtml;
-  }
+  };
 
   const renderPersonalArea = (user) => {
     $('#personal-box').append(createPersonal(user));
     $('#personal-box').hide();
 
-    $('#liked-resource-btn').bind('click', loadLikedResources)
-    $('#saved-resource-btn').bind('click', loadLikedResources)
-    $('#personal-resource-btn').bind('click', loadPersonalResources)
+    $('#liked-resource-btn').bind('click', loadLikedResources);
+    $('#saved-resource-btn').bind('click', loadLikedResources);
+    $('#personal-resource-btn').bind('click', loadPersonalResources);
 
-    $('#setting').on('click', function () {
-      const oldName = $('.user-name').text()
-      $('#user-name-personal').contents().filter(function () {
+    $('#setting').on('click', function() {
+      const oldName = $('.user-name').text();
+      $('#user-name-personal').contents().filter(function() {
         return this.nodeType === 3;
       }).remove();
 
       $('#user-name-personal').prepend(settingsInput);
       $('.setting-button-container').hide();
-      $('#newName').focus()
+      $('#newName').focus();
 
-      $('#new-name').on('submit', function (event) {
+      $('#new-name').on('submit', function(event) {
         event.preventDefault();
 
         const data = $(this).serialize();
@@ -57,18 +57,18 @@ $(function () {
 
         if (newName) {
           updateUser(data)
-          .done(data => {
-            emptyUserInfo();
-            changeNavOnLogin({user: data})
-            $('#personal-box').show()
-          })
+            .done(data => {
+              emptyUserInfo();
+              changeNavOnLogin({user: data});
+              $('#personal-box').show();
+            });
           showUsername(newName);
         } else {
           showUsername(oldName);
         }
-      })
-    })
-  }
+      });
+    });
+  };
 
   window.renderPersonalArea = renderPersonalArea;
 
@@ -76,9 +76,9 @@ $(function () {
     getLikedResources()
       .done((data) => {
         renderResources(data.resources);
-        imagesLoaded(document.querySelector('#main-container'), function () {
-          masonaryResize()
-        })
+        imagesLoaded(document.querySelector('#main-container'), function() {
+          masonaryResize();
+        });
       })
       .fail(() => console.log('An error has occurred'))
       .always(() => console.log('Succesful request'));
@@ -88,19 +88,19 @@ $(function () {
     getResources('user_id=true')
       .done((data) => {
         renderResources(data.resources);
-        imagesLoaded(document.querySelector('#main-container'), function () {
-          masonaryResize()
-        })
+        imagesLoaded(document.querySelector('#main-container'), function() {
+          masonaryResize();
+        });
       })
       .fail(() => console.log('An error has occurred'))
       .always(() => console.log('Succesful request'));
   }
 
-  $('#my-page').on('click', function () {
+  $('#my-page').on('click', function() {
     if ($('#personal-box').is(':hidden')) {
       $('#main-container').empty();
       $('#create-resource').hide();
       $('#personal-box').show();
     }
-  })
-})
+  });
+});

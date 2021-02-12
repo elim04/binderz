@@ -1,34 +1,34 @@
-const signUp = function (data) {
+const signUp = function(data) {
   return $.ajax({
     method: "POST",
     url: "/api/users/register",
     data
   });
-}
+};
 
-const logIn = function (data) {
+const logIn = function(data) {
   return $.ajax({
     method: "POST",
     url: "/api/users/login",
     data
   });
-}
+};
 
-const logOut = function () {
+const logOut = function() {
   return $.ajax({
     method: "POST",
     url: "/api/users/logout"
-  })
-}
+  });
+};
 
-const updateRatingCall = function (data, newRating) {
-  data.newRating = newRating
+const updateRatingCall = function(data, newRating) {
+  data.newRating = newRating;
   return $.ajax({
     method: "POST",
     url: `/api/users/${data.resource.id}/rating`,
     data
-  })
-}
+  });
+};
 
 function addResource(formContent) {
   return $.ajax({
@@ -45,7 +45,7 @@ function addComment(comment,data) {
     data: data
   })
     .done(() => console.log('Comment has been added'))
-    .fail(() => console.log('Comment has not been added NOOOO'))
+    .fail(() => console.log('Comment has not been added NOOOO'));
 
 }
 
@@ -54,7 +54,7 @@ function addFullHeart(resource) {
   return $.ajax({
     method: 'POST',
     url: `/api/resources/${resource['resource'].id}/liked`,
-  })
+  });
 }
 
 function addEmptyHeart(resource) {
@@ -62,7 +62,7 @@ function addEmptyHeart(resource) {
   return $.ajax({
     method: "DELETE",
     url: `/api/resources/${resource['resource'].id}/liked`,
-  })
+  });
 
 }
 
@@ -74,7 +74,7 @@ function createResource(newData) {
     data: newData
   })
     .done(() => {
-      loadResources()
+      loadResources();
       clearInput('resource');
       clearTextArea('resource');
     })
@@ -91,27 +91,27 @@ function getMyDetails() {
 function getAllTopics() {
   return $.ajax({
     url: "/api/resources/topics"
-  })
+  });
 }
 
-const updateUser = function (newName) {
+const updateUser = function(newName) {
   return $.ajax({
     method: "POST",
     url: "/api/users/me",
     data: newName
-  })
-}
+  });
+};
 
-const getResources = function (params) {
+const getResources = function(params) {
   return $.ajax({
     url: `/api/resources/?${params}`,
     method: 'GET'
-  })
-}
+  });
+};
 
 const getLikedResources = function() {
   return $.ajax({
     url: `/api/resources/likedResources`,
     method: 'GET'
-  })
-}
+  });
+};

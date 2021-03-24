@@ -52,25 +52,25 @@ Binderz is a resouce wall similar to Pinterest where users (learners) are able t
 
 ### Home Page
 
-!["Main Page"]()
+!["Main Page"](https://github.com/elim04/binderz/blob/master/docs/HomePage.png)
 
 ### Create A New Resource
 
-!["Create a New Resource"]()
+!["Create a New Resource"](https://github.com/elim04/binderz/blob/master/docs/CreateResource.png)
 
 ### Resource
 
-!["Resource"]()
+!["Resource"](https://github.com/elim04/binderz/blob/master/docs/Resource.png)
 
 ### Forms (Login, Register)
 
-!["Login Form"]()
-!["Register Form"]()
+!["Login Form"](https://github.com/elim04/binderz/blob/master/docs/LoginPage.png)
+!["Register Form"](https://github.com/elim04/binderz/blob/master/docs/Register.png)
 
 ### My Resources Page
 
-!["My Resources Page"]()
+!["My Resources Page"](https://github.com/elim04/binderz/blob/master/docs/MyResources.png)
 
 ### Error Message
 
-!["Error Message"]()
+!["Error Message"](https://github.com/elim04/binderz/blob/master/docs/ErrorMsg.png)
